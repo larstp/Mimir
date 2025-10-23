@@ -1,4 +1,4 @@
-import "./style.css";
+import "../src/css/global/style.css";
 import typescriptLogo from "../public/icons/typescript.svg";
 import viteLogo from "../public/icons/vite.svg";
 import { setupCounter } from "./counter.ts";
