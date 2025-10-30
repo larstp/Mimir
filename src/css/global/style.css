@@ -1,7 +1,7 @@
 :root {
   --background: #202020;
   --backgroundLight: oklch(94.912% 0.00011 271.152);
-  --primary: oklch(59.184% 0.1063 179.921);
+  --primary: oklch(34.846% 0.00004 271.152);
   --accent: oklch(86.535% 0.14758 204.054 / 0.596);
   --error: oklch(65.91% 0.249 13.76);
   --white: #fff;
