@@ -1,0 +1,126 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  /* ----------------------------------------Fade to transparent at the bottom */
+  background: linear-gradient(
+    to bottom,
+    var(--background) 0%,
+    var(--background) 70%,
+    transparent 100%
+  );
+
+  padding: 1rem 0 2.5rem 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.header-logo-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.header-logo-link:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.header-logo-link:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.header-logo {
+  display: block;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.header-nav {
+  display: none;
+}
+
+/* Desktop sizes */
+@media (min-width: 769px) {
+  header {
+    padding: 1.5rem 0 3rem 0;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .header-logo {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    margin-left: 2rem;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 2rem;
+  }
+
+  .header-nav-item {
+    position: relative;
+    min-width: 24px;
+  }
+
+  .header-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .header-nav-link:hover {
+    transform: translateY(-2px);
+  }
+
+  .header-nav-link:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  .header-nav-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.2s ease;
+  }
+
+  .header-nav-link:hover .header-nav-icon {
+    opacity: 0.8;
+  }
+
+  .header-nav-label {
+    font-family: var(--font-family);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .header-nav-link:hover .header-nav-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

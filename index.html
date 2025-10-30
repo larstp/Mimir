@@ -2,12 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./public/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mimir</title>
+    <meta name="theme-color" content="#111" />
+    <meta name="color-scheme" content="dark light" />
+    <title>ᛗìmir - Front Page</title>
+    <link rel="stylesheet" href="./src/css/global/index.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/ihh6hhm.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./public/icons/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./public/icons/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./public/icons/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./public/icons/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./public/icons/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./public/icons/favicon/android-chrome-512x512.png"
+    />
+    <link rel="manifest" href="./public/icons/favicon/site.webmanifest" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="./src/main.ts"></script>
+    <header role="banner"></header>
+    <div class="logo-bg-container" aria-hidden="true">
+      <div class="logo-bg logo-bg-bottom"></div>
+      <div class="logo-bg logo-bg-top"></div>
+    </div>
+    <main id="main-content" role="main"></main>
+    <footer role="contentinfo"></footer>
+    <script type="module" src="./src/js/global/main.js"></script>
   </body>
 </html>
