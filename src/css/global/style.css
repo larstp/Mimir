@@ -2,6 +2,7 @@
   --background: #202020;
   --backgroundLight: oklch(94.912% 0.00011 271.152);
   --primary: oklch(34.846% 0.00004 271.152);
+  --primaryHover: oklch(44.846% 0.00004 271.152);
   --accent: oklch(86.535% 0.14758 204.054 / 0.596);
   --error: oklch(65.91% 0.249 13.76);
   --white: #fff;
@@ -17,6 +18,23 @@
   --gray-light: #888;
   --gray-medium: #e0e0e0;
   --surface-elevated: #222;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -36,4 +54,11 @@ body {
 
 main {
   flex: 1;
+  padding-top: 100px;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-bottom: 80px;
+  }
 }

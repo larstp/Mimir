@@ -1,0 +1,42 @@
+.post-feed {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.post-feed-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.post-feed-loading,
+.post-feed-error,
+.post-feed-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--textLight);
+}
+
+.post-feed-error {
+  color: var(--error);
+}
+
+/* ---------------------------------------------------------Desktop - 2 column grid */
+@media (min-width: 769px) {
+  .post-feed {
+    padding: 2rem;
+  }
+
+  .post-feed-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ---------------------------------------------------------Large desktop - 3 column grid */
+@media (min-width: 1200px) {
+  .post-feed-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

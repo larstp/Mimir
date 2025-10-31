@@ -1,4 +1,4 @@
 # ᛗìmir
 
-ᛗ mannaʀ - maðr (m) - menneske, mann
-Mannaz is the conventional name of the /m/ rune ᛗ of the Elder Futhark. It is derived from the reconstructed Proto-Germanic (or Common Germanic) word for 'man', \*mannaz.
+ᛗ mannaʀ - maðr - menneske / human
+Mannaz is the conventional name of the /m/ rune ᛗ of the Elder Futhark. It is derived from the Proto-Germanic word for 'man', and I thought that was a fitting name for a social media where humans interact.
