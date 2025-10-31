@@ -22,7 +22,7 @@ export function createHeader() {
     const header = document.querySelector("header");
 
     if (!header) {
-      console.error("Header element not found in the DOM");
+      console.error("Cannot find <header> element");
       return;
     }
 

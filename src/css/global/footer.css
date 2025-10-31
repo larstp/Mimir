@@ -1,0 +1,55 @@
+footer {
+  background-color: var(--background);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* --------------------------------------Extra height on mobile to accommodate floating navbar */
+  padding: 2rem 1rem 6rem 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-icon {
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+  filter: brightness(0) invert(1);
+}
+
+.footer-copyright {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--textLight);
+  text-align: center;
+}
+
+.footer-link {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--primary);
+}
+
+.footer-link:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* -------------------------------------------Desktop - normal padding without extra space for navbar */
+@media (min-width: 769px) {
+  footer {
+    padding: 2rem 1rem;
+  }
+}
