@@ -22,6 +22,35 @@
   color: var(--error);
 }
 
+.post-feed-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.post-feed-empty h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  font-family: var(--FontFamily);
+  padding-top: 2rem;
+}
+
+.post-feed-empty h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+
+.post-feed-empty .btn {
+  max-width: 300px;
+}
+
 /* ---------------------------------------------------------Desktop - 2 column grid */
 @media (min-width: 769px) {
   .post-feed {

@@ -37,10 +37,30 @@ async function displayPostFeed(page = 1) {
     feedContainer.classList.add("post-feed");
 
     if (!isLoggedIn()) {
-      const loginPrompt = document.createElement("div");
-      loginPrompt.classList.add("post-feed-empty");
-      loginPrompt.textContent = "Please log in to view posts";
-      feedContainer.appendChild(loginPrompt);
+      const emptyState = document.createElement("div");
+      emptyState.classList.add("post-feed-empty");
+
+      const heading = document.createElement("h1");
+      heading.textContent = "Please log in to view posts";
+      emptyState.appendChild(heading);
+
+      const loginLink = document.createElement("a");
+      loginLink.href = "./src/pages/login.html";
+      loginLink.classList.add("btn");
+      loginLink.textContent = "Log in";
+      emptyState.appendChild(loginLink);
+
+      const registerHeading = document.createElement("h2");
+      registerHeading.textContent = "Don't have an account?";
+      emptyState.appendChild(registerHeading);
+
+      const registerLink = document.createElement("a");
+      registerLink.href = "./src/pages/register.html";
+      registerLink.classList.add("btn");
+      registerLink.textContent = "Register";
+      emptyState.appendChild(registerLink);
+
+      feedContainer.appendChild(emptyState);
       main.appendChild(feedContainer);
       return;
     }

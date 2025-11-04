@@ -1,4 +1,5 @@
 import { login, isLoggedIn } from "../data/api.js";
+import { createLoader } from "./modules/loader.js";
 
 /**
  * Creates the login form
@@ -39,7 +40,7 @@ function createLoginForm() {
   const emailInput = document.createElement("input");
   emailInput.type = "email";
   emailInput.name = "email";
-  emailInput.classList.add("login-input");
+  emailInput.classList.add("form-input");
   emailInput.placeholder = "example@stud.noroff.no";
   emailInput.required = true;
   emailInput.setAttribute("aria-label", "Email address");
@@ -48,7 +49,7 @@ function createLoginForm() {
   const passwordInput = document.createElement("input");
   passwordInput.type = "password";
   passwordInput.name = "password";
-  passwordInput.classList.add("login-input");
+  passwordInput.classList.add("form-input");
   passwordInput.placeholder = "Password";
   passwordInput.required = true;
   passwordInput.setAttribute("aria-label", "Password");
@@ -58,7 +59,7 @@ function createLoginForm() {
 
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
-  submitButton.classList.add("login-button");
+  submitButton.classList.add("btn");
   submitButton.textContent = "Log in";
   form.appendChild(submitButton);
 
@@ -100,11 +101,16 @@ function createLoginForm() {
     submitButton.disabled = true;
     submitButton.textContent = "Logging in...";
 
+    const loader = createLoader("Logging you in...");
+    fieldsContainer.insertAdjacentElement("afterend", loader);
+
     try {
       await login(email, password);
 
       window.location.href = "../../index.html";
     } catch (error) {
+      loader.remove();
+
       showError(form, error.message || "Login failed. Please try again.");
 
       submitButton.disabled = false;
