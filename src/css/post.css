@@ -4,6 +4,10 @@
   padding: 0 1rem;
 }
 
+.post-page-container .post-card {
+  margin-bottom: 2rem;
+}
+
 .post-comments {
   padding: 1.5rem;
   background-color: var(--surface-elevated);

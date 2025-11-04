@@ -19,14 +19,15 @@ import { isLoggedIn } from "../../data/api.js";
  */
 export function createNavbar() {
   try {
-    if (!isLoggedIn()) {
-      return;
-    }
-
     const navbar = document.querySelector("nav.mobile-navbar");
 
     if (!navbar) {
       console.error("Mobile navbar element not found in the DOM");
+      return;
+    }
+
+    if (!isLoggedIn()) {
+      navbar.style.display = "none";
       return;
     }
 
@@ -60,6 +61,7 @@ export function createNavbar() {
         href: "#",
         ariaLabel: "View favorites",
         page: "favorites",
+        isLogout: true, // --------------------------------------------------------------TESTING: Logout button
       },
       {
         icon: `${prefix}/public/icons/flowbite_user-circle-solid.svg`,
@@ -87,6 +89,16 @@ export function createNavbar() {
       link.href = item.href;
       link.classList.add("navbar-link");
       link.setAttribute("aria-label", item.ariaLabel);
+
+      // ------------------------------------------------------- TESTING: Add logout functionality to heart icon
+      if (item.isLogout) {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("authToken");
+          localStorage.removeItem("userName");
+          window.location.href = `${prefix}/src/pages/login.html`;
+        });
+      }
 
       if (isActive) {
         link.setAttribute("aria-current", "page");
