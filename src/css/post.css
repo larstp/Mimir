@@ -1,0 +1,78 @@
+.post-page-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.post-comments {
+  padding: 1.5rem;
+  background-color: var(--surface-elevated);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.post-comments-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 1.5rem 0;
+}
+
+.post-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.post-comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.post-comment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.post-comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-comment-author {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.post-comment-date {
+  font-size: 0.8rem;
+  color: var(--textLight);
+  margin-left: auto;
+}
+
+.post-comment-body {
+  font-size: 0.95rem;
+  color: var(--textBody);
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 2.5rem;
+}
+
+.post-comments-empty {
+  text-align: center;
+  color: var(--textLight);
+  padding: 2rem 0;
+  font-style: italic;
+}
+
+.post-error {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--error);
+}
