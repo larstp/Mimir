@@ -1,3 +1,5 @@
+// This is mostly copy/pasted from a previous project
+
 import { register, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
@@ -104,6 +106,21 @@ function createRegisterForm() {
   repeatPasswordInput.setAttribute("aria-label", "Repeat password");
   fieldsContainer.appendChild(repeatPasswordInput);
 
+  const avatarLabel = document.createElement("label");
+  avatarLabel.classList.add("form-label");
+  avatarLabel.setAttribute("for", "avatar-url");
+  avatarLabel.textContent = "Profile Picture URL (Optional)";
+  fieldsContainer.appendChild(avatarLabel);
+
+  const avatarInput = document.createElement("input");
+  avatarInput.type = "url";
+  avatarInput.id = "avatar-url";
+  avatarInput.name = "avatar-url";
+  avatarInput.classList.add("form-input");
+  avatarInput.placeholder = "https://example.com/your-image.jpg";
+  avatarInput.setAttribute("aria-label", "Profile picture URL");
+  fieldsContainer.appendChild(avatarInput);
+
   form.appendChild(fieldsContainer);
 
   const submitButton = document.createElement("button");
@@ -138,6 +155,7 @@ function createRegisterForm() {
     const email = emailInput.value.trim();
     const password = passwordInput.value;
     const repeatPassword = repeatPasswordInput.value;
+    const avatarUrl = avatarInput.value.trim();
 
     if (!username || !email || !password || !repeatPassword) {
       showError(form, "Please fill in all fields");
@@ -174,11 +192,20 @@ function createRegisterForm() {
     fieldsContainer.insertAdjacentElement("afterend", loader);
 
     try {
-      await register({
+      const userData = {
         name: username,
         email: email,
         password: password,
-      });
+      };
+
+      if (avatarUrl) {
+        userData.avatar = {
+          url: avatarUrl,
+          alt: `${username}'s profile picture`,
+        };
+      }
+
+      await register(userData);
 
       window.location.href = "./login.html";
     } catch (error) {

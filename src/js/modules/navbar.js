@@ -1,3 +1,5 @@
+import { isLoggedIn } from "../../data/api.js";
+
 /**
  * Creates and renders the mobile navigation bar.
  * The navbar is inserted into the existing <nav> element in the DOM.
@@ -17,6 +19,10 @@
  */
 export function createNavbar() {
   try {
+    if (!isLoggedIn()) {
+      return;
+    }
+
     const navbar = document.querySelector("nav.mobile-navbar");
 
     if (!navbar) {
