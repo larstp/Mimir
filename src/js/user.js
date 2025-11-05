@@ -81,6 +81,18 @@ async function displayUserProfile() {
     }); // hope this works on all browsers
 
     banner.appendChild(backButton);
+
+    const currentUser = getUserName();
+    if (currentUser === profileName) {
+      const editButton = document.createElement("a");
+      editButton.href = "./editUser.html";
+      editButton.classList.add("profile-edit-button");
+      editButton.setAttribute("aria-label", "Edit profile");
+      editButton.textContent = "Edit Profile";
+
+      banner.appendChild(editButton);
+    }
+
     main.appendChild(banner);
 
     const header = document.createElement("section");
