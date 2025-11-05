@@ -28,13 +28,23 @@
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 10;
-  font-size: 1.5rem;
-  color: white;
+  padding: 0;
 }
 
 .profile-back-button:hover {
   background: rgba(0, 0, 0, 0.7);
   transform: scale(1.05);
+}
+
+.profile-back-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s ease;
+}
+
+.profile-back-button:hover .profile-back-icon {
+  content: url("../../public/icons/flowbite_arrow-left-alt-solid.svg");
 }
 
 .profile-header {
@@ -66,18 +76,28 @@
   padding-top: 3.5rem;
 }
 
+.profile-name-container {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
 .profile-name {
   font-size: 1.75rem;
   font-weight: 600;
   color: var(--text);
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   font-family: var(--FontFamily);
+  background-color: rgba(17, 17, 17, 0.85);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  display: inline-block;
 }
 
 .profile-bio {
   color: var(--textLight);
   margin: 0 0 1rem 0;
   line-height: 1.5;
+  padding-left: 1rem;
 }
 
 .profile-stats {
@@ -85,6 +105,7 @@
   gap: 2rem;
   color: var(--textLight);
   font-size: 0.95rem;
+  padding-left: 1rem;
 }
 
 .profile-stat {
@@ -100,7 +121,7 @@
 .profile-posts {
   max-width: 1200px;
   margin: 2rem auto 0;
-  padding: 0 1rem;
+  padding: 0 1rem 1rem 1rem;
 }
 
 .profile-posts-header {

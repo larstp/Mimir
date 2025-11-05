@@ -1,6 +1,9 @@
 import { getProfile, getUserName, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 import { createPost } from "./modules/createPost.js";
+import { createHeader } from "./modules/header.js";
+import { createFooter } from "./modules/footer.js";
+import { createNavbar } from "./modules/navbar.js";
 
 /**
  * Displays the user profile page
@@ -12,6 +15,10 @@ import { createPost } from "./modules/createPost.js";
  */
 async function displayUserProfile() {
   try {
+    createHeader();
+    createFooter();
+    createNavbar();
+
     const main = document.querySelector("main");
 
     if (!main) {
@@ -62,10 +69,16 @@ async function displayUserProfile() {
     const backButton = document.createElement("button");
     backButton.classList.add("profile-back-button");
     backButton.setAttribute("aria-label", "Go back to previous page");
-    backButton.textContent = "←";
+
+    const backIcon = document.createElement("img");
+    backIcon.src = "../../public/icons/flowbite_arrow-left-alt-outline.svg";
+    backIcon.alt = "";
+    backIcon.classList.add("profile-back-icon");
+    backButton.appendChild(backIcon);
+
     backButton.addEventListener("click", () => {
       window.history.back();
-    });
+    }); // hope this works on all browsers
 
     banner.appendChild(backButton);
     main.appendChild(banner);
@@ -90,10 +103,15 @@ async function displayUserProfile() {
     const info = document.createElement("div");
     info.classList.add("profile-info");
 
+    const nameContainer = document.createElement("div");
+    nameContainer.classList.add("profile-name-container");
+
     const name = document.createElement("h1");
     name.classList.add("profile-name");
     name.textContent = profile.name;
-    info.appendChild(name);
+    nameContainer.appendChild(name);
+
+    info.appendChild(nameContainer);
 
     if (profile.bio) {
       const bio = document.createElement("p");
@@ -107,13 +125,12 @@ async function displayUserProfile() {
     stats.setAttribute("aria-label", "Profile statistics");
 
     const followersCount = profile._count?.followers || 0;
-    const followersText = followersCount === 1 ? "Follower" : "Followers";
 
     const followers = document.createElement("div");
     followers.classList.add("profile-stat");
 
     const followersLabel = document.createElement("span");
-    followersLabel.textContent = `${followersText}: `;
+    followersLabel.textContent = "Followers: ";
     followers.appendChild(followersLabel);
 
     const followersValue = document.createElement("span");
