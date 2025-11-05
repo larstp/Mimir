@@ -59,9 +59,14 @@ export function createPost(post, followingList = []) {
         authorContainer.appendChild(avatar);
       }
 
-      const authorName = document.createElement("span");
+      const authorName = document.createElement("a");
+      authorName.href = `${prefix}/src/pages/user.html?name=${post.author.name}`; // 50% of the time this works 30% of the time
       authorName.classList.add("post-card-author-name");
       authorName.textContent = post.author.name;
+      authorName.setAttribute(
+        "aria-label",
+        `View ${post.author.name}'s profile`
+      );
       authorContainer.appendChild(authorName);
 
       if (currentUser && post.author.name !== currentUser) {
