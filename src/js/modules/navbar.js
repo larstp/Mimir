@@ -51,9 +51,9 @@ export function createNavbar() {
       },
       {
         icon: `${prefix}/public/icons/flowbite_circle-plus-solid.svg`,
-        href: `${prefix}/src/pages/new.html`,
+        href: `${prefix}/src/pages/newPost.html`,
         ariaLabel: "Create new post",
-        page: "new.html",
+        page: "newPost.html",
         isCenter: true, // ------------------------------------------Make this one bigger (center icon)
       },
       {

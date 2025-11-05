@@ -92,3 +92,96 @@ a .post-comment-avatar:hover {
   text-align: center;
   color: var(--error);
 }
+
+/* -------------------------------------------Create Post */
+.create-post-header {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 2rem 0;
+  font-family: var(--FontFamily);
+  text-align: center;
+}
+
+.create-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.create-post-textarea {
+  resize: vertical;
+  min-height: 150px;
+  font-family: inherit;
+}
+
+.create-post-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.create-post-buttons .btn {
+  flex: 1;
+}
+
+.btn-secondary {
+  background: var(--surface-elevated);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background: var(--cardBackground);
+}
+
+.create-post-error {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--error);
+  margin-bottom: 1rem;
+}
+
+/* ---------------------------------------------------------Edit Post */
+.edit-post-image-preview {
+  margin: 1rem 0 2rem 0;
+}
+
+.edit-post-image-label {
+  font-size: 0.875rem;
+  color: var(--textLight);
+  margin: 0 0 0.5rem 0;
+}
+
+.edit-post-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.edit-post-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-delete {
+  background: var(--error);
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .edit-post-buttons {
+    grid-template-columns: 1fr;
+  }
+}

@@ -64,7 +64,7 @@ export function createHeader() {
       {
         icon: `${prefix}/public/icons/flowbite_circle-plus-solid.svg`,
         label: "New",
-        href: `${prefix}/src/pages/new.html`,
+        href: `${prefix}/src/pages/newPost.html`,
         ariaLabel: "Create new post",
       },
     ];
