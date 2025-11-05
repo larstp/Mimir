@@ -1,0 +1,152 @@
+.profile-banner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  overflow: hidden;
+}
+
+.profile-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-back-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.profile-back-button:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.profile-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  gap: 1.5rem;
+  margin-top: -50px;
+  position: relative;
+  z-index: 5;
+}
+
+.profile-avatar-container {
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--background);
+  object-fit: cover;
+  background: var(--cardBackground);
+}
+
+.profile-info {
+  flex: 1;
+  padding-top: 3.5rem;
+}
+
+.profile-name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.5rem 0;
+  font-family: var(--FontFamily);
+}
+
+.profile-bio {
+  color: var(--textLight);
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 2rem;
+  color: var(--textLight);
+  font-size: 0.95rem;
+}
+
+.profile-stat {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.profile-stat-value {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.profile-posts {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+}
+
+.profile-posts-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 1.5rem 0;
+  font-family: var(--FontFamily);
+}
+
+@media (max-width: 768px) {
+  .profile-banner {
+    height: 150px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: -60px;
+  }
+
+  .profile-info {
+    padding-top: 1rem;
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+  }
+
+  .profile-stats {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 769px) {
+  .profile-banner {
+    height: 250px;
+  }
+
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-header {
+    margin-top: -75px;
+  }
+}
