@@ -37,8 +37,15 @@ function createLoginForm() {
   const fieldsContainer = document.createElement("div");
   fieldsContainer.classList.add("login-fields");
 
+  const emailLabel = document.createElement("label");
+  emailLabel.classList.add("form-label");
+  emailLabel.textContent = "Email";
+  emailLabel.setAttribute("for", "email");
+  fieldsContainer.appendChild(emailLabel);
+
   const emailInput = document.createElement("input");
   emailInput.type = "email";
+  emailInput.id = "email";
   emailInput.name = "email";
   emailInput.classList.add("form-input");
   emailInput.placeholder = "example@stud.noroff.no";
@@ -46,11 +53,18 @@ function createLoginForm() {
   emailInput.setAttribute("aria-label", "Email address");
   fieldsContainer.appendChild(emailInput);
 
+  const passwordLabel = document.createElement("label");
+  passwordLabel.classList.add("form-label");
+  passwordLabel.textContent = "Password";
+  passwordLabel.setAttribute("for", "password");
+  fieldsContainer.appendChild(passwordLabel);
+
   const passwordInput = document.createElement("input");
   passwordInput.type = "password";
+  passwordInput.id = "password";
   passwordInput.name = "password";
   passwordInput.classList.add("form-input");
-  passwordInput.placeholder = "Password";
+  passwordInput.placeholder = "•••••";
   passwordInput.required = true;
   passwordInput.setAttribute("aria-label", "Password");
   fieldsContainer.appendChild(passwordInput);
