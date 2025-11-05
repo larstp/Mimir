@@ -1,4 +1,4 @@
-import { getPost, isLoggedIn } from "../data/api.js";
+import { getPost, deletePost, getUserName, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
 /**
@@ -253,6 +253,55 @@ async function displayPost() {
     article.appendChild(commentsSection);
 
     container.appendChild(article);
+
+    // ----------Show edit/delete buttons only for own posts (THIS I had to get a lot of help with)
+    const currentUser = getUserName();
+    if (currentUser && post.author?.name === currentUser) {
+      const actionsContainer = document.createElement("div");
+      actionsContainer.classList.add("post-actions");
+
+      const editButton = document.createElement("a");
+      editButton.href = `./editPost.html?id=${post.id}`;
+      editButton.classList.add("btn", "btn-secondary");
+      editButton.textContent = "Edit Post";
+      actionsContainer.appendChild(editButton);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.classList.add("btn", "btn-delete");
+      deleteButton.textContent = "Delete Post";
+      deleteButton.addEventListener("click", async () => {
+        const confirmDelete = confirm(
+          "Are you sure you want to delete this post? This cannot be undone."
+        );
+
+        if (!confirmDelete) {
+          return;
+        }
+
+        try {
+          const deleteLoader = createLoader("Deleting post...");
+          main.appendChild(deleteLoader);
+          deleteButton.disabled = true;
+
+          await deletePost(post.id);
+
+          deleteLoader.remove();
+          window.location.href = "../../index.html";
+        } catch (error) {
+          console.error("Error deleting post:", error);
+          const deleteLoader = main.querySelector(".loader-container");
+          if (deleteLoader) {
+            deleteLoader.remove();
+          }
+          deleteButton.disabled = false;
+          alert("Failed to delete post. Please try again.");
+        }
+      });
+
+      actionsContainer.appendChild(deleteButton);
+      container.appendChild(actionsContainer);
+    }
+
     main.appendChild(container);
   } catch (error) {
     console.error("Error displaying post:", error);

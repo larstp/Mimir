@@ -10,6 +10,8 @@ import { createHeader } from "./modules/header.js";
 import { createFooter } from "./modules/footer.js";
 import { createNavbar } from "./modules/navbar.js";
 
+// Hey ho this page was basically the create post page with some modifications
+
 /**
  * Displays the edit post form
  * @returns {Promise<void>}

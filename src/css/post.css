@@ -93,6 +93,23 @@ a .post-comment-avatar:hover {
   color: var(--error);
 }
 
+.post-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+}
+
+.post-actions .btn {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .post-actions {
+    flex-direction: column;
+  }
+}
+
 /* -------------------------------------------Create Post */
 .create-post-header {
   font-size: 2rem;
