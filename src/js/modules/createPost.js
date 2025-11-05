@@ -52,11 +52,20 @@ export function createPost(post, followingList = []) {
       authorContainer.classList.add("post-card-author");
 
       if (post.author.avatar?.url) {
+        const avatarLink = document.createElement("a");
+        avatarLink.href = `${prefix}/src/pages/user.html?name=${post.author.name}`;
+        avatarLink.setAttribute(
+          "aria-label",
+          `View ${post.author.name}'s profile`
+        );
+
         const avatar = document.createElement("img");
         avatar.src = post.author.avatar.url;
         avatar.alt = post.author.avatar.alt || `${post.author.name}'s avatar`;
         avatar.classList.add("post-card-avatar");
-        authorContainer.appendChild(avatar);
+        avatarLink.appendChild(avatar);
+
+        authorContainer.appendChild(avatarLink);
       }
 
       const authorName = document.createElement("a");
@@ -293,6 +302,9 @@ export function createPost(post, followingList = []) {
       content.appendChild(excerpt);
     }
 
+    postLink.appendChild(content);
+    article.appendChild(postLink);
+
     if (post.comments && post.comments.length > 0) {
       const latestComment = post.comments[post.comments.length - 1];
 
@@ -328,12 +340,8 @@ export function createPost(post, followingList = []) {
       commentText.textContent = truncatedComment;
       commentPreview.appendChild(commentText);
 
-      content.appendChild(commentPreview);
+      article.appendChild(commentPreview);
     }
-
-    postLink.appendChild(content);
-
-    article.appendChild(postLink);
 
     return article;
   } catch (error) {

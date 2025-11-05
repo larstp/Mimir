@@ -125,7 +125,7 @@
 
 .post-card-comment-preview {
   margin-top: 1rem;
-  padding-top: 1rem;
+  padding: 1.2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -193,6 +193,11 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: opacity 0.2s ease;
+}
+
+a .post-card-avatar:hover {
+  opacity: 0.8;
 }
 
 .post-card-author-name {

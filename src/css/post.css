@@ -44,12 +44,24 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+a .post-comment-avatar:hover {
+  opacity: 0.8;
 }
 
 .post-comment-author {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post-comment-author:hover {
+  color: var(--primary);
+  text-decoration: underline;
 }
 
 .post-comment-date {

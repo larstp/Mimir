@@ -60,16 +60,30 @@ async function displayPost() {
       authorContainer.classList.add("post-card-author");
 
       if (post.author.avatar?.url) {
+        const avatarLink = document.createElement("a");
+        avatarLink.href = `../../src/pages/user.html?name=${post.author.name}`;
+        avatarLink.setAttribute(
+          "aria-label",
+          `View ${post.author.name}'s profile`
+        );
+
         const avatar = document.createElement("img");
         avatar.src = post.author.avatar.url;
         avatar.alt = post.author.avatar.alt || `${post.author.name}'s avatar`;
         avatar.classList.add("post-card-avatar");
-        authorContainer.appendChild(avatar);
+        avatarLink.appendChild(avatar);
+
+        authorContainer.appendChild(avatarLink);
       }
 
-      const authorName = document.createElement("span");
+      const authorName = document.createElement("a");
+      authorName.href = `../../src/pages/user.html?name=${post.author.name}`;
       authorName.classList.add("post-card-author-name");
       authorName.textContent = post.author.name;
+      authorName.setAttribute(
+        "aria-label",
+        `View ${post.author.name}'s profile`
+      );
       authorContainer.appendChild(authorName);
 
       header.appendChild(authorContainer);
@@ -180,18 +194,33 @@ async function displayPost() {
         commentHeader.classList.add("post-comment-header");
 
         if (comment.author?.avatar?.url) {
+          // If this doesn't work I'll just leave it. I'm DONE googeling this
+          const avatarLink = document.createElement("a");
+          avatarLink.href = `../../src/pages/user.html?name=${comment.author.name}`;
+          avatarLink.setAttribute(
+            "aria-label",
+            `View ${comment.author.name}'s profile`
+          );
+
           const avatar = document.createElement("img");
           avatar.src = comment.author.avatar.url;
           avatar.alt =
             comment.author.avatar.alt || `${comment.author.name}'s avatar`;
           avatar.classList.add("post-comment-avatar");
-          commentHeader.appendChild(avatar);
+          avatarLink.appendChild(avatar);
+
+          commentHeader.appendChild(avatarLink);
         }
 
-        const author = document.createElement("span");
-        author.classList.add("post-comment-author");
-        author.textContent = comment.author?.name || "Anonymous";
-        commentHeader.appendChild(author);
+        const authorLink = document.createElement("a");
+        authorLink.href = `../../src/pages/user.html?name=${comment.author?.name}`;
+        authorLink.classList.add("post-comment-author");
+        authorLink.textContent = comment.author?.name || "Anonymous";
+        authorLink.setAttribute(
+          "aria-label",
+          `View ${comment.author?.name}'s profile`
+        );
+        commentHeader.appendChild(authorLink);
 
         const commentDate = document.createElement("time");
         commentDate.classList.add("post-comment-date");
