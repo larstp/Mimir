@@ -6,9 +6,6 @@ import {
   isLoggedIn,
 } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
-import { createHeader } from "./modules/header.js";
-import { createFooter } from "./modules/footer.js";
-import { createNavbar } from "./modules/navbar.js";
 
 // Hey ho this page was basically the create post page with some modifications
 
@@ -18,10 +15,6 @@ import { createNavbar } from "./modules/navbar.js";
  */
 async function displayEditPostForm() {
   try {
-    createHeader();
-    createFooter();
-    createNavbar();
-
     const main = document.querySelector("main");
 
     if (!main) {

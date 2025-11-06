@@ -101,9 +101,9 @@ export function createPost(post, followingList = []) {
         followIcon.classList.add("post-card-follow-icon");
         followBtn.appendChild(followIcon);
 
-        followBtn.addEventListener("click", async (e) => {
-          e.stopPropagation();
-          const btn = e.currentTarget;
+        followBtn.addEventListener("click", async (event) => {
+          event.stopPropagation();
+          const btn = event.currentTarget;
           const username = btn.getAttribute("data-username");
           const isCurrentlyFollowing =
             btn.getAttribute("data-following") === "true";
@@ -180,7 +180,7 @@ export function createPost(post, followingList = []) {
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
       img.classList.add("post-card-image");
-      img.loading = "lazy"; // -----------------------------------Lazy load images for performance
+      img.loading = "lazy"; // ------Lazy load images for performance (test if there's actually a boost)
 
       mediaContainer.appendChild(img);
       postLink.appendChild(mediaContainer);
@@ -225,17 +225,17 @@ export function createPost(post, followingList = []) {
 
       likeBtn.appendChild(likeIcon);
 
-      likeBtn.addEventListener("click", async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const btn = e.currentTarget;
+      likeBtn.addEventListener("click", async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const btn = event.currentTarget;
         const isLiked = btn.getAttribute("data-liked") === "true";
 
         // ----------------------------This is client-side only for now. I have no idea how to get the API to work with likes. I've tried:
         // Using the emoji directly in the URL as shown (/react/👍)
         // URL encoding the emoji (encodeURIComponent)
         // Different emojis (❤️, 👍)
-        // might be a client side bug?
+        // might be a client side bug? I don't know.
 
         if (isLiked) {
           likeIcon.src = `${prefix}/public/icons/flowbite_heart-outline.svg`;

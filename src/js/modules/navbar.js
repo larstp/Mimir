@@ -92,8 +92,8 @@ export function createNavbar() {
 
       // ------------------------------------------------------- TESTING: Add logout functionality to heart icon
       if (item.isLogout) {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
           localStorage.removeItem("authToken");
           localStorage.removeItem("userName");
           window.location.href = `${prefix}/src/pages/login.html`;

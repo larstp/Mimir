@@ -1,9 +1,6 @@
 import { getProfile, getUserName, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 import { createPost } from "./modules/createPost.js";
-import { createHeader } from "./modules/header.js";
-import { createFooter } from "./modules/footer.js";
-import { createNavbar } from "./modules/navbar.js";
 
 /**
  * Displays the user profile page
@@ -15,10 +12,6 @@ import { createNavbar } from "./modules/navbar.js";
  */
 async function displayUserProfile() {
   try {
-    createHeader();
-    createFooter();
-    createNavbar();
-
     const main = document.querySelector("main");
 
     if (!main) {
@@ -59,6 +52,7 @@ async function displayUserProfile() {
     banner.setAttribute("aria-label", "Profile banner");
 
     if (profile.banner?.url) {
+      // hope this works on all browsers
       const bannerImage = document.createElement("img");
       bannerImage.src = profile.banner.url;
       bannerImage.alt = profile.banner.alt || `${profile.name}'s banner`;
@@ -78,7 +72,7 @@ async function displayUserProfile() {
 
     backButton.addEventListener("click", () => {
       window.history.back();
-    }); // hope this works on all browsers
+    });
 
     banner.appendChild(backButton);
     main.appendChild(banner);

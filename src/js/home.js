@@ -80,7 +80,7 @@ async function displayPostFeed(page = 1) {
       sortOrder: "desc", // -------------------------------------------Newest first
     });
 
-    // ----------------------------------------------Fetch following list only once (first page load)(MUCH help from CoPilot here)
+    // ----------------------------------------------Fetch following list only once (first page load)(MUCH help from CoPilot here (with much explaining). This is unbelievably confusing for me)
     if (page === 1) {
       followingList = [];
       try {

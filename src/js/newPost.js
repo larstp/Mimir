@@ -1,8 +1,5 @@
 import { createPost, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
-import { createHeader } from "./modules/header.js";
-import { createFooter } from "./modules/footer.js";
-import { createNavbar } from "./modules/navbar.js";
 
 // I had huge problems with this so I had CoPilot help me with implementing a function to check if an image URL is valid
 
@@ -26,10 +23,6 @@ async function isValidImageUrl(url) {
  */
 function displayCreatePostForm() {
   try {
-    createHeader();
-    createFooter();
-    createNavbar();
-
     const main = document.querySelector("main");
 
     if (!main) {
@@ -130,6 +123,7 @@ function displayCreatePostForm() {
     submitButton.classList.add("btn");
     submitButton.textContent = "Create Post";
     buttonsContainer.appendChild(submitButton);
+    // this was absolutely tedious to write correctly. I hope there's a shorter way of doing it
 
     form.appendChild(buttonsContainer);
 
@@ -152,7 +146,7 @@ function displayCreatePostForm() {
       }
 
       if (!imageUrl) {
-        showFormError(form, "Please enter an image URL");
+        showFormError(form, "Please enter a valid image URL");
         return;
       }
 
@@ -164,6 +158,7 @@ function displayCreatePostForm() {
         const isValidImage = await isValidImageUrl(imageUrl);
 
         if (!isValidImage) {
+          // THIS was the thing I struggled SO much with
           loader.remove();
           submitButton.disabled = false;
           showFormError(

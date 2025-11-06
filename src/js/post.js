@@ -6,7 +6,7 @@ import { createLoader } from "./modules/loader.js";
  * @returns {Promise<void>}
  *
  * @description
- * Fetches a single post from the API and displays it with all comments.
+ * Fetches a single post from the API and displays it with all comments (as opposed to just the newest).
  */
 async function displayPost() {
   try {
@@ -97,7 +97,7 @@ async function displayPost() {
       month: "short",
       day: "numeric",
       year: "numeric",
-    });
+    }); // ----- Why was this so hard to understand for meeee?
     header.appendChild(date);
 
     article.appendChild(header);
@@ -194,7 +194,7 @@ async function displayPost() {
         commentHeader.classList.add("post-comment-header");
 
         if (comment.author?.avatar?.url) {
-          // If this doesn't work I'll just leave it. I'm DONE googeling this
+          // If this doesn't work I'll just leave it. I'm DONE googling this
           const avatarLink = document.createElement("a");
           avatarLink.href = `../../src/pages/user.html?name=${comment.author.name}`;
           avatarLink.setAttribute(
@@ -254,7 +254,7 @@ async function displayPost() {
 
     container.appendChild(article);
 
-    // ----------Show edit/delete buttons only for own posts (THIS I had to get a lot of help with)
+    // ----------Show edit/delete buttons only for own posts (This I had to get a LOT of help with)
     const currentUser = getUserName();
     if (currentUser && post.author?.name === currentUser) {
       const actionsContainer = document.createElement("div");
