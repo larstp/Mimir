@@ -199,10 +199,8 @@ async function displayUserProfile() {
       logoutButton.setAttribute("aria-label", "Log out of your account");
 
       logoutButton.addEventListener("click", () => {
-        if (confirm("Are you sure you want to log out?")) {
-          logout();
-          window.location.href = "../../index.html";
-        }
+        logout();
+        window.location.href = "../../index.html";
       });
 
       logoutSection.appendChild(logoutButton);
