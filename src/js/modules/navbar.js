@@ -62,7 +62,6 @@ export function createNavbar() {
         href: "#",
         ariaLabel: "View favorites",
         page: "favorites",
-        isLogout: true, // --------------------------------------------------------------TESTING: Logout button
       },
       {
         icon: `${prefix}/public/icons/flowbite_user-circle-solid.svg`,
@@ -95,16 +94,6 @@ export function createNavbar() {
         link.addEventListener("click", (event) => {
           event.preventDefault();
           openSearch();
-        });
-      }
-
-      // ------------------------------------------------------- TESTING: Add logout functionality to heart icon
-      if (item.isLogout) {
-        link.addEventListener("click", (event) => {
-          event.preventDefault();
-          localStorage.removeItem("authToken");
-          localStorage.removeItem("userName");
-          window.location.href = `${prefix}/src/pages/login.html`;
         });
       }
 

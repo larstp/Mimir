@@ -1,4 +1,4 @@
-import { getProfile, getUserName, isLoggedIn } from "../data/api.js";
+import { getProfile, getUserName, isLoggedIn, logout } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 import { createPost } from "./modules/createPost.js";
 
@@ -187,6 +187,27 @@ async function displayUserProfile() {
     }
 
     main.appendChild(postsSection);
+
+    const currentUser = getUserName();
+    if (currentUser === profileName) {
+      const logoutSection = document.createElement("section");
+      logoutSection.classList.add("profile-logout-section");
+
+      const logoutButton = document.createElement("button");
+      logoutButton.classList.add("btn", "btn-delete", "profile-logout-btn");
+      logoutButton.textContent = "Log Out";
+      logoutButton.setAttribute("aria-label", "Log out of your account");
+
+      logoutButton.addEventListener("click", () => {
+        if (confirm("Are you sure you want to log out?")) {
+          logout();
+          window.location.href = "../../index.html";
+        }
+      });
+
+      logoutSection.appendChild(logoutButton);
+      main.appendChild(logoutSection);
+    }
   } catch (error) {
     console.error("Error displaying user profile:", error);
     const main = document.querySelector("main");
