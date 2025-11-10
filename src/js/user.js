@@ -38,6 +38,7 @@ async function displayUserProfile() {
     const profile = await getProfile(profileName, {
       _posts: true,
       _followers: true,
+      _following: true,
     });
 
     loader.remove();
@@ -119,6 +120,7 @@ async function displayUserProfile() {
     stats.setAttribute("aria-label", "Profile statistics");
 
     const followersCount = profile._count?.followers || 0;
+    const followingCount = profile._count?.following || 0;
 
     const followers = document.createElement("div");
     followers.classList.add("profile-stat");
@@ -133,6 +135,20 @@ async function displayUserProfile() {
     followers.appendChild(followersValue);
 
     stats.appendChild(followers);
+
+    const following = document.createElement("div");
+    following.classList.add("profile-stat");
+
+    const followingLabel = document.createElement("span");
+    followingLabel.textContent = "Following: ";
+    following.appendChild(followingLabel);
+
+    const followingValue = document.createElement("span");
+    followingValue.classList.add("profile-stat-value");
+    followingValue.textContent = followingCount;
+    following.appendChild(followingValue);
+
+    stats.appendChild(following);
     info.appendChild(stats);
 
     header.appendChild(info);
