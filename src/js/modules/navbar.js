@@ -1,4 +1,5 @@
 import { isLoggedIn } from "../../data/api.js";
+import { openSearch } from "./search.js";
 
 /**
  * Creates and renders the mobile navigation bar.
@@ -89,6 +90,13 @@ export function createNavbar() {
       link.href = item.href;
       link.classList.add("navbar-link");
       link.setAttribute("aria-label", item.ariaLabel);
+
+      if (item.ariaLabel === "Search") {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSearch();
+        });
+      }
 
       // ------------------------------------------------------- TESTING: Add logout functionality to heart icon
       if (item.isLogout) {

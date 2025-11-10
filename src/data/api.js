@@ -237,10 +237,15 @@ export async function reactToPost(id, symbol = "👍") {
  * @param {string} query - Search query
  * @returns {Promise<object>} Search results
  */
-export async function searchPosts(query) {
-  const response = await apiRequest(
-    `/social/posts/search?q=${encodeURIComponent(query)}`
-  );
+export async function searchPosts(query, options = {}) {
+  const params = new URLSearchParams({
+    q: query,
+    _author: options._author || false,
+    _reactions: options._reactions || false,
+    _comments: options._comments || false,
+  });
+
+  const response = await apiRequest(`/social/posts/search?${params}`);
   return response;
 }
 
