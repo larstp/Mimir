@@ -1,4 +1,5 @@
 import { isLoggedIn } from "../../data/api.js";
+import { openSearch } from "./search.js";
 
 /**
  * Creates and renders the mobile navigation bar.
@@ -51,9 +52,9 @@ export function createNavbar() {
       },
       {
         icon: `${prefix}/public/icons/flowbite_circle-plus-solid.svg`,
-        href: `${prefix}/src/pages/new.html`,
+        href: `${prefix}/src/pages/newPost.html`,
         ariaLabel: "Create new post",
-        page: "new.html",
+        page: "newPost.html",
         isCenter: true, // ------------------------------------------Make this one bigger (center icon)
       },
       {
@@ -61,7 +62,6 @@ export function createNavbar() {
         href: "#",
         ariaLabel: "View favorites",
         page: "favorites",
-        isLogout: true, // --------------------------------------------------------------TESTING: Logout button
       },
       {
         icon: `${prefix}/public/icons/flowbite_user-circle-solid.svg`,
@@ -90,13 +90,10 @@ export function createNavbar() {
       link.classList.add("navbar-link");
       link.setAttribute("aria-label", item.ariaLabel);
 
-      // ------------------------------------------------------- TESTING: Add logout functionality to heart icon
-      if (item.isLogout) {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          localStorage.removeItem("authToken");
-          localStorage.removeItem("userName");
-          window.location.href = `${prefix}/src/pages/login.html`;
+      if (item.ariaLabel === "Search") {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSearch();
         });
       }
 

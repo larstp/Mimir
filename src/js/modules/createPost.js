@@ -52,11 +52,20 @@ export function createPost(post, followingList = []) {
       authorContainer.classList.add("post-card-author");
 
       if (post.author.avatar?.url) {
+        const avatarLink = document.createElement("a");
+        avatarLink.href = `${prefix}/src/pages/user.html?name=${post.author.name}`;
+        avatarLink.setAttribute(
+          "aria-label",
+          `View ${post.author.name}'s profile`
+        );
+
         const avatar = document.createElement("img");
         avatar.src = post.author.avatar.url;
         avatar.alt = post.author.avatar.alt || `${post.author.name}'s avatar`;
         avatar.classList.add("post-card-avatar");
-        authorContainer.appendChild(avatar);
+        avatarLink.appendChild(avatar);
+
+        authorContainer.appendChild(avatarLink);
       }
 
       const authorName = document.createElement("a");
@@ -92,9 +101,9 @@ export function createPost(post, followingList = []) {
         followIcon.classList.add("post-card-follow-icon");
         followBtn.appendChild(followIcon);
 
-        followBtn.addEventListener("click", async (e) => {
-          e.stopPropagation();
-          const btn = e.currentTarget;
+        followBtn.addEventListener("click", async (event) => {
+          event.stopPropagation();
+          const btn = event.currentTarget;
           const username = btn.getAttribute("data-username");
           const isCurrentlyFollowing =
             btn.getAttribute("data-following") === "true";
@@ -171,7 +180,7 @@ export function createPost(post, followingList = []) {
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
       img.classList.add("post-card-image");
-      img.loading = "lazy"; // -----------------------------------Lazy load images for performance
+      img.loading = "lazy"; // ------Lazy load images for performance (test if there's actually a boost)
 
       mediaContainer.appendChild(img);
       postLink.appendChild(mediaContainer);
@@ -216,17 +225,17 @@ export function createPost(post, followingList = []) {
 
       likeBtn.appendChild(likeIcon);
 
-      likeBtn.addEventListener("click", async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const btn = e.currentTarget;
+      likeBtn.addEventListener("click", async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const btn = event.currentTarget;
         const isLiked = btn.getAttribute("data-liked") === "true";
 
         // ----------------------------This is client-side only for now. I have no idea how to get the API to work with likes. I've tried:
         // Using the emoji directly in the URL as shown (/react/👍)
         // URL encoding the emoji (encodeURIComponent)
         // Different emojis (❤️, 👍)
-        // might be a client side bug?
+        // might be a client side bug? I don't know.
 
         if (isLiked) {
           likeIcon.src = `${prefix}/public/icons/flowbite_heart-outline.svg`;
@@ -293,6 +302,9 @@ export function createPost(post, followingList = []) {
       content.appendChild(excerpt);
     }
 
+    postLink.appendChild(content);
+    article.appendChild(postLink);
+
     if (post.comments && post.comments.length > 0) {
       const latestComment = post.comments[post.comments.length - 1];
 
@@ -328,12 +340,8 @@ export function createPost(post, followingList = []) {
       commentText.textContent = truncatedComment;
       commentPreview.appendChild(commentText);
 
-      content.appendChild(commentPreview);
+      article.appendChild(commentPreview);
     }
-
-    postLink.appendChild(content);
-
-    article.appendChild(postLink);
 
     return article;
   } catch (error) {

@@ -1,3 +1,5 @@
+import { openSearch } from "./search.js";
+
 /**
  * Creates and renders the header element with a logo that links to the home page.
  * The header is inserted into the existing <header> element in the DOM.
@@ -64,7 +66,7 @@ export function createHeader() {
       {
         icon: `${prefix}/public/icons/flowbite_circle-plus-solid.svg`,
         label: "New",
-        href: `${prefix}/src/pages/new.html`,
+        href: `${prefix}/src/pages/newPost.html`,
         ariaLabel: "Create new post",
       },
     ];
@@ -81,6 +83,13 @@ export function createHeader() {
       link.href = item.href;
       link.classList.add("header-nav-link");
       link.setAttribute("aria-label", item.ariaLabel);
+
+      if (item.ariaLabel === "Search") {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSearch();
+        }); // This is copy/paste from navbar.js
+      }
 
       const icon = document.createElement("img");
       icon.src = item.icon;

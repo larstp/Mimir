@@ -1,9 +1,6 @@
-import { getProfile, getUserName, isLoggedIn } from "../data/api.js";
+import { getProfile, getUserName, isLoggedIn, logout } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 import { createPost } from "./modules/createPost.js";
-import { createHeader } from "./modules/header.js";
-import { createFooter } from "./modules/footer.js";
-import { createNavbar } from "./modules/navbar.js";
 
 /**
  * Displays the user profile page
@@ -15,10 +12,6 @@ import { createNavbar } from "./modules/navbar.js";
  */
 async function displayUserProfile() {
   try {
-    createHeader();
-    createFooter();
-    createNavbar();
-
     const main = document.querySelector("main");
 
     if (!main) {
@@ -45,6 +38,7 @@ async function displayUserProfile() {
     const profile = await getProfile(profileName, {
       _posts: true,
       _followers: true,
+      _following: true,
     });
 
     loader.remove();
@@ -59,6 +53,7 @@ async function displayUserProfile() {
     banner.setAttribute("aria-label", "Profile banner");
 
     if (profile.banner?.url) {
+      // hope this works on all browsers
       const bannerImage = document.createElement("img");
       bannerImage.src = profile.banner.url;
       bannerImage.alt = profile.banner.alt || `${profile.name}'s banner`;
@@ -78,7 +73,7 @@ async function displayUserProfile() {
 
     backButton.addEventListener("click", () => {
       window.history.back();
-    }); // hope this works on all browsers
+    });
 
     banner.appendChild(backButton);
 
@@ -137,6 +132,7 @@ async function displayUserProfile() {
     stats.setAttribute("aria-label", "Profile statistics");
 
     const followersCount = profile._count?.followers || 0;
+    const followingCount = profile._count?.following || 0;
 
     const followers = document.createElement("div");
     followers.classList.add("profile-stat");
@@ -151,6 +147,20 @@ async function displayUserProfile() {
     followers.appendChild(followersValue);
 
     stats.appendChild(followers);
+
+    const following = document.createElement("div");
+    following.classList.add("profile-stat");
+
+    const followingLabel = document.createElement("span");
+    followingLabel.textContent = "Following: ";
+    following.appendChild(followingLabel);
+
+    const followingValue = document.createElement("span");
+    followingValue.classList.add("profile-stat-value");
+    followingValue.textContent = followingCount;
+    following.appendChild(followingValue);
+
+    stats.appendChild(following);
     info.appendChild(stats);
 
     header.appendChild(info);
@@ -189,6 +199,25 @@ async function displayUserProfile() {
     }
 
     main.appendChild(postsSection);
+
+    const currentUser = getUserName();
+    if (currentUser === profileName) {
+      const logoutSection = document.createElement("section");
+      logoutSection.classList.add("profile-logout-section");
+
+      const logoutButton = document.createElement("button");
+      logoutButton.classList.add("btn", "btn-delete", "profile-logout-btn");
+      logoutButton.textContent = "Log Out";
+      logoutButton.setAttribute("aria-label", "Log out of your account");
+
+      logoutButton.addEventListener("click", () => {
+        logout();
+        window.location.href = "../../index.html";
+      });
+
+      logoutSection.appendChild(logoutButton);
+      main.appendChild(logoutSection);
+    }
   } catch (error) {
     console.error("Error displaying user profile:", error);
     const main = document.querySelector("main");

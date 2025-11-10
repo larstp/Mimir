@@ -124,7 +124,6 @@
   color: var(--textLight);
   margin: 0 0 1rem 0;
   line-height: 1.5;
-  padding-left: 1rem;
 }
 
 .profile-stats {
@@ -132,7 +131,6 @@
   gap: 2rem;
   color: var(--textLight);
   font-size: 0.95rem;
-  padding-left: 1rem;
 }
 
 .profile-stat {
@@ -254,4 +252,17 @@
   .profile-header {
     margin-top: -75px;
   }
+}
+
+/* Logout Section */
+.profile-logout-section {
+  max-width: 1200px;
+  margin: 3rem auto 2rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-logout-btn {
+  max-width: 300px;
 }

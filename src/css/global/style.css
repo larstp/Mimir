@@ -4,7 +4,7 @@
   --primary: oklch(34.846% 0.00004 271.152);
   --primaryHover: oklch(44.846% 0.00004 271.152);
   --accent: oklch(86.535% 0.14758 204.054 / 0.596);
-  --error: oklch(65.91% 0.249 13.76);
+  --error: oklch(53.32% 0.15677 6.948);
   --white: #fff;
   --text: var(--white);
   --textTitle: var(--text);
@@ -130,10 +130,29 @@ main {
   transform: none;
 }
 
+.btn-secondary {
+  background: var(--surface-elevated);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background: var(--cardBackground);
+}
+
+.btn-delete {
+  background: var(--error);
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
 /* --------------------------------------------------------- Global Background Icon */
 .icon-bg-container {
   position: fixed;
-  top: 60%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(15deg);
   width: 100vh;
