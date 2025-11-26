@@ -11,7 +11,7 @@ function getAuthToken() {
 }
 
 /**
- * Gets the user's name from localStorage
+ * Gets the username from localStorage
  * @returns {string|null} The username or null
  */
 export function getUserName() {
@@ -21,7 +21,7 @@ export function getUserName() {
 /**
  * Saves authentication data to localStorage
  * @param {string} token - The auth token
- * @param {string} name - The user's name
+ * @param {string} name - The username
  */
 function saveAuth(token, name) {
   localStorage.setItem("authToken", token);
@@ -230,7 +230,7 @@ export async function reactToPost(id, symbol = "👍") {
     method: "PUT",
   });
   return response.data;
-}
+} // This I have NOT gotten to work. I only get errors from the API when trying to react to a post. I've tried everything I can think of, but I won't have time to figure it out.
 
 /**
  * Searches for posts

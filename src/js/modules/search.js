@@ -75,7 +75,7 @@ export function initializeSearch(onSearch) {
     if (event.key === "Escape" && searchOverlay.style.display === "flex") {
       closeSearch();
     }
-  }); // Found somewhere on StackOverflow that said this was good to have for usability so I thought I'd try it. Then I found this article from CSS-Tricks-com talking about it. Is this a normal thing to incorporate?
+  }); // To whomever reads this; Found somewhere on StackOverflow that said this was good to have for usability so I thought I'd try it. Then I found this article from CSS-Tricks-com talking about it. Is this a normal thing to incorporate?
   // https://css-tricks.com/snippets/javascript/javascript-keycodes/
 
   searchInstance = {

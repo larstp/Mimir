@@ -88,7 +88,7 @@ async function displayUserProfile() {
     const avatar = document.createElement("img");
     avatar.src =
       profile.avatar?.url ||
-      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=150&h=150&fit=crop";
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=150&h=150&fit=crop"; // Just a temp
     avatar.alt = profile.avatar?.alt || `${profile.name}'s avatar`;
     avatar.classList.add("profile-avatar");
     avatarContainer.appendChild(avatar);

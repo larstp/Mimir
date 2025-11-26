@@ -1,7 +1,7 @@
 import { createPost, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
-// I had huge problems with this so I had CoPilot help me with implementing a function to check if an image URL is valid
+// I had huge problems with this so I had CoPilot help me with implementing a function to check if an image URL is valid.
 
 /**
  * Checks if an image URL is valid by trying to load it

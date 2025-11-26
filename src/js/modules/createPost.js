@@ -237,7 +237,7 @@ export function createPost(post, followingList = []) {
         // Different emojis (❤️, 👍)
         // Using POST instead of PUT
         // using the unicode value
-        // Is it a client side bug? Am I dumb? I don't know.
+        // Am I dumb? I don't know.
 
         if (isLiked) {
           likeIcon.src = `${prefix}/public/icons/flowbite_heart-outline.svg`;

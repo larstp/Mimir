@@ -11,9 +11,6 @@ import { openSearch } from "./search.js";
  * This function creates a simple header with:
  * - A left-aligned logo (desktop) or centered logo (mobile) linking to index.html
  * - Relative path support for both root and nested pages
- * - Desktop-only navigation icons with hover labels (Search, Favorites, Profile, New)
- * - Mobile-first responsive design (navigation hidden on mobile)
- * - No innerHTML usage - all elements created via DOM methods
  *
  * @example
  * // Call this function when the DOM is loaded

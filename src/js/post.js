@@ -15,7 +15,7 @@ async function displayPost() {
     if (!main) {
       console.error("Main element not found");
       return;
-    }
+    } // This worked for me, not sure if its right
 
     if (!isLoggedIn()) {
       window.location.href = "../../index.html";
@@ -194,7 +194,7 @@ async function displayPost() {
         commentHeader.classList.add("post-comment-header");
 
         if (comment.author?.avatar?.url) {
-          // If this doesn't work I'll just leave it. I'm DONE googling this
+          // If this doesn't work I'll just leave it. I'm DONE googling this.
           const avatarLink = document.createElement("a");
           avatarLink.href = `../../src/pages/user.html?name=${comment.author.name}`;
           avatarLink.setAttribute(

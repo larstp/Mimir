@@ -1,6 +1,8 @@
 import { login, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
+// Again, this is basically a copy/paste from my exam project with some modifications
+
 /**
  * Creates the login form
  * @returns {void}
