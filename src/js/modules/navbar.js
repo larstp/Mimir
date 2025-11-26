@@ -55,7 +55,7 @@ export function createNavbar() {
         href: `${prefix}/src/pages/newPost.html`,
         ariaLabel: "Create new post",
         page: "newPost.html",
-        isCenter: true, // ------------------------------------------Make this one bigger (center icon)
+        isCenter: true, // -----------------------------Note to self: Make this one bigger (center icon)
       },
       {
         icon: `${prefix}/public/icons/flowbite_heart-solid.svg`,

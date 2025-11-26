@@ -235,7 +235,9 @@ export function createPost(post, followingList = []) {
         // Using the emoji directly in the URL as shown (/react/👍)
         // URL encoding the emoji (encodeURIComponent)
         // Different emojis (❤️, 👍)
-        // might be a client side bug? I don't know.
+        // Using POST instead of PUT
+        // using the unicode value
+        // Is it a client side bug? Am I dumb? I don't know.
 
         if (isLiked) {
           likeIcon.src = `${prefix}/public/icons/flowbite_heart-outline.svg`;
@@ -345,7 +347,7 @@ export function createPost(post, followingList = []) {
 
     return article;
   } catch (error) {
-    console.error("Error creating post card:", error);
+    console.error("Error creating post:", error);
     const errorDiv = document.createElement("div");
     errorDiv.classList.add("post-card-error");
     errorDiv.textContent = "Unable to load post";
