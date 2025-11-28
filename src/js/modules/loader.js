@@ -10,7 +10,7 @@
  * const loader = createLoader("Loading posts...");
  * container.appendChild(loader);
  * This loader is borrowed from https://loading.io/css/ and adapted for this project. It's such a
- * great website for loading animations!
+ * great website for loading animations! (see /docs/documentation.md)
  */
 export function createLoader(text = "Loading...") {
   const loaderContainer = document.createElement("div");

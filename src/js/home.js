@@ -89,7 +89,8 @@ async function displayPostFeed(page = 1, searchQuery = null) {
         currentSearchQuery = null;
         displayPostFeed(1);
       });
-    } // This whole segment feels wrong. I'm really struggling with how search works.
+    } // This whole segment feels wrong. I'm really struggling with how search works. A lot of it I have
+    // brought some of my older projects, but with new parameters and stuff it gets confusing.
 
     let response;
     if (searchQuery) {
@@ -118,7 +119,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
         limit: 100, // Get up to 100 posts (API max per page I think)
         sort: "created", // Sort by creation date
         sortOrder: "desc", // Newest first
-      }); // I'm so confused
+      }); // I'm so confused but it works now
     }
 
     // ----------------------------------------------Fetch following list only once (first page load)(MUCH help from CoPilot here (with much explaining). This is unbelievably confusing for me)

@@ -137,7 +137,6 @@ export function createPost(post, followingList = []) {
               updateAllFollowButtons(true);
             }
           } catch (error) {
-            console.log("Follow error message:", error.message);
             if (error.message.includes("already following")) {
               updateAllFollowButtons(true);
             } else if (error.message.includes("not following")) {

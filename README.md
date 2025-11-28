@@ -191,9 +191,7 @@ Or you can create your own.
 
 ## 8. Known Issues / Limitations
 
-- **Like/Reaction Button** - API returns 500 errors, client-side fallback implemented
-- **Heart Icon (Favorites/Wishlist)** - Placeholder for future feature
-- **Comments** - Read-only display, comment creation not part of current assignment
+- **Comments** - Read-only display, comment creation not part of current assignment (will be added later)
 - **Image Uploads** - Requires external URLs (Unsplash, Imgur, etc.)
 - **No Dark/Light Toggle** - Fixed dark theme only. Ill try to add this as a self-project later
 

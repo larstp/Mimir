@@ -33,7 +33,8 @@ export function createNavbar() {
     }
 
     // Hopefully figure out if we're on a root page or nested page (for correct paths)
-    // CoPilot suggested this was the easiest way, but I'm not totally sure how it works
+    // CoPilot suggested this was the easiest way, but I can't find much online about it (not sure what to
+    // search for)
     const isRootPage = !window.location.pathname.includes("/src/pages/");
     const prefix = isRootPage ? "." : "../..";
 
@@ -55,7 +56,7 @@ export function createNavbar() {
         href: `${prefix}/src/pages/newPost.html`,
         ariaLabel: "Create new post",
         page: "newPost.html",
-        isCenter: true, // -----------------------------Note to self: Make this one bigger (center icon)
+        isCenter: true,
       },
       {
         icon: `${prefix}/public/icons/flowbite_heart-solid.svg`,
