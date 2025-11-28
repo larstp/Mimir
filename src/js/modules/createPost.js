@@ -202,6 +202,8 @@ export function createPost(post, followingList = []) {
       const hasLiked = thumbsReaction?.reactors?.includes(currentUser) || false;
       const likeCount = thumbsReaction?.count || 0;
 
+      // Again, lots of help with CoPilot in understanding this whole function. Not sure I completely do tbh., but now the like function seems to work (also baie dankie to mr Krüger).
+
       const likeBtn = document.createElement("button");
       likeBtn.classList.add("post-card-like-btn");
       likeBtn.setAttribute(
@@ -231,41 +233,40 @@ export function createPost(post, followingList = []) {
         const btn = event.currentTarget;
         const isLiked = btn.getAttribute("data-liked") === "true";
 
-        // ----------------------------This is client-side only for now. I have no idea how to get the API to work with likes. I've tried:
-        // Using the emoji directly in the URL as shown (/react/👍)
-        // URL encoding the emoji (encodeURIComponent)
-        // Different emojis (❤️, 👍)
-        // Using POST instead of PUT
-        // using the unicode value
-        // Am I dumb? I don't know.
+        try {
+          await reactToPost(post.id, "👍");
 
-        if (isLiked) {
-          likeIcon.src = `${prefix}/public/icons/flowbite_heart-outline.svg`;
-          likeIcon.alt = "Like";
-          btn.setAttribute("data-liked", "false");
-          btn.setAttribute("aria-label", "Like post");
-        } else {
-          likeIcon.src = `${prefix}/public/icons/flowbite_heart-solid.svg`;
-          likeIcon.alt = "Liked";
-          btn.setAttribute("data-liked", "true");
-          btn.setAttribute("aria-label", "Unlike post");
-        }
-
-        const countSpan = btn.querySelector(".post-card-like-count");
-        const currentCount = parseInt(countSpan?.textContent || 0);
-        const newCount = isLiked ? currentCount - 1 : currentCount + 1;
-
-        if (newCount > 0) {
-          if (countSpan) {
-            countSpan.textContent = newCount;
+          if (isLiked) {
+            likeIcon.src = `${prefix}/public/icons/flowbite_heart-outline.svg`;
+            likeIcon.alt = "Like";
+            btn.setAttribute("data-liked", "false");
+            btn.setAttribute("aria-label", "Like post");
           } else {
-            const newCountSpan = document.createElement("span");
-            newCountSpan.classList.add("post-card-like-count");
-            newCountSpan.textContent = newCount;
-            btn.appendChild(newCountSpan);
+            likeIcon.src = `${prefix}/public/icons/flowbite_heart-solid.svg`;
+            likeIcon.alt = "Liked";
+            btn.setAttribute("data-liked", "true");
+            btn.setAttribute("aria-label", "Unlike post");
           }
-        } else if (countSpan) {
-          countSpan.remove();
+
+          const countSpan = btn.querySelector(".post-card-like-count");
+          const currentCount = parseInt(countSpan?.textContent || 0);
+          const newCount = isLiked ? currentCount - 1 : currentCount + 1;
+
+          if (newCount > 0) {
+            if (countSpan) {
+              countSpan.textContent = newCount;
+            } else {
+              const newCountSpan = document.createElement("span");
+              newCountSpan.classList.add("post-card-like-count");
+              newCountSpan.textContent = newCount;
+              btn.appendChild(newCountSpan);
+            }
+          } else if (countSpan) {
+            countSpan.remove();
+          }
+        } catch (error) {
+          console.error("Error reacting to post:", error);
+          alert("Failed to like post. Please try again.");
         }
       });
 

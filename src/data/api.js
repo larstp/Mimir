@@ -228,9 +228,10 @@ export async function deletePost(id) {
 export async function reactToPost(id, symbol = "👍") {
   const response = await apiRequest(`/social/posts/${id}/react/${symbol}`, {
     method: "PUT",
+    body: JSON.stringify({}),
   });
   return response.data;
-} // This I have NOT gotten to work. I only get errors from the API when trying to react to a post. I've tried everything I can think of, but I won't have time to figure it out.
+}
 
 /**
  * Searches for posts
