@@ -1,4 +1,10 @@
-import { getPost, deletePost, getUserName, isLoggedIn } from "../data/api.js";
+import {
+  getPost,
+  deletePost,
+  getUserName,
+  isLoggedIn,
+  reactToPost,
+} from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
 /**
@@ -126,21 +132,73 @@ async function displayPost() {
     title.textContent = post.title;
     titleContainer.appendChild(title);
 
-    const likeCount = post._count?.reactions || 0;
-    const likeBtn = document.createElement("div");
+    const currentUser = getUserName();
+    const thumbsReaction = post.reactions?.find((r) => r.symbol === "👍");
+    const hasLiked = thumbsReaction?.reactors?.includes(currentUser) || false;
+    const likeCount = thumbsReaction?.count || 0;
+
+    const likeBtn = document.createElement("button");
     likeBtn.classList.add("post-card-like-btn");
-    likeBtn.setAttribute("aria-label", `${likeCount} likes`);
+    likeBtn.setAttribute("aria-label", hasLiked ? "Unlike post" : "Like post");
+    likeBtn.setAttribute("data-post-id", post.id);
+    likeBtn.setAttribute("data-liked", hasLiked);
+
+    const likeIcon = document.createElement("img");
+    likeIcon.src = hasLiked
+      ? "../../public/icons/flowbite_heart-solid.svg"
+      : "../../public/icons/flowbite_heart-outline.svg";
+    likeIcon.alt = hasLiked ? "Liked" : "Like";
+    likeIcon.classList.add("post-card-like-icon");
 
     const likeCountSpan = document.createElement("span");
     likeCountSpan.classList.add("post-card-like-count");
     likeCountSpan.textContent = likeCount;
     likeBtn.appendChild(likeCountSpan);
 
-    const likeIcon = document.createElement("img");
-    likeIcon.src = "../../public/icons/flowbite_heart-outline.svg";
-    likeIcon.alt = "Likes";
-    likeIcon.classList.add("post-card-like-icon");
     likeBtn.appendChild(likeIcon);
+
+    likeBtn.addEventListener("click", async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const btn = event.currentTarget;
+      const isLiked = btn.getAttribute("data-liked") === "true";
+
+      try {
+        await reactToPost(post.id, "👍");
+
+        if (isLiked) {
+          likeIcon.src = "../../public/icons/flowbite_heart-outline.svg";
+          likeIcon.alt = "Like";
+          btn.setAttribute("data-liked", "false");
+          btn.setAttribute("aria-label", "Like post");
+        } else {
+          likeIcon.src = "../../public/icons/flowbite_heart-solid.svg";
+          likeIcon.alt = "Liked";
+          btn.setAttribute("data-liked", "true");
+          btn.setAttribute("aria-label", "Unlike post");
+        }
+
+        const countSpan = btn.querySelector(".post-card-like-count");
+        const currentCount = parseInt(countSpan?.textContent || 0);
+        const newCount = isLiked ? currentCount - 1 : currentCount + 1;
+
+        if (newCount > 0) {
+          if (countSpan) {
+            countSpan.textContent = newCount;
+          } else {
+            const newCountSpan = document.createElement("span");
+            newCountSpan.classList.add("post-card-like-count");
+            newCountSpan.textContent = newCount;
+            btn.appendChild(newCountSpan);
+          }
+        } else if (countSpan) {
+          countSpan.remove();
+        }
+      } catch (error) {
+        console.error("Error reacting to post:", error);
+        alert("Failed to like post. Please try again.");
+      }
+    });
 
     titleContainer.appendChild(likeBtn);
 
@@ -255,7 +313,6 @@ async function displayPost() {
     container.appendChild(article);
 
     // ----------Show edit/delete buttons only for own posts (This I had to get a LOT of help with)
-    const currentUser = getUserName();
     if (currentUser && post.author?.name === currentUser) {
       const actionsContainer = document.createElement("div");
       actionsContainer.classList.add("post-actions");
