@@ -43,7 +43,7 @@
 
 ## 1. Project Overview
 
-ᛗìmir is a modern, responsive social media platform built as part of the JavaScript 2 course assignment at NOROFF. The platform allows users to share posts with images, follow other users, interact through comments and reactions, and manage their profiles—all while maintaining a clean, accessible user experience.
+ᛗìmir is a modern, responsive social media platform built as part of the JavaScript 2 course assignment at NOROFF. The platform allows users to share posts with images, follow other users, interact through comments and reactions, and manage their profiles.
 
 ### Brand Story
 
@@ -144,17 +144,17 @@ Or you can create your own.
 
 ### Core Functionality:
 
-- ✅ **User Authentication** - Register, login, logout with validation
-- ✅ **Home Feed** - Paginated posts sorted by newest first
-- ✅ **Create Posts** - Upload images with title, body, and alt text
-- ✅ **Edit/Delete Posts** - Owner-only controls with confirmation
-- ✅ **User Profiles** - View own and others' profiles with avatar, banner, bio (will be updated)
-- ✅ **Edit Profile** - Update avatar, banner, and bio (will be added later)
-- ✅ **Follow/Unfollow System** - Real-time follower/following counts
-- ✅ **Search** - Search posts by title, body, or author name
-- ✅ **Individual Post Pages** - Full post view with all comments
-- ✅ **Clickable Navigation** - Usernames and avatars link to profiles
-- ✅ **Dark Theme** - Modern dark UI with custom color scheme (wanted to try something new)
+- **User Authentication** - Register, login, logout with validation
+- **Home Feed** - Paginated posts sorted by newest first
+- **Create Posts** - Upload images with title, body, and alt text
+- **Edit/Delete Posts** - Owner-only controls with confirmation
+- **User Profiles** - View own and others' profiles with avatar, banner, bio (will be updated)
+- **Edit Profile** - Update avatar, banner, and bio (will be added later)
+- **Follow/Unfollow System** - Real-time follower/following counts
+- **Search** - Search posts by title, body, or author name
+- **Individual Post Pages** - Full post view with all comments
+- **Clickable Navigation** - Usernames and avatars link to profiles
+- **Dark Theme** - Modern dark UI with custom color scheme (wanted to try something new)
 
 ### UI/UX Features:
 
@@ -211,7 +211,6 @@ Or you can create your own.
 ### Tools & Resources:
 
 - [GitHub Copilot](https://github.com/features/copilot) - AI coding assistant for code suggestions and explanations, and a lot of help with API CRUD.
-- [Noroff API Documentation](https://docs.noroff.dev/) - API reference
 - [MDN Web Docs](https://developer.mozilla.org/) - JavaScript and Web API references
 
 ### Images:
