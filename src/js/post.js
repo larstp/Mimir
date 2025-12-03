@@ -1,5 +1,6 @@
 import { getPost, deletePost, getUserName, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
+import { openComment } from "./modules/comments.js";
 
 /**
  * Displays a single post with all its details
@@ -159,6 +160,12 @@ async function displayPost() {
     commentIcon.alt = "Comments";
     commentIcon.classList.add("post-card-comment-icon");
     commentBtn.appendChild(commentIcon);
+
+    commentBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openComment(post.id);
+    });
 
     titleContainer.appendChild(commentBtn);
 
