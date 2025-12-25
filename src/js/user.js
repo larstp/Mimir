@@ -25,7 +25,8 @@ async function displayUserProfile() {
     }
 
     const urlParams = new URLSearchParams(window.location.search);
-    const profileName = urlParams.get("name") || getUserName();
+    const currentUser = getUserName();
+    const profileName = urlParams.get("name") || currentUser;
 
     if (!profileName) {
       showError(main, "No user specified");
@@ -76,6 +77,17 @@ async function displayUserProfile() {
     });
 
     banner.appendChild(backButton);
+
+    if (currentUser === profileName) {
+      const editButton = document.createElement("a");
+      editButton.href = "./editUser.html";
+      editButton.classList.add("profile-edit-button");
+      editButton.setAttribute("aria-label", "Edit profile");
+      editButton.textContent = "Edit Profile";
+
+      banner.appendChild(editButton);
+    }
+
     main.appendChild(banner);
 
     const header = document.createElement("section");
@@ -188,7 +200,6 @@ async function displayUserProfile() {
 
     main.appendChild(postsSection);
 
-    const currentUser = getUserName();
     if (currentUser === profileName) {
       const logoutSection = document.createElement("section");
       logoutSection.classList.add("profile-logout-section");
