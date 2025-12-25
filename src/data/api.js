@@ -266,6 +266,20 @@ export async function reactToPost(id, symbol = "👍") {
 }
 
 /**
+ * Comments on a post
+ * @param {number} id - The post ID
+ * @param {string} body - The comment text
+ * @returns {Promise<object>} The created comment
+ */
+export async function commentOnPost(id, body) {
+  const response = await apiRequest(`/social/posts/${id}/comment`, {
+    method: "POST",
+    body: JSON.stringify({ body }),
+  });
+  return response.data;
+}
+
+/**
  * Searches for posts
  * @param {string} query - Search query
  * @returns {Promise<object>} Search results

@@ -4,6 +4,7 @@ import {
   reactToPost,
   getUserName,
 } from "../../data/api.js";
+import { openComment } from "./comments.js";
 
 /**
  * Creates a post card element for display in the feed
@@ -287,6 +288,12 @@ export function createPost(post, followingList = []) {
     commentIcon.alt = "Comments";
     commentIcon.classList.add("post-card-comment-icon");
     commentBtn.appendChild(commentIcon);
+
+    commentBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openComment(post.id);
+    });
 
     titleContainer.appendChild(commentBtn);
 

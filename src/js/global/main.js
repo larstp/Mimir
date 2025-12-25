@@ -2,6 +2,7 @@ import { createHeader } from "../modules/header.js";
 import { createNavbar } from "../modules/navbar.js";
 import { createFooter } from "../modules/footer.js";
 import { initializeSearch } from "../modules/search.js";
+import { initializeComments } from "../modules/comments.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   createHeader();
@@ -22,5 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
         : "./index.html";
       window.location.href = `${homeUrl}?search=${encodeURIComponent(query)}`; // Boy did I struggle with getting this to work
     }
+  });
+
+  initializeComments((postId) => {
+    window.dispatchEvent(
+      new CustomEvent("commentPosted", { detail: { postId } })
+    );
+    location.reload();
   });
 });
