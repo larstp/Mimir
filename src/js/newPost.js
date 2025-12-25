@@ -60,6 +60,9 @@ function displayCreatePostForm() {
     titleInput.classList.add("form-input");
     titleInput.placeholder = "Enter your post title";
     titleInput.required = true;
+    titleInput.minLength = 3;
+    titleInput.maxLength = 280;
+    titleInput.title = "Post title must be between 3 and 280 characters";
     titleInput.setAttribute("aria-label", "Post title");
     form.appendChild(titleInput);
 
@@ -74,6 +77,8 @@ function displayCreatePostForm() {
     bodyTextarea.name = "body";
     bodyTextarea.classList.add("form-input", "create-post-textarea");
     bodyTextarea.placeholder = "Write your post content...";
+    bodyTextarea.maxLength = 2000;
+    bodyTextarea.title = "Post body can be up to 2000 characters";
     bodyTextarea.setAttribute("aria-label", "Post body");
     bodyTextarea.rows = 6;
     form.appendChild(bodyTextarea);

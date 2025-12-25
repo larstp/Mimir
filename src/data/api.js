@@ -61,6 +61,38 @@ async function apiRequest(endpoint, options = {}) {
   });
 
   if (!response.ok) {
+    if (response.status === 429) {
+      throw new Error(
+        "You are performing this action too frequently. Please wait a moment and try again."
+      );
+    }
+
+    if (response.status === 409) {
+      throw new Error(
+        "This username or email already exists. Please try a different one."
+      );
+    }
+
+    if (response.status === 401) {
+      throw new Error(
+        "Invalid credentials. Please check your email and password."
+      );
+    }
+
+    if (response.status === 403) {
+      throw new Error("You don't have permission to perform this action.");
+    }
+
+    if (response.status === 404) {
+      throw new Error("The requested resource was not found.");
+    }
+
+    if (response.status >= 500) {
+      throw new Error(
+        "Server error. Please try again later or contact support if the problem persists."
+      );
+    }
+
     const error = await response.json().catch(() => ({}));
     throw new Error(error.errors?.[0]?.message || "API request failed");
   }

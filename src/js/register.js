@@ -52,8 +52,12 @@ function createRegisterForm() {
   usernameInput.classList.add("form-input");
   usernameInput.placeholder = "john_doe";
   usernameInput.required = true;
+  usernameInput.minLength = 3;
+  usernameInput.maxLength = 20;
   usernameInput.setAttribute("aria-label", "Username");
   usernameInput.setAttribute("pattern", "^[a-zA-Z0-9_]+$");
+  usernameInput.title =
+    "Username must be 3-20 characters and contain only letters, numbers, and underscores";
   fieldsContainer.appendChild(usernameInput);
 
   const emailLabel = document.createElement("label");
@@ -70,6 +74,8 @@ function createRegisterForm() {
   emailInput.placeholder = "example@stud.noroff.no";
   emailInput.required = true;
   emailInput.setAttribute("aria-label", "Email address");
+  emailInput.setAttribute("pattern", ".*@stud\\.noroff\\.no$");
+  emailInput.title = "Email must end with @stud.noroff.no";
   fieldsContainer.appendChild(emailInput);
 
   const passwordLabel = document.createElement("label");
@@ -86,6 +92,8 @@ function createRegisterForm() {
   passwordInput.placeholder = "Min 8 characters";
   passwordInput.required = true;
   passwordInput.minLength = 8;
+  passwordInput.maxLength = 128;
+  passwordInput.title = "Password must be at least 8 characters";
   passwordInput.setAttribute("aria-label", "Password");
   fieldsContainer.appendChild(passwordInput);
 
@@ -103,6 +111,8 @@ function createRegisterForm() {
   repeatPasswordInput.placeholder = "Repeat your password";
   repeatPasswordInput.required = true;
   repeatPasswordInput.minLength = 8;
+  repeatPasswordInput.maxLength = 128;
+  repeatPasswordInput.title = "Password must match the password above";
   repeatPasswordInput.setAttribute("aria-label", "Repeat password");
   fieldsContainer.appendChild(repeatPasswordInput);
 

@@ -53,6 +53,8 @@ function createLoginForm() {
   emailInput.placeholder = "example@stud.noroff.no";
   emailInput.required = true;
   emailInput.setAttribute("aria-label", "Email address");
+  emailInput.setAttribute("pattern", ".*@stud\\.noroff\\.no$");
+  emailInput.title = "Email must end with @stud.noroff.no";
   fieldsContainer.appendChild(emailInput);
 
   const passwordLabel = document.createElement("label");
@@ -68,6 +70,8 @@ function createLoginForm() {
   passwordInput.classList.add("form-input");
   passwordInput.placeholder = "•••••";
   passwordInput.required = true;
+  passwordInput.minLength = 8;
+  passwordInput.title = "Enter your password";
   passwordInput.setAttribute("aria-label", "Password");
   fieldsContainer.appendChild(passwordInput);
 
