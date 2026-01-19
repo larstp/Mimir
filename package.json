@@ -1,0 +1,29 @@
+{
+  "name": "mimir",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r   <img src=\"public/icons/mannaz-sign-round-black-outline-icon-WHITE.svg\" alt=\"Mannaz Rune\" width=\"150\" />\r </p>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "tailwindcss -i ./src/css/input.css -o ./src/css/tailwind.css --watch",
+    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/tailwind.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larstp/Mimir.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larstp/Mimir/issues"
+  },
+  "homepage": "https://github.com/larstp/Mimir#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}
