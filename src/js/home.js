@@ -4,6 +4,7 @@ import {
   isLoggedIn,
   getProfile,
   getUserName,
+  register,
 } from "../data/api.js";
 import { createPost } from "./modules/createPost.js";
 import { createLoader } from "./modules/loader.js";
@@ -38,29 +39,36 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     }
 
     const feedContainer = document.createElement("div");
-    feedContainer.classList.add("post-feed");
+    feedContainer.className =
+      "post-feed max-w-[1200px] mx-auto px-4 py-0 md:p-8";
 
     if (!isLoggedIn()) {
       const emptyState = document.createElement("div");
-      emptyState.classList.add("post-feed-empty");
+      emptyState.className =
+        "flex flex-col items-center gap-8 max-w-[300px] my-0 mx-auto";
 
       const heading = document.createElement("h1");
+      heading.className =
+        "text-[2rem] font-semibold text-[var(--text)] m-0 font-[var(--FontFamily)] pt-8 text-center";
       heading.textContent = "Please log in to view posts";
       emptyState.appendChild(heading);
 
       const loginLink = document.createElement("a");
       loginLink.href = "./src/pages/login.html";
-      loginLink.classList.add("btn");
+      loginLink.className =
+        "w-full max-w-[300px] p-4 bg-[var(--primary)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
       loginLink.textContent = "Log in";
       emptyState.appendChild(loginLink);
 
       const registerHeading = document.createElement("h2");
+      registerHeading.className = "text-xl font-medium text-[var(--text)] m-0";
       registerHeading.textContent = "Don't have an account?";
       emptyState.appendChild(registerHeading);
 
       const registerLink = document.createElement("a");
       registerLink.href = "./src/pages/register.html";
-      registerLink.classList.add("btn");
+      registerLink.className =
+        "w-full max-w-[300px] p-4 bg-[var(--primary)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
       registerLink.textContent = "Register";
       emptyState.appendChild(registerLink);
 
@@ -70,27 +78,32 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     }
 
     const loader = createLoader(
-      searchQuery ? "Searching..." : "Loading posts..."
+      searchQuery ? "Searching..." : "Loading posts...",
     );
     feedContainer.appendChild(loader);
     main.appendChild(feedContainer);
 
     if (searchQuery) {
       const searchIndicator = document.createElement("div");
-      searchIndicator.classList.add("search-indicator");
-      searchIndicator.innerHTML = `
-        <span>Searching for:  <strong>"${searchQuery}"</strong></span>
-        <button class="btn btn-delete clear-search-btn">Clear Search</button>
-      `;
-      feedContainer.insertBefore(searchIndicator, loader);
+      searchIndicator.className =
+        "bg-[var(--surface-elevated)] font-[var(--FontFamily)] border border-white/10 rounded-lg py-4 px-[1.5rem] mb-8 flex items-center justify-between gap-4";
 
-      const clearBtn = searchIndicator.querySelector(".clear-search-btn");
+      const searchText = document.createElement("span");
+      searchText.innerHTML = `Searching for:  <strong>"${searchQuery}"</strong>`;
+
+      const clearBtn = document.createElement("button");
+      clearBtn.className =
+        "clear-search-btn p-4 bg-[var(--error)] text-white border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-[#dc2626]";
+      clearBtn.textContent = "Clear Search";
       clearBtn.addEventListener("click", () => {
         currentSearchQuery = null;
         displayPostFeed(1);
       });
-    } // This whole segment feels wrong. I'm really struggling with how search works. A lot of it I have
-    // brought some of my older projects, but with new parameters and stuff it gets confusing.
+
+      searchIndicator.appendChild(searchText);
+      searchIndicator.appendChild(clearBtn);
+      feedContainer.insertBefore(searchIndicator, loader);
+    }
 
     let response;
     if (searchQuery) {
@@ -119,10 +132,9 @@ async function displayPostFeed(page = 1, searchQuery = null) {
         limit: 100, // Get up to 100 posts (API max per page I think)
         sort: "created", // Sort by creation date
         sortOrder: "desc", // Newest first
-      }); // I'm so confused but it works now
+      });
     }
 
-    // ----------------------------------------------Fetch following list only once (first page load)(MUCH help from CoPilot here (with much explaining). This is unbelievably confusing for me)
     if (page === 1) {
       followingList = [];
       try {
@@ -140,7 +152,8 @@ async function displayPostFeed(page = 1, searchQuery = null) {
 
     if (!response.data || response.data.length === 0) {
       const emptyMessage = document.createElement("div");
-      emptyMessage.classList.add("post-feed-empty");
+      emptyMessage.className =
+        "flex flex-col items-center gap-4 max-w-[300px] my-0 mx-auto";
       emptyMessage.textContent = "No posts found";
       feedContainer.appendChild(emptyMessage);
       return;
@@ -150,14 +163,16 @@ async function displayPostFeed(page = 1, searchQuery = null) {
 
     if (postsWithImages.length === 0) {
       const emptyMessage = document.createElement("div");
-      emptyMessage.classList.add("post-feed-empty");
+      emptyMessage.className =
+        "flex flex-col items-center gap-4 max-w-[300px] my-0 mx-auto";
       emptyMessage.textContent = "No posts with images found";
       feedContainer.appendChild(emptyMessage);
       return;
     }
 
     const grid = document.createElement("div");
-    grid.classList.add("post-feed-grid");
+    grid.className =
+      "grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3";
 
     postsWithImages.forEach((post) => {
       const postCard = createPost(post, followingList);
@@ -168,7 +183,8 @@ async function displayPostFeed(page = 1, searchQuery = null) {
 
     if (!searchQuery) {
       const paginationContainer = document.createElement("div");
-      paginationContainer.classList.add("post-feed-pagination");
+      paginationContainer.className =
+        "flex justify-center items-center gap-4 mt-12 py-8 px-0";
 
       const meta = response.meta;
       const hasNextPage = meta.isLastPage === false;
@@ -176,7 +192,8 @@ async function displayPostFeed(page = 1, searchQuery = null) {
 
       if (hasPrevPage) {
         const prevBtn = document.createElement("button");
-        prevBtn.classList.add("pagination-btn", "pagination-prev");
+        prevBtn.className =
+          "bg-[var(--primary)] text-[var(--background)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
         prevBtn.textContent = "← Previous";
         prevBtn.addEventListener("click", () => {
           currentPage--;
@@ -187,13 +204,14 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       }
 
       const pageInfo = document.createElement("span");
-      pageInfo.classList.add("pagination-info");
+      pageInfo.className = "text-[var(--text)] text-base font-medium";
       pageInfo.textContent = `Page ${meta.currentPage} of ${meta.pageCount}`;
       paginationContainer.appendChild(pageInfo);
 
       if (hasNextPage) {
         const nextBtn = document.createElement("button");
-        nextBtn.classList.add("pagination-btn", "pagination-next");
+        nextBtn.className =
+          "bg-[var(--primary)] text-[var(--background)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
         nextBtn.textContent = "Next →";
         nextBtn.addEventListener("click", () => {
           currentPage++;
@@ -211,7 +229,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     const main = document.querySelector("main");
     if (main) {
       const errorDiv = document.createElement("div");
-      errorDiv.classList.add("post-feed-error");
+      errorDiv.className = "text-center py-12 px-4 text-[var(--error)]";
       errorDiv.textContent = "Failed to load posts. Please try again later.";
       main.appendChild(errorDiv);
     }
@@ -230,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(() => {
     const homeLinks = document.querySelectorAll(
-      'a[aria-label="Go to home page"]'
+      'a[aria-label="Go to home page"]',
     );
     homeLinks.forEach((link) => {
       link.addEventListener("click", (event) => {

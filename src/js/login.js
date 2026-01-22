@@ -37,7 +37,7 @@ function createLoginForm() {
   form.appendChild(header);
 
   const fieldsContainer = document.createElement("div");
-  fieldsContainer.className = "flex flex-col gap-4";
+  fieldsContainer.className = "login-fields flex flex-col gap-4";
 
   const emailLabel = document.createElement("label");
   emailLabel.className =
@@ -106,7 +106,7 @@ function createLoginForm() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const existingError = form.querySelector(".login-error");
+    const existingError = form.querySelector("[data-error='login']");
     if (existingError) {
       existingError.remove();
     }
@@ -159,6 +159,7 @@ function showError(form, message) {
     "login-error p-4 bg-[rgb(255,107,107)]/10 border border-[rgb(255,107,107)]/30 rounded-[10px] text-[#ff6b6b] text-center text-sm";
   errorDiv.textContent = message;
   errorDiv.setAttribute("role", "alert");
+  errorDiv.setAttribute("data-error", "login");
 
   const fieldsContainer = form.querySelector(".login-fields");
   fieldsContainer.insertAdjacentElement("afterend", errorDiv);
