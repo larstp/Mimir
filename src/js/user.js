@@ -54,7 +54,6 @@ async function displayUserProfile() {
     banner.setAttribute("aria-label", "Profile banner");
 
     if (profile.banner?.url) {
-      // hope this works on all browsers
       const bannerImage = document.createElement("img");
       bannerImage.src = profile.banner.url;
       bannerImage.alt = profile.banner.alt || `${profile.name}'s banner`;
@@ -181,7 +180,8 @@ async function displayUserProfile() {
 
       if (postsWithImages.length > 0) {
         const postsGrid = document.createElement("div");
-        postsGrid.classList.add("post-feed-grid");
+        postsGrid.className =
+          "post-feed-grid grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3";
 
         const followingList = [];
 
@@ -205,7 +205,8 @@ async function displayUserProfile() {
       logoutSection.classList.add("profile-logout-section");
 
       const logoutButton = document.createElement("button");
-      logoutButton.classList.add("btn", "btn-delete", "profile-logout-btn");
+      logoutButton.className =
+        "profile-logout-btn p-4 bg-[var(--error)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[#dc2626] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
       logoutButton.textContent = "Log Out";
       logoutButton.setAttribute("aria-label", "Log out of your account");
 
@@ -233,7 +234,8 @@ async function displayUserProfile() {
  */
 function showError(container, message) {
   const error = document.createElement("div");
-  error.classList.add("post-feed-error");
+  error.className =
+    "post-feed-error text-center py-12 px-4 text-[var(--error)]";
   error.setAttribute("role", "alert");
   error.textContent = message;
   container.appendChild(error);
@@ -245,7 +247,8 @@ function showError(container, message) {
  */
 function showNoPosts(container) {
   const empty = document.createElement("div");
-  empty.classList.add("post-feed-empty");
+  empty.className =
+    "post-feed-empty flex flex-col items-center gap-8 max-w-[300px] mx-auto text-center py-12 px-4 text-[var(--textLight)]";
 
   const emptyText = document.createElement("p");
   emptyText.textContent = "No posts with images yet";

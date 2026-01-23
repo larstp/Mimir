@@ -153,7 +153,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     if (!response.data || response.data.length === 0) {
       const emptyMessage = document.createElement("div");
       emptyMessage.className =
-        "flex flex-col items-center gap-4 max-w-[300px] my-0 mx-auto";
+        "flex flex-col items-center gap-8 max-w-[300px] mx-auto my-0 text-center py-12 px-4 text-[var(--textLight)]";
       emptyMessage.textContent = "No posts found";
       feedContainer.appendChild(emptyMessage);
       return;
@@ -164,7 +164,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     if (postsWithImages.length === 0) {
       const emptyMessage = document.createElement("div");
       emptyMessage.className =
-        "flex flex-col items-center gap-4 max-w-[300px] my-0 mx-auto";
+        "flex flex-col items-center gap-8 max-w-[300px] mx-auto my-0 text-center py-12 px-4 text-[var(--textLight)]";
       emptyMessage.textContent = "No posts with images found";
       feedContainer.appendChild(emptyMessage);
       return;
