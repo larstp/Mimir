@@ -50,25 +50,28 @@ async function displayUserProfile() {
     }
 
     const banner = document.createElement("section");
-    banner.classList.add("profile-banner");
+    banner.className =
+      "profile-banner relative w-full h-[150px] bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] overflow-hidden md:h-[200px] lg:h-[250px]";
     banner.setAttribute("aria-label", "Profile banner");
 
     if (profile.banner?.url) {
       const bannerImage = document.createElement("img");
       bannerImage.src = profile.banner.url;
       bannerImage.alt = profile.banner.alt || `${profile.name}'s banner`;
-      bannerImage.classList.add("profile-banner-image");
+      bannerImage.className = "profile-banner-image w-full h-full object-cover";
       banner.appendChild(bannerImage);
     }
 
     const backButton = document.createElement("button");
-    backButton.classList.add("profile-back-button");
+    backButton.className =
+      "profile-back-button absolute top-4 left-4 flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-[10px] border border-white/10 rounded-full cursor-pointer transition-all duration-200 ease-in-out z-10 p-0 hover:bg-black/70 hover:scale-105";
     backButton.setAttribute("aria-label", "Go back to previous page");
 
     const backIcon = document.createElement("img");
     backIcon.src = "../../public/icons/flowbite_arrow-left-alt-outline.svg";
     backIcon.alt = "";
-    backIcon.classList.add("profile-back-icon");
+    backIcon.className =
+      "profile-back-icon w-5 h-5 brightness-0 invert transition-opacity duration-200 ease-in-out";
     backButton.appendChild(backIcon);
 
     backButton.addEventListener("click", () => {
@@ -80,7 +83,8 @@ async function displayUserProfile() {
     if (currentUser === profileName) {
       const editButton = document.createElement("a");
       editButton.href = "./editUser.html";
-      editButton.classList.add("profile-edit-button");
+      editButton.className =
+        "profile-edit-button absolute top-4 right-4 flex items-center justify-center py-2 px-4 bg-black/50 backdrop-blur-[10px] border border-white/10 rounded-[5px] cursor-pointer transition-all duration-200 ease-in-out z-10 text-[var(--text)] font-[var(--FontFamily)] no-underline text-sm font-medium hover:bg-black/70 hover:scale-105"; // AAAAAaah
       editButton.setAttribute("aria-label", "Edit profile");
       editButton.textContent = "Edit Profile";
 
@@ -90,30 +94,33 @@ async function displayUserProfile() {
     main.appendChild(banner);
 
     const header = document.createElement("section");
-    header.classList.add("profile-header");
+    header.className =
+      "profile-header max-w-[1200px] mx-auto px-4 flex gap-6 -mt-[60px] relative z-[5] flex-col items-center text-center md:flex-row md:text-left md:-mt-[75px]";
     header.setAttribute("aria-label", "Profile information");
 
     const avatarContainer = document.createElement("div");
-    avatarContainer.classList.add("profile-avatar-container");
+    avatarContainer.className = "profile-avatar-container shrink-0";
 
     const avatar = document.createElement("img");
     avatar.src =
       profile.avatar?.url ||
-      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=150&h=150&fit=crop"; // Just a temp
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=150&h=150&fit=crop";
     avatar.alt = profile.avatar?.alt || `${profile.name}'s avatar`;
-    avatar.classList.add("profile-avatar");
+    avatar.className =
+      "profile-avatar w-[120px] h-[120px] rounded-full border-4 border-[var(--background)] object-cover bg-[var(--cardBackground)] md:w-[150px] md:h-[150px]";
     avatarContainer.appendChild(avatar);
 
     header.appendChild(avatarContainer);
 
     const info = document.createElement("div");
-    info.classList.add("profile-info");
+    info.className = "profile-info flex-1 pt-4 md:pt-14";
 
     const nameContainer = document.createElement("div");
-    nameContainer.classList.add("profile-name-container");
+    nameContainer.className = "profile-name-container inline-block mb-2";
 
     const name = document.createElement("h1");
-    name.classList.add("profile-name");
+    name.className =
+      "profile-name text-2xl font-semibold text-[var(--text)] m-0 font-[var(--FontFamily)] bg-[rgba(17,17,17,0.85)] py-1 px-3 rounded-md inline-block md:text-[1.75rem]";
     name.textContent = profile.name;
     nameContainer.appendChild(name);
 
@@ -121,41 +128,44 @@ async function displayUserProfile() {
 
     if (profile.bio) {
       const bio = document.createElement("p");
-      bio.classList.add("profile-bio");
+      bio.className = "profile-bio text-[var(--textLight)] m-0 mb-4 leading-6";
       bio.textContent = profile.bio;
       info.appendChild(bio);
     }
 
     const stats = document.createElement("div");
-    stats.classList.add("profile-stats");
+    stats.className =
+      "profile-stats flex gap-8 text-[var(--textLight)] text-[0.95rem] justify-center md:justify-start";
     stats.setAttribute("aria-label", "Profile statistics");
 
     const followersCount = profile._count?.followers || 0;
     const followingCount = profile._count?.following || 0;
 
     const followers = document.createElement("div");
-    followers.classList.add("profile-stat");
+    followers.className = "profile-stat flex gap-1";
 
     const followersLabel = document.createElement("span");
     followersLabel.textContent = "Followers: ";
     followers.appendChild(followersLabel);
 
     const followersValue = document.createElement("span");
-    followersValue.classList.add("profile-stat-value");
+    followersValue.className =
+      "profile-stat-value font-semibold text-[var(--text)]";
     followersValue.textContent = followersCount;
     followers.appendChild(followersValue);
 
     stats.appendChild(followers);
 
     const following = document.createElement("div");
-    following.classList.add("profile-stat");
+    following.className = "profile-stat flex gap-1";
 
     const followingLabel = document.createElement("span");
     followingLabel.textContent = "Following: ";
     following.appendChild(followingLabel);
 
     const followingValue = document.createElement("span");
-    followingValue.classList.add("profile-stat-value");
+    followingValue.className =
+      "profile-stat-value font-semibold text-[var(--text)]";
     followingValue.textContent = followingCount;
     following.appendChild(followingValue);
 
@@ -166,11 +176,13 @@ async function displayUserProfile() {
     main.appendChild(header);
 
     const postsSection = document.createElement("section");
-    postsSection.classList.add("profile-posts");
+    postsSection.className =
+      "profile-posts max-w-[1200px] mt-8 mx-auto mb-0 px-4 pb-4 pt-0";
     postsSection.setAttribute("aria-label", "User posts");
 
     const postsHeader = document.createElement("h2");
-    postsHeader.classList.add("profile-posts-header");
+    postsHeader.className =
+      "profile-posts-header text-xl font-semibold text-[var(--text)] m-0 mb-6 font-[var(--FontFamily)]";
     const postCount = profile._count?.posts || 0;
     postsHeader.textContent = `Posts (${postCount})`;
     postsSection.appendChild(postsHeader);
@@ -202,7 +214,8 @@ async function displayUserProfile() {
 
     if (currentUser === profileName) {
       const logoutSection = document.createElement("section");
-      logoutSection.classList.add("profile-logout-section");
+      logoutSection.className =
+        "profile-logout-section max-w-[1200px] mt-12 mx-auto mb-8 px-4 py-0 flex justify-center";
 
       const logoutButton = document.createElement("button");
       logoutButton.className =
