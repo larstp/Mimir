@@ -1,4 +1,4 @@
-// This is mostly copy/pasted from a previous project
+// This Tailwind is mostly copy/pasted from login. mostly
 
 import { register, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
@@ -25,22 +25,25 @@ function createRegisterForm() {
   }
 
   const container = document.createElement("div");
-  container.classList.add("register-container");
+  container.className =
+    "register-container relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4 py-8 pt-[100px] md:pb-8";
 
   const form = document.createElement("form");
-  form.classList.add("register-form");
+  form.className = "register-form w-full max-w-[300px] flex flex-col gap-6";
   form.setAttribute("aria-label", "Registration form");
 
   const header = document.createElement("h1");
-  header.classList.add("register-header");
+  header.className =
+    "register-header text-3xl font-semibold text-center text-[var(--text)] mb-4";
   header.textContent = "Create Account";
   form.appendChild(header);
 
   const fieldsContainer = document.createElement("div");
-  fieldsContainer.classList.add("register-fields");
+  fieldsContainer.className = "register-fields flex flex-col gap-4";
 
   const usernameLabel = document.createElement("label");
-  usernameLabel.classList.add("form-label");
+  usernameLabel.className =
+    "form-label block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
   usernameLabel.setAttribute("for", "username");
   usernameLabel.textContent = "Username";
   fieldsContainer.appendChild(usernameLabel);
@@ -49,7 +52,8 @@ function createRegisterForm() {
   usernameInput.type = "text";
   usernameInput.id = "username";
   usernameInput.name = "username";
-  usernameInput.classList.add("form-input");
+  usernameInput.className =
+    "form-input w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
   usernameInput.placeholder = "john_doe";
   usernameInput.required = true;
   usernameInput.minLength = 3;
@@ -61,7 +65,8 @@ function createRegisterForm() {
   fieldsContainer.appendChild(usernameInput);
 
   const emailLabel = document.createElement("label");
-  emailLabel.classList.add("form-label");
+  emailLabel.className =
+    "form-label block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
   emailLabel.setAttribute("for", "email");
   emailLabel.textContent = "Email";
   fieldsContainer.appendChild(emailLabel);
@@ -70,7 +75,8 @@ function createRegisterForm() {
   emailInput.type = "email";
   emailInput.id = "email";
   emailInput.name = "email";
-  emailInput.classList.add("form-input");
+  emailInput.className =
+    "form-input w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
   emailInput.placeholder = "example@stud.noroff.no";
   emailInput.required = true;
   emailInput.setAttribute("aria-label", "Email address");
@@ -79,7 +85,8 @@ function createRegisterForm() {
   fieldsContainer.appendChild(emailInput);
 
   const passwordLabel = document.createElement("label");
-  passwordLabel.classList.add("form-label");
+  passwordLabel.className =
+    "form-label block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
   passwordLabel.setAttribute("for", "password");
   passwordLabel.textContent = "Password";
   fieldsContainer.appendChild(passwordLabel);
@@ -88,7 +95,8 @@ function createRegisterForm() {
   passwordInput.type = "password";
   passwordInput.id = "password";
   passwordInput.name = "password";
-  passwordInput.classList.add("form-input");
+  passwordInput.className =
+    "form-input w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
   passwordInput.placeholder = "Min 8 characters";
   passwordInput.required = true;
   passwordInput.minLength = 8;
@@ -98,7 +106,8 @@ function createRegisterForm() {
   fieldsContainer.appendChild(passwordInput);
 
   const repeatPasswordLabel = document.createElement("label");
-  repeatPasswordLabel.classList.add("form-label");
+  repeatPasswordLabel.className =
+    "form-label block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
   repeatPasswordLabel.setAttribute("for", "repeat-password");
   repeatPasswordLabel.textContent = "Repeat Password";
   fieldsContainer.appendChild(repeatPasswordLabel);
@@ -107,7 +116,8 @@ function createRegisterForm() {
   repeatPasswordInput.type = "password";
   repeatPasswordInput.id = "repeat-password";
   repeatPasswordInput.name = "repeat-password";
-  repeatPasswordInput.classList.add("form-input");
+  repeatPasswordInput.className =
+    "form-input w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
   repeatPasswordInput.placeholder = "Repeat your password";
   repeatPasswordInput.required = true;
   repeatPasswordInput.minLength = 8;
@@ -117,7 +127,8 @@ function createRegisterForm() {
   fieldsContainer.appendChild(repeatPasswordInput);
 
   const avatarLabel = document.createElement("label");
-  avatarLabel.classList.add("form-label");
+  avatarLabel.className =
+    "form-label block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
   avatarLabel.setAttribute("for", "avatar-url");
   avatarLabel.textContent = "Profile Picture URL (Optional)";
   fieldsContainer.appendChild(avatarLabel);
@@ -126,7 +137,8 @@ function createRegisterForm() {
   avatarInput.type = "url";
   avatarInput.id = "avatar-url";
   avatarInput.name = "avatar-url";
-  avatarInput.classList.add("form-input");
+  avatarInput.className =
+    "form-input w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
   avatarInput.placeholder = "https://example.com/your-image.jpg";
   avatarInput.setAttribute("aria-label", "Profile picture URL");
   fieldsContainer.appendChild(avatarInput);
@@ -135,19 +147,22 @@ function createRegisterForm() {
 
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
-  submitButton.classList.add("btn");
+  submitButton.className =
+    "btn w-full p-4 bg-[var(--primary)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
   submitButton.textContent = "Register";
   form.appendChild(submitButton);
 
   const loginText = document.createElement("p");
-  loginText.classList.add("register-login");
+  loginText.className =
+    "register-login text-center text-[var(--textLight)] text-sm";
 
   const textNode = document.createTextNode("Already have an account? ");
   loginText.appendChild(textNode);
 
   const loginLink = document.createElement("a");
   loginLink.href = "./login.html";
-  loginLink.classList.add("register-login-link");
+  loginLink.className =
+    "register-login-link text-[var(--textLight)] no-underline font-semibold transition-colors duration-300 hover:text-[var(--primaryHover)] hover:underline";
   loginLink.textContent = "Log in here";
   loginText.appendChild(loginLink);
 
@@ -156,7 +171,7 @@ function createRegisterForm() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const existingError = form.querySelector(".register-error");
+    const existingError = form.querySelector("[data-error='register']"); // this took some time whoh
     if (existingError) {
       existingError.remove();
     }
@@ -190,7 +205,7 @@ function createRegisterForm() {
     if (!/^[a-zA-Z0-9_]+$/.test(username)) {
       showError(
         form,
-        "Username can only contain letters, numbers, and underscores"
+        "Username can only contain letters, numbers, and underscores",
       );
       return;
     }
@@ -223,7 +238,7 @@ function createRegisterForm() {
 
       showError(
         form,
-        error.message || "Registration failed. Please try again."
+        error.message || "Registration failed. Please try again.",
       );
 
       submitButton.disabled = false;
@@ -242,9 +257,11 @@ function createRegisterForm() {
  */
 function showError(form, message) {
   const errorDiv = document.createElement("div");
-  errorDiv.classList.add("register-error");
+  errorDiv.className =
+    "register-error p-4 bg-[rgb(255,107,107)]/10 border border-[rgb(255,107,107)]/30 rounded-[10px] text-[#ff6b6b] text-center text-sm";
   errorDiv.textContent = message;
   errorDiv.setAttribute("role", "alert");
+  errorDiv.setAttribute("data-error", "register");
 
   const fieldsContainer = form.querySelector(".register-fields");
   fieldsContainer.insertAdjacentElement("afterend", errorDiv);
