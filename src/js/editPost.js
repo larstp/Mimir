@@ -56,37 +56,39 @@ async function displayEditPostForm() {
     }
 
     const container = document.createElement("div");
-    container.classList.add("post-page-container");
+    container.className = "max-w-[600px] my-8 mx-auto px-4 py-0";
 
     const header = document.createElement("h1");
-    header.classList.add("create-post-header");
+    header.className =
+      "text-3xl font-semibold text-[var(--text)] m-0 mb-8 font-[var(--FontFamily)] text-center";
     header.textContent = "Edit Post";
     container.appendChild(header);
 
     if (post.media?.url) {
       const imagePreview = document.createElement("div");
-      imagePreview.classList.add("edit-post-image-preview");
+      imagePreview.className = "mb-6";
 
       const imageLabel = document.createElement("p");
-      imageLabel.classList.add("edit-post-image-label");
+      imageLabel.className = "text-[var(--text)] font-semibold mb-2";
       imageLabel.textContent = "Current Image:";
       imagePreview.appendChild(imageLabel);
 
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.classList.add("edit-post-image");
+      img.className = "w-full max-w-[400px] rounded-lg border border-white/10";
       imagePreview.appendChild(img);
 
       container.appendChild(imagePreview);
     }
 
     const form = document.createElement("form");
-    form.classList.add("create-post-form");
+    form.className = "flex flex-col gap-4";
     form.setAttribute("aria-label", "Edit post form");
 
     const titleLabel = document.createElement("label");
-    titleLabel.classList.add("form-label");
+    titleLabel.className =
+      "block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
     titleLabel.textContent = "Title";
     titleLabel.setAttribute("for", "title");
     form.appendChild(titleLabel);
@@ -95,14 +97,16 @@ async function displayEditPostForm() {
     titleInput.type = "text";
     titleInput.id = "title";
     titleInput.name = "title";
-    titleInput.classList.add("form-input");
+    titleInput.className =
+      "w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
     titleInput.value = post.title || "";
     titleInput.required = true;
     titleInput.setAttribute("aria-label", "Post title");
     form.appendChild(titleInput);
 
     const bodyLabel = document.createElement("label");
-    bodyLabel.classList.add("form-label");
+    bodyLabel.className =
+      "block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
     bodyLabel.textContent = "Body (optional)";
     bodyLabel.setAttribute("for", "body");
     form.appendChild(bodyLabel);
@@ -110,14 +114,16 @@ async function displayEditPostForm() {
     const bodyTextarea = document.createElement("textarea");
     bodyTextarea.id = "body";
     bodyTextarea.name = "body";
-    bodyTextarea.classList.add("form-input", "create-post-textarea");
+    bodyTextarea.className =
+      "w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08] resize-y min-h-[100px] font-[inherit]";
     bodyTextarea.value = post.body || "";
     bodyTextarea.setAttribute("aria-label", "Post body");
     bodyTextarea.rows = 6;
     form.appendChild(bodyTextarea);
 
     const imageAltLabel = document.createElement("label");
-    imageAltLabel.classList.add("form-label");
+    imageAltLabel.className =
+      "block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
     imageAltLabel.textContent = "Image Description (optional)";
     imageAltLabel.setAttribute("for", "imageAlt");
     form.appendChild(imageAltLabel);
@@ -126,29 +132,33 @@ async function displayEditPostForm() {
     imageAltInput.type = "text";
     imageAltInput.id = "imageAlt";
     imageAltInput.name = "imageAlt";
-    imageAltInput.classList.add("form-input");
+    imageAltInput.className =
+      "w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
     imageAltInput.value = post.media?.alt || "";
     imageAltInput.setAttribute("aria-label", "Image alt text");
     form.appendChild(imageAltInput);
 
     const buttonsContainer = document.createElement("div");
-    buttonsContainer.classList.add("edit-post-buttons");
+    buttonsContainer.className = "flex gap-4 mt-4 flex-wrap";
 
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
-    deleteButton.classList.add("btn", "btn-delete");
+    deleteButton.className =
+      "p-4 bg-[var(--error)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[#dc2626] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
     deleteButton.textContent = "Delete Post";
     buttonsContainer.appendChild(deleteButton);
 
     const cancelButton = document.createElement("a");
     cancelButton.href = `./post.html?id=${postId}`;
-    cancelButton.classList.add("btn", "btn-secondary");
+    cancelButton.className =
+      "p-4 bg-[var(--surface-elevated)] text-[var(--text)] border border-white/10 rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center no-underline hover:bg-[var(--cardBackground)] hover:-translate-y-0.5 active:translate-y-0";
     cancelButton.textContent = "Cancel";
     buttonsContainer.appendChild(cancelButton);
 
     const submitButton = document.createElement("button");
     submitButton.type = "submit";
-    submitButton.classList.add("btn");
+    submitButton.className =
+      "p-4 bg-[var(--primary)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
     submitButton.textContent = "Save Changes";
     buttonsContainer.appendChild(submitButton);
 
@@ -156,7 +166,7 @@ async function displayEditPostForm() {
 
     deleteButton.addEventListener("click", async () => {
       const confirmDelete = confirm(
-        "Are you sure you want to delete this post? This cannot be undone."
+        "Are you sure you want to delete this post? This cannot be undone.",
       );
 
       if (!confirmDelete) {
@@ -188,7 +198,7 @@ async function displayEditPostForm() {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const existingError = form.querySelector(".create-post-error");
+      const existingError = form.querySelector("[data-error='edit-post']");
       if (existingError) {
         existingError.remove();
       }
@@ -257,7 +267,7 @@ async function displayEditPostForm() {
  */
 function showError(container, message) {
   const error = document.createElement("div");
-  error.classList.add("post-error");
+  error.className = "post-error text-center py-12 px-4 text-[var(--error)]";
   error.setAttribute("role", "alert");
   error.textContent = message;
   container.appendChild(error);
@@ -270,8 +280,10 @@ function showError(container, message) {
  */
 function showFormError(form, message) {
   const error = document.createElement("div");
-  error.classList.add("create-post-error");
+  error.className =
+    "bg-[rgba(220,38,38,0.1)] text-[var(--error)] p-4 rounded-lg border border-[var(--error)] mb-4";
   error.setAttribute("role", "alert");
+  error.setAttribute("data-error", "edit-post"); // THIS mfer
   error.textContent = message;
   form.insertBefore(error, form.firstChild);
 }

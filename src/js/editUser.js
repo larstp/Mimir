@@ -54,19 +54,21 @@ async function displayEditProfile() {
     }
 
     const container = document.createElement("div");
-    container.classList.add("edit-profile-container");
+    container.className = "max-w-[600px] my-8 mx-auto px-4 py-0";
 
     const header = document.createElement("h1");
-    header.classList.add("edit-profile-header");
+    header.className =
+      "text-3xl font-semibold text-[var(--text)] m-0 mb-8 font-[var(--FontFamily)] text-center";
     header.textContent = "Edit Profile";
     container.appendChild(header);
 
     const form = document.createElement("form");
-    form.classList.add("edit-profile-form");
+    form.className = "flex flex-col gap-4";
     form.setAttribute("aria-label", "Edit profile form");
 
     const bioLabel = document.createElement("label");
-    bioLabel.classList.add("form-label");
+    bioLabel.className =
+      "block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
     bioLabel.textContent = "Bio";
     bioLabel.setAttribute("for", "bio");
     form.appendChild(bioLabel);
@@ -74,7 +76,8 @@ async function displayEditProfile() {
     const bioTextarea = document.createElement("textarea");
     bioTextarea.id = "bio";
     bioTextarea.name = "bio";
-    bioTextarea.classList.add("form-input", "edit-profile-textarea");
+    bioTextarea.className =
+      "w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08] resize-y min-h-[100px] font-[inherit]";
     bioTextarea.placeholder = "Tell us about yourself...";
     bioTextarea.value = profile.bio || "";
     bioTextarea.setAttribute("aria-label", "Bio");
@@ -82,7 +85,8 @@ async function displayEditProfile() {
     form.appendChild(bioTextarea);
 
     const avatarLabel = document.createElement("label");
-    avatarLabel.classList.add("form-label");
+    avatarLabel.className =
+      "block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
     avatarLabel.textContent = "Avatar URL (optional)";
     avatarLabel.setAttribute("for", "avatar");
     form.appendChild(avatarLabel);
@@ -91,14 +95,16 @@ async function displayEditProfile() {
     avatarInput.type = "url";
     avatarInput.id = "avatar";
     avatarInput.name = "avatar";
-    avatarInput.classList.add("form-input");
+    avatarInput.className =
+      "w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
     avatarInput.placeholder = "https://example.com/avatar.jpg";
     avatarInput.value = profile.avatar?.url || "";
     avatarInput.setAttribute("aria-label", "Avatar URL");
     form.appendChild(avatarInput);
 
     const bannerLabel = document.createElement("label");
-    bannerLabel.classList.add("form-label");
+    bannerLabel.className =
+      "block text-[var(--text)] text-[0.9rem] font-semibold mb-2";
     bannerLabel.textContent = "Banner URL (optional)";
     bannerLabel.setAttribute("for", "banner");
     form.appendChild(bannerLabel);
@@ -107,24 +113,27 @@ async function displayEditProfile() {
     bannerInput.type = "url";
     bannerInput.id = "banner";
     bannerInput.name = "banner";
-    bannerInput.classList.add("form-input");
+    bannerInput.className =
+      "w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08]";
     bannerInput.placeholder = "https://example.com/banner.jpg";
     bannerInput.value = profile.banner?.url || "";
     bannerInput.setAttribute("aria-label", "Banner URL");
     form.appendChild(bannerInput);
 
     const buttonsContainer = document.createElement("div");
-    buttonsContainer.classList.add("edit-profile-buttons");
+    buttonsContainer.className = "flex gap-4 mt-4";
 
     const cancelButton = document.createElement("a");
     cancelButton.href = "./user.html";
-    cancelButton.classList.add("btn", "btn-secondary");
+    cancelButton.className =
+      "flex-1 p-4 bg-[var(--surface-elevated)] text-[var(--text)] border border-white/10 rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center no-underline hover:bg-[var(--cardBackground)] hover:-translate-y-0.5 active:translate-y-0";
     cancelButton.textContent = "Cancel";
     buttonsContainer.appendChild(cancelButton);
 
     const submitButton = document.createElement("button");
     submitButton.type = "submit";
-    submitButton.classList.add("btn");
+    submitButton.className =
+      "flex-1 p-4 bg-[var(--primary)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
     submitButton.textContent = "Save Changes";
     buttonsContainer.appendChild(submitButton);
 
@@ -133,7 +142,7 @@ async function displayEditProfile() {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const existingError = form.querySelector(".edit-profile-error");
+      const existingError = form.querySelector("[data-error='edit-profile']");
       if (existingError) {
         existingError.remove();
       }
@@ -207,7 +216,8 @@ async function displayEditProfile() {
  */
 function showError(container, message) {
   const error = document.createElement("div");
-  error.classList.add("post-feed-error");
+  error.className =
+    "post-feed-error text-center py-12 px-4 text-[var(--error)]";
   error.setAttribute("role", "alert");
   error.textContent = message;
   container.appendChild(error);
@@ -220,11 +230,12 @@ function showError(container, message) {
  */
 function showFormError(form, message) {
   const error = document.createElement("div");
-  error.classList.add("edit-profile-error");
+  error.className =
+    "bg-[rgba(220,38,38,0.1)] text-[var(--error)] p-4 rounded-lg border border-[var(--error)] mb-4";
   error.setAttribute("role", "alert");
+  error.setAttribute("data-error", "edit-profile");
   error.textContent = message;
   form.insertBefore(error, form.firstChild);
 }
 
-// Initialize the edit profile page
 displayEditProfile();
