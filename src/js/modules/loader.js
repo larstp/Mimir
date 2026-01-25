@@ -14,10 +14,10 @@
  */
 export function createLoader(text = "Loading...") {
   const loaderContainer = document.createElement("div");
-  loaderContainer.classList.add("loader-container");
+  loaderContainer.className = "flex flex-col items-center justify-center py-12";
 
   const loadingAnimation = document.createElement("div");
-  loadingAnimation.classList.add("lds-ellipsis");
+  loadingAnimation.className = "lds-ellipsis";
   for (let i = 0; i < 4; i++) {
     const dot = document.createElement("div");
     loadingAnimation.appendChild(dot);
@@ -27,7 +27,7 @@ export function createLoader(text = "Loading...") {
 
   if (text) {
     const loadingText = document.createElement("p");
-    loadingText.classList.add("loader-text");
+    loadingText.className = "text-[var(--text)] mt-4 text-center";
     loadingText.textContent = text;
     loaderContainer.appendChild(loadingText);
   }

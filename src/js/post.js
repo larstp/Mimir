@@ -61,7 +61,7 @@ async function displayPost() {
       "bg-[var(--cardBackground)] rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] overflow-hidden hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] transition-shadow duration-300";
 
     const header = document.createElement("div");
-    header.className = "flex justify-between items-center p-4 pb-0";
+    header.className = "flex justify-between items-center p-4 pb-1";
 
     if (post.author) {
       const authorContainer = document.createElement("div");

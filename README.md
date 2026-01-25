@@ -33,17 +33,19 @@
 
 [8. Known Issues & Limitations](#8-known-issues--limitations)
 
-[9. Credits](#9-credits)
+[9. CSS Frameworks Assignment](#9-css-frameworks-assignment)
 
-[10. Contact](#10-contact)
+[10. Credits](#10-credits)
 
-</details>
+[11. Contact](#11-contact)
 
 ---
 
 ## 1. Project Overview
 
-ᛗìmir is a modern, responsive social media platform built as part of the JavaScript 2 course assignment at NOROFF. The platform allows users to share posts with images, follow other users, interact through comments and reactions, and manage their profiles.
+ᛗìmir is a modern, responsive social media platform built as part of the JavaScript 2 course assignment at NOROFF. Originally built with custom CSS, the platform has been fully migrated to **Tailwind CSS v4** as part of the CSS Frameworks course assignment.
+
+The platform allows users to share posts with images, follow other users, interact through comments and reactions, and manage their profiles.
 
 ### Brand Story
 
@@ -60,8 +62,26 @@ Mannaz is the conventional name of the /m/ rune ᛗ of the Elder Futhark. It is 
 
 ## 2. Setup & Installation
 
-- Clone repo and open `index.html` in your browser using Live Server, or visit the deployed site: [larstp.github.io/Mimir](https://larstp.github.io/Mimir/)
-- No build steps required; all code is static and client-side using ES6 modules.
+### Prerequisites
+
+- Node.js and npm installed
+
+### Installation Steps
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run development mode (with file watching):
+   ```bash
+   npm run dev
+   ```
+4. Or build for production:
+   ```bash
+   npm run build
+   ```
+5. Open `index.html` in your browser using Live Server, or visit the deployed site: [larstp.github.io/Mimir](https://larstp.github.io/Mimir/)
 
 ---
 
@@ -105,12 +125,13 @@ Or you can create your own.
 
 ## 4. Technologies Used
 
-- **HTML5** - Semantic markup
-- **CSS3** - Custom properties, Flexbox, Grid (no frameworks)
+- **HTML5** - Semantic markup with comprehensive form validation
+- **Tailwind CSS v4** - Utility-first CSS framework (migrated from custom CSS)
 - **JavaScript ES6+** - Modules, async/await, DOM manipulation
 - **Noroff Social API v2** - Backend for posts, users, authentication
 - **GitHub Pages** - Hosting
 - **Flowbite Icons** - SVG icon library
+- **npm** - Package management and build scripts
 
 ---
 
@@ -124,17 +145,20 @@ Or you can create your own.
 │   └── video/          # Video assets
 ├── src/
 │   ├── css/
-│   │   ├── global/     # Global styles (header, footer, navbar, etc.)
-│   │   └── *.css       # Page-specific styles
+│   │   ├── global/     # Global styles (CSS variables, loader animation)
+│   │   ├── input.css   # Tailwind source file
+│   │   ├── tailwind.css # Generated Tailwind output
+│   │   └── *.css       # Legacy page-specific styles (commented out)
 │   ├── js/
 │   │   ├── global/     # Global JS (main.js)
 │   │   ├── modules/    # Reusable components (createPost, header, search, etc.)
-│   │   └── *.js        # Page-specific scripts
+│   │   └── *.js        # Page-specific scripts (all using Tailwind)
 │   ├── data/
 │   │   └── api.js      # API integration
 │   └── pages/          # HTML pages
 ├── docs/               # Documentation
 ├── index.html          # Home page (feed)
+├── package.json        # npm scripts and dependencies
 └── README.md
 ```
 
@@ -158,12 +182,16 @@ Or you can create your own.
 
 ### UI/UX Features:
 
+- **Fully Responsive Design** - Mobile-first approach with md/lg/xl breakpoints
+- **Pure Tailwind Utilities** - All 8 pages converted to Tailwind CSS v4
+- **Custom CSS Variables** - Using Tailwind's arbitrary values with CSS variables
 - Search overlay with filter-in-place
 - Loading indicators for async operations
 - Error handling and user feedback
 - Keyboard navigation support
 - Mobile bottom navigation bar
 - Desktop header with logo and icons
+- Form validation on all input fields (required, minLength, maxLength, type validation)
 
 ---
 
@@ -193,11 +221,45 @@ Or you can create your own.
 
 - **Comments** - Read-only display, comment creation not part of current assignment (will be added later)
 - **Image Uploads** - Requires external URLs (Unsplash, Imgur, etc.)
-- **No Dark/Light Toggle** - Fixed dark theme only. Ill try to add this as a self-project later
+- **No Dark/Light Toggle** - Fixed dark theme only. Will try to add this as a self-project later
 
 ---
 
-## 9. Credits
+## 9. CSS Frameworks Assignment
+
+This project was migrated from custom CSS to **Tailwind CSS v4** as part of the CSS Frameworks course assignment (Option 1).
+
+### Pages Converted to Tailwind:
+
+1. **Home/Feed** (index.html) - Post grid, search, pagination
+2. **Login** (login.html) - Authentication form with validation
+3. **Register** (register.html) - Registration form with email/password validation
+4. **User Profile** (user.html) - Profile banner, avatar, posts grid, follow/unfollow
+5. **Post Details** (post.html) - Single post view with comments section
+6. **Create Post** (newPost.html) - Post creation form with image URL validation
+7. **Edit Profile** (editUser.html) - Profile editing form
+8. **Edit Post** (editPost.html) - Post editing form with delete functionality
+
+### Implementation Details:
+
+- **Tailwind v4.1.18** installed via `@tailwindcss/cli@next`
+- **No CDN links** - All packages managed through npm
+- **Development script**: `npm run dev` (includes `--watch` flag)
+- **Production script**: `npm run build` (includes `--minify` flag)
+- **Responsive breakpoints**: Mobile-first with md: (768px), lg: (1024px), xl: (1280px)
+- **CSS Variables Integration**: Using `var(--primary)`, `var(--text)`, etc. with Tailwind's arbitrary values
+- **Form Validation**: HTML5 validation on all forms (required, minLength, maxLength, type="email", type="url")
+- **All JavaScript modules** converted to use Tailwind utility classes
+
+### Branch & PR:
+
+- Working branch: `css-frameworks`
+- Pull Request submitted to original branch
+- All commits available for review on GitHub
+
+---
+
+## 10. Credits
 
 ### Icons:
 
@@ -210,7 +272,8 @@ Or you can create your own.
 
 ### Tools & Resources:
 
-- [GitHub Copilot](https://github.com/features/copilot) - AI coding assistant for code suggestions and explanations, and a lot of help with API CRUD.
+- [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS framework
+- [GitHub Copilot](https://github.com/features/copilot) - AI coding assistant for code suggestions and explanations, and a lot of help with API CRUD
 - [MDN Web Docs](https://developer.mozilla.org/) - JavaScript and Web API references
 
 ### Images:
@@ -219,8 +282,8 @@ All post images are sourced from [Unsplash](https://unsplash.com) - Free to use 
 
 ---
 
-## 10. Contact
+## 11. Contact
 
 - **Author**: [larstp](https://github.com/larstp)
-- **Course**: JavaScript 2 - NOROFF School of Technology and Digital Media
+- **Course**: JavaScript 2 & CSS Frameworks - NOROFF School of Technology and Digital Media
 - **Year**: 2025/2026 Year 2

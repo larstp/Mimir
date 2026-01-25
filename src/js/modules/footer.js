@@ -29,15 +29,15 @@ export function createFooter() {
     const prefix = isRootPage ? "." : "../..";
 
     const footerContent = document.createElement("div");
-    footerContent.classList.add("footer-content");
+    footerContent.className = "flex items-center justify-center gap-3";
 
     const icon = document.createElement("img");
     icon.src = `${prefix}/public/icons/vegvisir.svg`;
     icon.alt = "Vegvisir symbol";
-    icon.classList.add("footer-icon");
+    icon.className = "w-6 h-6 opacity-80";
 
     const copyright = document.createElement("p");
-    copyright.classList.add("footer-copyright");
+    copyright.className = "text-[var(--textLight)] text-sm m-0";
 
     const copyrightSymbol = document.createTextNode("© ");
     copyright.appendChild(copyrightSymbol);
@@ -45,7 +45,8 @@ export function createFooter() {
     const githubLink = document.createElement("a");
     githubLink.href = "https://github.com/larstp";
     githubLink.textContent = "larstp";
-    githubLink.classList.add("footer-link");
+    githubLink.className =
+      "text-[var(--text)] no-underline hover:text-[var(--primary)] transition-colors duration-300";
     githubLink.setAttribute("aria-label", "Visit larstp's GitHub profile");
     githubLink.setAttribute("target", "_blank");
     githubLink.setAttribute("rel", "noopener noreferrer");
