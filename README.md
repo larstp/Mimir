@@ -39,6 +39,8 @@
 
 [11. Contact](#11-contact)
 
+</details>
+
 ---
 
 ## 1. Project Overview
