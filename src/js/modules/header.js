@@ -33,13 +33,13 @@ export function createHeader() {
 
     const logoLink = document.createElement("a");
     logoLink.href = `${prefix}/index.html`;
-    logoLink.classList.add("header-logo-link");
+    logoLink.className = "flex items-center no-underline";
     logoLink.setAttribute("aria-label", "Go to home page");
 
     const logoImg = document.createElement("img");
     logoImg.src = `${prefix}/public/icons/mannaz-sign-round-black-outline-icon-WHITE.svg`;
     logoImg.alt = "Mimir Logo";
-    logoImg.classList.add("header-logo");
+    logoImg.className = "h-12 w-auto";
 
     logoLink.appendChild(logoImg);
     header.appendChild(logoLink);
@@ -72,16 +72,17 @@ export function createHeader() {
     ];
 
     const nav = document.createElement("nav");
-    nav.classList.add("header-nav");
+    nav.className = "flex gap-6 items-center";
     nav.setAttribute("aria-label", "Main navigation");
 
     navItems.forEach((item) => {
       const navItem = document.createElement("div");
-      navItem.classList.add("header-nav-item");
+      navItem.className = "flex";
 
       const link = document.createElement("a");
       link.href = item.href;
-      link.classList.add("header-nav-link");
+      link.className =
+        "flex flex-col items-center gap-1 no-underline text-[var(--text)] hover:text-[var(--primary)] transition-colors duration-300";
       link.setAttribute("aria-label", item.ariaLabel);
 
       if (item.ariaLabel === "Search") {
@@ -94,10 +95,10 @@ export function createHeader() {
       const icon = document.createElement("img");
       icon.src = item.icon;
       icon.alt = "";
-      icon.classList.add("header-nav-icon");
+      icon.className = "w-6 h-6";
 
       const label = document.createElement("span");
-      label.classList.add("header-nav-label");
+      label.className = "text-xs";
       label.textContent = item.label;
 
       link.appendChild(icon);

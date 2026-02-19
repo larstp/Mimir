@@ -54,30 +54,31 @@ async function displayPost() {
     }
 
     const container = document.createElement("div");
-    container.classList.add("post-page-container");
+    container.className = "max-w-[800px] my-8 mx-auto px-4 py-0";
 
     const article = document.createElement("article");
-    article.classList.add("post-card");
+    article.className =
+      "bg-[var(--cardBackground)] rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] overflow-hidden hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] transition-shadow duration-300";
 
     const header = document.createElement("div");
-    header.classList.add("post-card-header");
+    header.className = "flex justify-between items-center p-4 pb-1";
 
     if (post.author) {
       const authorContainer = document.createElement("div");
-      authorContainer.classList.add("post-card-author");
+      authorContainer.className = "flex items-center gap-3";
 
       if (post.author.avatar?.url) {
         const avatarLink = document.createElement("a");
         avatarLink.href = `../../src/pages/user.html?name=${post.author.name}`;
         avatarLink.setAttribute(
           "aria-label",
-          `View ${post.author.name}'s profile`
+          `View ${post.author.name}'s profile`,
         );
 
         const avatar = document.createElement("img");
         avatar.src = post.author.avatar.url;
         avatar.alt = post.author.avatar.alt || `${post.author.name}'s avatar`;
-        avatar.classList.add("post-card-avatar");
+        avatar.className = "w-10 h-10 rounded-full object-cover";
         avatarLink.appendChild(avatar);
 
         authorContainer.appendChild(avatarLink);
@@ -85,11 +86,12 @@ async function displayPost() {
 
       const authorName = document.createElement("a");
       authorName.href = `../../src/pages/user.html?name=${post.author.name}`;
-      authorName.classList.add("post-card-author-name");
+      authorName.className =
+        "text-[var(--text)] font-semibold no-underline hover:text-[var(--primary)] transition-colors duration-300";
       authorName.textContent = post.author.name;
       authorName.setAttribute(
         "aria-label",
-        `View ${post.author.name}'s profile`
+        `View ${post.author.name}'s profile`,
       );
       authorContainer.appendChild(authorName);
 
@@ -97,7 +99,7 @@ async function displayPost() {
     }
 
     const date = document.createElement("time");
-    date.classList.add("post-card-date");
+    date.className = "text-[var(--textLight)] text-sm";
     date.setAttribute("datetime", post.created);
     const postDate = new Date(post.created);
     date.textContent = postDate.toLocaleDateString("en-US", {
@@ -111,25 +113,27 @@ async function displayPost() {
 
     if (post.media?.url) {
       const mediaContainer = document.createElement("div");
-      mediaContainer.classList.add("post-card-media");
+      mediaContainer.className = "w-full overflow-hidden";
 
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.classList.add("post-card-image");
+      img.className = "w-full h-auto object-cover";
       mediaContainer.appendChild(img);
 
       article.appendChild(mediaContainer);
     }
 
     const content = document.createElement("div");
-    content.classList.add("post-card-content");
+    content.className = "p-4 pt-0";
 
     const titleContainer = document.createElement("div");
-    titleContainer.classList.add("post-card-title-container");
+    titleContainer.className =
+      "flex justify-between items-start gap-4 mb-3 mt-4";
 
     const title = document.createElement("h1");
-    title.classList.add("post-card-title");
+    title.className =
+      "text-2xl font-bold text-[var(--text)] m-0 flex-1 font-[var(--FontFamily)]";
     title.textContent = post.title;
     titleContainer.appendChild(title);
 
@@ -139,7 +143,8 @@ async function displayPost() {
     const likeCount = thumbsReaction?.count || 0;
 
     const likeBtn = document.createElement("button");
-    likeBtn.classList.add("post-card-like-btn");
+    likeBtn.className =
+      "flex items-center gap-2 p-2 bg-transparent border-none cursor-pointer transition-all duration-300 hover:bg-white/5 rounded-md";
     likeBtn.setAttribute("aria-label", hasLiked ? "Unlike post" : "Like post");
     likeBtn.setAttribute("data-post-id", post.id);
     likeBtn.setAttribute("data-liked", hasLiked);
@@ -149,10 +154,10 @@ async function displayPost() {
       ? "../../public/icons/flowbite_heart-solid.svg"
       : "../../public/icons/flowbite_heart-outline.svg";
     likeIcon.alt = hasLiked ? "Liked" : "Like";
-    likeIcon.classList.add("post-card-like-icon");
+    likeIcon.className = "w-6 h-6";
 
     const likeCountSpan = document.createElement("span");
-    likeCountSpan.classList.add("post-card-like-count");
+    likeCountSpan.className = "text-[var(--text)] font-semibold";
     likeCountSpan.textContent = likeCount;
     likeBtn.appendChild(likeCountSpan);
 
@@ -179,7 +184,9 @@ async function displayPost() {
           btn.setAttribute("aria-label", "Unlike post");
         }
 
-        const countSpan = btn.querySelector(".post-card-like-count");
+        const countSpan = btn.querySelector(
+          "[class*='text-'][class*='font-semibold']",
+        );
         const currentCount = parseInt(countSpan?.textContent || 0);
         const newCount = isLiked ? currentCount - 1 : currentCount + 1;
 
@@ -188,7 +195,7 @@ async function displayPost() {
             countSpan.textContent = newCount;
           } else {
             const newCountSpan = document.createElement("span");
-            newCountSpan.classList.add("post-card-like-count");
+            newCountSpan.className = "text-[var(--text)] font-semibold";
             newCountSpan.textContent = newCount;
             btn.appendChild(newCountSpan);
           }
@@ -205,18 +212,19 @@ async function displayPost() {
 
     const commentCount = post._count?.comments || 0;
     const commentBtn = document.createElement("div");
-    commentBtn.classList.add("post-card-comment-btn");
+    commentBtn.className =
+      "flex items-center gap-2 p-2 bg-transparent border-none cursor-pointer transition-all duration-300 hover:bg-white/5 rounded-md";
     commentBtn.setAttribute("aria-label", `${commentCount} comments`);
 
     const commentCountSpan = document.createElement("span");
-    commentCountSpan.classList.add("post-card-comment-count");
+    commentCountSpan.className = "text-[var(--text)] font-semibold";
     commentCountSpan.textContent = commentCount;
     commentBtn.appendChild(commentCountSpan);
 
     const commentIcon = document.createElement("img");
     commentIcon.src = "../../public/icons/flowbite_annotation-outline.svg";
     commentIcon.alt = "Comments";
-    commentIcon.classList.add("post-card-comment-icon");
+    commentIcon.className = "w-6 h-6";
     commentBtn.appendChild(commentIcon);
 
     commentBtn.addEventListener("click", (event) => {
@@ -231,7 +239,7 @@ async function displayPost() {
 
     if (post.body) {
       const body = document.createElement("p");
-      body.classList.add("post-card-excerpt");
+      body.className = "text-[var(--text)] leading-relaxed m-0 mt-3";
       body.textContent = post.body;
       content.appendChild(body);
     }
@@ -239,24 +247,25 @@ async function displayPost() {
     article.appendChild(content);
 
     const commentsSection = document.createElement("section");
-    commentsSection.classList.add("post-comments");
+    commentsSection.className = "p-4 border-t border-white/10 mt-4";
     commentsSection.setAttribute("aria-label", "Comments");
 
     const commentsHeader = document.createElement("h2");
-    commentsHeader.classList.add("post-comments-header");
+    commentsHeader.className =
+      "text-xl font-semibold text-[var(--text)] m-0 mb-4 font-[var(--FontFamily)]";
     commentsHeader.textContent = `Comments (${commentCount})`;
     commentsSection.appendChild(commentsHeader);
 
     if (post.comments && post.comments.length > 0) {
       const commentsList = document.createElement("div");
-      commentsList.classList.add("post-comments-list");
+      commentsList.className = "flex flex-col gap-4";
 
       post.comments.forEach((comment) => {
         const commentEl = document.createElement("article");
-        commentEl.classList.add("post-comment");
+        commentEl.className = "bg-white/5 rounded-lg p-3 border border-white/5";
 
         const commentHeader = document.createElement("div");
-        commentHeader.classList.add("post-comment-header");
+        commentHeader.className = "flex items-center gap-2 mb-2";
 
         if (comment.author?.avatar?.url) {
           // If this doesn't work I'll just leave it. I'm DONE googling this.
@@ -264,14 +273,14 @@ async function displayPost() {
           avatarLink.href = `../../src/pages/user.html?name=${comment.author.name}`;
           avatarLink.setAttribute(
             "aria-label",
-            `View ${comment.author.name}'s profile`
+            `View ${comment.author.name}'s profile`,
           );
 
           const avatar = document.createElement("img");
           avatar.src = comment.author.avatar.url;
           avatar.alt =
             comment.author.avatar.alt || `${comment.author.name}'s avatar`;
-          avatar.classList.add("post-comment-avatar");
+          avatar.className = "w-8 h-8 rounded-full object-cover";
           avatarLink.appendChild(avatar);
 
           commentHeader.appendChild(avatarLink);
@@ -279,16 +288,17 @@ async function displayPost() {
 
         const authorLink = document.createElement("a");
         authorLink.href = `../../src/pages/user.html?name=${comment.author?.name}`;
-        authorLink.classList.add("post-comment-author");
+        authorLink.className =
+          "text-[var(--text)] font-semibold text-sm no-underline hover:text-[var(--primary)] transition-colors duration-300";
         authorLink.textContent = comment.author?.name || "Anonymous";
         authorLink.setAttribute(
           "aria-label",
-          `View ${comment.author?.name}'s profile`
+          `View ${comment.author?.name}'s profile`,
         );
         commentHeader.appendChild(authorLink);
 
         const commentDate = document.createElement("time");
-        commentDate.classList.add("post-comment-date");
+        commentDate.className = "text-[var(--textLight)] text-xs ml-auto";
         commentDate.setAttribute("datetime", comment.created);
         const date = new Date(comment.created);
         commentDate.textContent = date.toLocaleDateString("en-US", {
@@ -300,7 +310,8 @@ async function displayPost() {
         commentEl.appendChild(commentHeader);
 
         const commentBody = document.createElement("p");
-        commentBody.classList.add("post-comment-body");
+        commentBody.className =
+          "text-[var(--text)] text-sm leading-relaxed m-0";
         commentBody.textContent = comment.body;
         commentEl.appendChild(commentBody);
 
@@ -310,7 +321,7 @@ async function displayPost() {
       commentsSection.appendChild(commentsList);
     } else {
       const emptyMessage = document.createElement("p");
-      emptyMessage.classList.add("post-comments-empty");
+      emptyMessage.className = "text-[var(--textLight)] text-center py-4";
       emptyMessage.textContent = "No comments yet";
       commentsSection.appendChild(emptyMessage);
     }
@@ -322,20 +333,22 @@ async function displayPost() {
     // ----------Show edit/delete buttons only for own posts (This I had to get a LOT of help with)
     if (currentUser && post.author?.name === currentUser) {
       const actionsContainer = document.createElement("div");
-      actionsContainer.classList.add("post-actions");
+      actionsContainer.className = "flex gap-4 mt-6";
 
       const editButton = document.createElement("a");
       editButton.href = `./editPost.html?id=${post.id}`;
-      editButton.classList.add("btn", "btn-secondary");
+      editButton.className =
+        "flex-1 p-4 bg-[var(--surface-elevated)] text-[var(--text)] border border-white/10 rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center no-underline hover:bg-[var(--cardBackground)] hover:-translate-y-0.5 active:translate-y-0";
       editButton.textContent = "Edit Post";
       actionsContainer.appendChild(editButton);
 
       const deleteButton = document.createElement("button");
-      deleteButton.classList.add("btn", "btn-delete");
+      deleteButton.className =
+        "flex-1 p-4 bg-[var(--error)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[#dc2626] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
       deleteButton.textContent = "Delete Post";
       deleteButton.addEventListener("click", async () => {
         const confirmDelete = confirm(
-          "Are you sure you want to delete this post? This cannot be undone."
+          "Are you sure you want to delete this post? This cannot be undone.",
         );
 
         if (!confirmDelete) {
@@ -387,7 +400,7 @@ async function displayPost() {
  */
 function showError(container, message) {
   const errorDiv = document.createElement("div");
-  errorDiv.classList.add("post-error");
+  errorDiv.className = "text-center py-12 px-4 text-[var(--error)]";
   errorDiv.textContent = message;
   errorDiv.setAttribute("role", "alert");
   container.appendChild(errorDiv);

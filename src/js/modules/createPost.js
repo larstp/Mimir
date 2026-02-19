@@ -42,28 +42,29 @@ export function createPost(post, followingList = []) {
     const currentUser = getUserName();
 
     const article = document.createElement("article");
-    article.classList.add("post-card");
+    article.className =
+      "bg-[var(--cardBackground)] rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] overflow-hidden hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] transition-shadow duration-300";
     article.setAttribute("data-post-id", post.id);
 
     const header = document.createElement("div");
-    header.classList.add("post-card-header");
+    header.className = "flex justify-between items-center p-4 pb-1";
 
     if (post.author) {
       const authorContainer = document.createElement("div");
-      authorContainer.classList.add("post-card-author");
+      authorContainer.className = "flex items-center gap-3";
 
       if (post.author.avatar?.url) {
         const avatarLink = document.createElement("a");
         avatarLink.href = `${prefix}/src/pages/user.html?name=${post.author.name}`;
         avatarLink.setAttribute(
           "aria-label",
-          `View ${post.author.name}'s profile`
+          `View ${post.author.name}'s profile`,
         );
 
         const avatar = document.createElement("img");
         avatar.src = post.author.avatar.url;
         avatar.alt = post.author.avatar.alt || `${post.author.name}'s avatar`;
-        avatar.classList.add("post-card-avatar");
+        avatar.className = "w-10 h-10 rounded-full object-cover";
         avatarLink.appendChild(avatar);
 
         authorContainer.appendChild(avatarLink);
@@ -71,11 +72,12 @@ export function createPost(post, followingList = []) {
 
       const authorName = document.createElement("a");
       authorName.href = `${prefix}/src/pages/user.html?name=${post.author.name}`; // 50% of the time this works 30% of the time
-      authorName.classList.add("post-card-author-name");
+      authorName.className =
+        "text-[var(--text)] font-semibold no-underline hover:text-[var(--primary)] transition-colors duration-300";
       authorName.textContent = post.author.name;
       authorName.setAttribute(
         "aria-label",
-        `View ${post.author.name}'s profile`
+        `View ${post.author.name}'s profile`,
       );
       authorContainer.appendChild(authorName);
 
@@ -83,15 +85,16 @@ export function createPost(post, followingList = []) {
         const isFollowing = followingList.includes(post.author.name);
 
         const followBtn = document.createElement("button");
-        followBtn.classList.add("post-card-follow-btn");
+        followBtn.className =
+          "p-1.5 bg-transparent border-none cursor-pointer transition-all duration-300 hover:bg-white/5 rounded-md";
         followBtn.setAttribute("data-username", post.author.name);
         followBtn.setAttribute(
           "data-following",
-          isFollowing ? "true" : "false"
+          isFollowing ? "true" : "false",
         );
         followBtn.setAttribute(
           "aria-label",
-          isFollowing ? "Unfollow user" : "Follow user"
+          isFollowing ? "Unfollow user" : "Follow user",
         );
 
         const followIcon = document.createElement("img");
@@ -99,7 +102,7 @@ export function createPost(post, followingList = []) {
           ? `${prefix}/public/icons/flowbite_check-circle-solid.svg`
           : `${prefix}/public/icons/flowbite_circle-plus-solid.svg`;
         followIcon.alt = isFollowing ? "Following" : "Follow";
-        followIcon.classList.add("post-card-follow-icon");
+        followIcon.className = "w-5 h-5";
         followBtn.appendChild(followIcon);
 
         followBtn.addEventListener("click", async (event) => {
@@ -111,7 +114,7 @@ export function createPost(post, followingList = []) {
 
           const updateAllFollowButtons = (following) => {
             const allButtons = document.querySelectorAll(
-              `.post-card-follow-btn[data-username="${username}"]`
+              `.post-card-follow-btn[data-username="${username}"]`,
             );
             allButtons.forEach((button) => {
               const icon = button.querySelector(".post-card-follow-icon");
@@ -155,7 +158,7 @@ export function createPost(post, followingList = []) {
     }
 
     const date = document.createElement("time");
-    date.classList.add("post-card-date");
+    date.className = "text-[var(--textLight)] text-sm";
     date.setAttribute("datetime", post.created);
     const postDate = new Date(post.created);
     date.textContent = postDate.toLocaleDateString("en-US", {
@@ -169,17 +172,17 @@ export function createPost(post, followingList = []) {
 
     const postLink = document.createElement("a");
     postLink.href = `${prefix}/src/pages/post.html?id=${post.id}`;
-    postLink.classList.add("post-card-link");
+    postLink.className = "no-underline block";
     postLink.setAttribute("aria-label", `Read post: ${post.title}`);
 
     if (post.media?.url) {
       const mediaContainer = document.createElement("div");
-      mediaContainer.classList.add("post-card-media");
+      mediaContainer.className = "w-full overflow-hidden";
 
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.classList.add("post-card-image");
+      img.className = "w-full h-auto object-cover";
       img.loading = "lazy"; // ------Lazy load images for performance (test if there's actually a boost)
 
       mediaContainer.appendChild(img);
@@ -187,13 +190,15 @@ export function createPost(post, followingList = []) {
     }
 
     const content = document.createElement("div");
-    content.classList.add("post-card-content");
+    content.className = "p-4 pt-0";
 
     const titleContainer = document.createElement("div");
-    titleContainer.classList.add("post-card-title-container");
+    titleContainer.className =
+      "flex justify-between items-start gap-4 mb-3 mt-4";
 
     const title = document.createElement("h2");
-    title.classList.add("post-card-title");
+    title.className =
+      "text-xl font-bold text-[var(--text)] m-0 flex-1 font-[var(--FontFamily)]";
     title.textContent = post.title;
     titleContainer.appendChild(title);
 
@@ -205,10 +210,11 @@ export function createPost(post, followingList = []) {
       // Again, lots of help with CoPilot in understanding this whole function. Not sure I completely do tbh., but now the like function seems to work (also baie dankie to mr Krüger).
 
       const likeBtn = document.createElement("button");
-      likeBtn.classList.add("post-card-like-btn");
+      likeBtn.className =
+        "flex items-center gap-2 p-2 bg-transparent border-none cursor-pointer transition-all duration-300 hover:bg-white/5 rounded-md";
       likeBtn.setAttribute(
         "aria-label",
-        hasLiked ? "Unlike post" : "Like post"
+        hasLiked ? "Unlike post" : "Like post",
       );
       likeBtn.setAttribute("data-post-id", post.id);
       likeBtn.setAttribute("data-liked", hasLiked);
@@ -218,10 +224,10 @@ export function createPost(post, followingList = []) {
         ? `${prefix}/public/icons/flowbite_heart-solid.svg`
         : `${prefix}/public/icons/flowbite_heart-outline.svg`;
       likeIcon.alt = hasLiked ? "Liked" : "Like";
-      likeIcon.classList.add("post-card-like-icon");
+      likeIcon.className = "w-6 h-6";
 
       const likeCountSpan = document.createElement("span");
-      likeCountSpan.classList.add("post-card-like-count");
+      likeCountSpan.className = "text-[var(--text)] font-semibold";
       likeCountSpan.textContent = likeCount;
       likeBtn.appendChild(likeCountSpan);
 
@@ -257,7 +263,7 @@ export function createPost(post, followingList = []) {
               countSpan.textContent = newCount;
             } else {
               const newCountSpan = document.createElement("span");
-              newCountSpan.classList.add("post-card-like-count");
+              newCountSpan.className = "text-[var(--text)] font-semibold";
               newCountSpan.textContent = newCount;
               btn.appendChild(newCountSpan);
             }
@@ -275,18 +281,19 @@ export function createPost(post, followingList = []) {
 
     const commentCount = post._count?.comments || 0;
     const commentBtn = document.createElement("button");
-    commentBtn.classList.add("post-card-comment-btn");
+    commentBtn.className =
+      "flex items-center gap-2 p-2 bg-transparent border-none cursor-pointer transition-all duration-300 hover:bg-white/5 rounded-md";
     commentBtn.setAttribute("aria-label", `View ${commentCount} comments`);
 
     const commentCountSpan = document.createElement("span");
-    commentCountSpan.classList.add("post-card-comment-count");
+    commentCountSpan.className = "text-[var(--text)] font-semibold";
     commentCountSpan.textContent = commentCount;
     commentBtn.appendChild(commentCountSpan);
 
     const commentIcon = document.createElement("img");
     commentIcon.src = `${prefix}/public/icons/flowbite_annotation-outline.svg`;
     commentIcon.alt = "Comments";
-    commentIcon.classList.add("post-card-comment-icon");
+    commentIcon.className = "w-6 h-6";
     commentBtn.appendChild(commentIcon);
 
     commentBtn.addEventListener("click", (event) => {
@@ -301,7 +308,7 @@ export function createPost(post, followingList = []) {
 
     if (post.body) {
       const excerpt = document.createElement("p");
-      excerpt.classList.add("post-card-excerpt");
+      excerpt.className = "text-[var(--text)] leading-relaxed m-0 mt-3";
       // ------------------------------------------Limit excerpt to 150 characters so I can make the CSS not look ugly
       const truncatedBody =
         post.body.length > 150
@@ -318,10 +325,11 @@ export function createPost(post, followingList = []) {
       const latestComment = post.comments[post.comments.length - 1];
 
       const commentPreview = document.createElement("div");
-      commentPreview.classList.add("post-card-comment-preview");
+      commentPreview.className =
+        "bg-white/5 rounded-lg p-3 mt-3 border border-white/5";
 
       const commentHeader = document.createElement("div");
-      commentHeader.classList.add("post-card-comment-header");
+      commentHeader.className = "flex items-center gap-2 mb-2";
 
       if (latestComment.author?.avatar?.url) {
         const commentAvatar = document.createElement("img");
@@ -329,19 +337,19 @@ export function createPost(post, followingList = []) {
         commentAvatar.alt =
           latestComment.author.avatar.alt ||
           `${latestComment.author.name}'s avatar`;
-        commentAvatar.classList.add("post-card-comment-avatar");
+        commentAvatar.className = "w-6 h-6 rounded-full object-cover";
         commentHeader.appendChild(commentAvatar);
       }
 
       const commentAuthor = document.createElement("span");
-      commentAuthor.classList.add("post-card-comment-author");
+      commentAuthor.className = "text-[var(--text)] font-semibold text-xs";
       commentAuthor.textContent = latestComment.author?.name || "Anonymous";
       commentHeader.appendChild(commentAuthor);
 
       commentPreview.appendChild(commentHeader);
 
       const commentText = document.createElement("p");
-      commentText.classList.add("post-card-comment-text");
+      commentText.className = "text-[var(--text)] text-sm leading-relaxed m-0";
       const truncatedComment =
         latestComment.body.length > 100
           ? latestComment.body.substring(0, 100) + "..."
@@ -356,7 +364,7 @@ export function createPost(post, followingList = []) {
   } catch (error) {
     console.error("Error creating post:", error);
     const errorDiv = document.createElement("div");
-    errorDiv.classList.add("post-card-error");
+    errorDiv.className = "text-center py-12 px-4 text-[var(--error)]";
     errorDiv.textContent = "Unable to load post";
     return errorDiv;
   }

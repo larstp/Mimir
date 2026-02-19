@@ -74,21 +74,22 @@ export function createNavbar() {
 
     navItems.forEach((item) => {
       const navItem = document.createElement("div");
-      navItem.classList.add("navbar-item");
+      navItem.className = "flex-1 flex justify-center";
 
       const isActive = window.location.pathname.includes(item.page);
 
       if (isActive) {
-        navItem.classList.add("navbar-item-active");
+        navItem.className += " bg-[var(--primary)]/10";
       }
 
       if (item.isCenter) {
-        navItem.classList.add("navbar-item-center");
+        navItem.className += " -mt-8";
       }
 
       const link = document.createElement("a");
       link.href = item.href;
-      link.classList.add("navbar-link");
+      link.className =
+        "flex items-center justify-center p-4 no-underline transition-colors duration-300 hover:text-[var(--primary)]";
       link.setAttribute("aria-label", item.ariaLabel);
 
       if (item.ariaLabel === "Search") {
@@ -105,7 +106,7 @@ export function createNavbar() {
       const icon = document.createElement("img");
       icon.src = item.icon;
       icon.alt = "";
-      icon.classList.add("navbar-icon");
+      icon.className = "w-7 h-7";
 
       link.appendChild(icon);
       navItem.appendChild(link);

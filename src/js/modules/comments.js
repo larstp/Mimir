@@ -13,32 +13,37 @@ let commentInstance = null;
  */
 export function initializeComments(onCommentSuccess) {
   const commentOverlay = document.createElement("div");
-  commentOverlay.classList.add("comment-overlay");
+  commentOverlay.className =
+    "fixed inset-0 bg-black/50 flex items-center justify-center z-50";
   commentOverlay.setAttribute("role", "dialog");
   commentOverlay.setAttribute("aria-label", "Add comment");
   commentOverlay.style.display = "none";
 
   const commentContainer = document.createElement("div");
-  commentContainer.classList.add("comment-container");
+  commentContainer.className =
+    "bg-[var(--cardBackground)] rounded-[10px] p-6 max-w-[500px] w-full mx-4";
 
   const commentHeader = document.createElement("h2");
-  commentHeader.classList.add("comment-header");
+  commentHeader.className =
+    "text-xl font-semibold text-[var(--text)] m-0 mb-4 font-[var(--FontFamily)]";
   commentHeader.textContent = "Add Comment";
   commentContainer.appendChild(commentHeader);
 
   const commentTextarea = document.createElement("textarea");
-  commentTextarea.classList.add("form-input", "comment-input");
+  commentTextarea.className =
+    "w-full p-4 bg-white/25 border border-white/10 rounded-[10px] text-[var(--text)] text-base transition-all duration-300 placeholder:text-[var(--textLight)] placeholder:opacity-50 focus:outline-none focus:border-[var(--primary)] focus:bg-white/[0.08] resize-y min-h-[100px] font-[inherit] mb-4";
   commentTextarea.placeholder = "Write your comment...";
   commentTextarea.setAttribute("aria-label", "Comment text");
   commentTextarea.rows = 3;
   commentContainer.appendChild(commentTextarea);
 
   const buttonContainer = document.createElement("div");
-  buttonContainer.classList.add("comment-button-container");
+  buttonContainer.className = "flex justify-end";
 
   const commentButton = document.createElement("button");
   commentButton.type = "button";
-  commentButton.classList.add("btn", "comment-submit-btn");
+  commentButton.className =
+    "flex items-center gap-2 p-4 bg-[var(--primary)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
   commentButton.setAttribute("aria-label", "Post comment");
 
   const buttonText = document.createElement("span");
@@ -48,7 +53,7 @@ export function initializeComments(onCommentSuccess) {
   const sendIcon = document.createElement("img");
   sendIcon.src = "../../public/icons/flowbite_arrow-right-alt-outline.svg";
   sendIcon.alt = "";
-  sendIcon.classList.add("comment-submit-icon");
+  sendIcon.className = "w-5 h-5";
   commentButton.appendChild(sendIcon);
 
   buttonContainer.appendChild(commentButton);
