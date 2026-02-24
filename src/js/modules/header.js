@@ -33,7 +33,7 @@ export function createHeader() {
 
     const logoLink = document.createElement("a");
     logoLink.href = `${prefix}/index.html`;
-    logoLink.className = "flex items-center no-underline";
+    logoLink.className = "flex items-center no-underline ml-4 md:ml-8";
     logoLink.setAttribute("aria-label", "Go to home page");
 
     const logoImg = document.createElement("img");
@@ -72,7 +72,7 @@ export function createHeader() {
     ];
 
     const nav = document.createElement("nav");
-    nav.className = "flex gap-6 items-center";
+    nav.className = "hidden md:flex gap-6 items-center mr-4 md:mr-8";
     nav.setAttribute("aria-label", "Main navigation");
 
     navItems.forEach((item) => {

@@ -47,7 +47,7 @@ export function createPost(post, followingList = []) {
     article.setAttribute("data-post-id", post.id);
 
     const header = document.createElement("div");
-    header.className = "flex justify-between items-center p-4 pb-1";
+    header.className = "flex justify-between items-center p-4 pb-2";
 
     if (post.author) {
       const authorContainer = document.createElement("div");
@@ -177,12 +177,12 @@ export function createPost(post, followingList = []) {
 
     if (post.media?.url) {
       const mediaContainer = document.createElement("div");
-      mediaContainer.className = "w-full overflow-hidden";
+      mediaContainer.className = "w-full aspect-square overflow-hidden";
 
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.className = "w-full h-auto object-cover";
+      img.className = "w-full h-full object-cover";
       img.loading = "lazy"; // ------Lazy load images for performance (test if there's actually a boost)
 
       mediaContainer.appendChild(img);

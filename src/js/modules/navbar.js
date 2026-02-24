@@ -74,7 +74,7 @@ export function createNavbar() {
 
     navItems.forEach((item) => {
       const navItem = document.createElement("div");
-      navItem.className = "flex-1 flex justify-center";
+      navItem.className = "flex-1 flex justify-center items-center";
 
       const isActive = window.location.pathname.includes(item.page);
 
@@ -82,14 +82,10 @@ export function createNavbar() {
         navItem.className += " bg-[var(--primary)]/10";
       }
 
-      if (item.isCenter) {
-        navItem.className += " -mt-8";
-      }
-
       const link = document.createElement("a");
       link.href = item.href;
       link.className =
-        "flex items-center justify-center p-4 no-underline transition-colors duration-300 hover:text-[var(--primary)]";
+        "flex items-center justify-center p-2 sm:p-4 no-underline transition-colors duration-300 hover:text-[var(--primary)]";
       link.setAttribute("aria-label", item.ariaLabel);
 
       if (item.ariaLabel === "Search") {
@@ -106,7 +102,7 @@ export function createNavbar() {
       const icon = document.createElement("img");
       icon.src = item.icon;
       icon.alt = "";
-      icon.className = "w-7 h-7";
+      icon.className = "w-7 h-7 flex-shrink-0";
 
       link.appendChild(icon);
       navItem.appendChild(link);
