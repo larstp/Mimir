@@ -20,7 +20,6 @@ async function displayPost() {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     } // This worked for me, not sure if its right
 
@@ -203,7 +202,6 @@ async function displayPost() {
           countSpan.remove();
         }
       } catch (error) {
-        console.error("Error reacting to post:", error);
         alert("Failed to like post. Please try again.");
       }
     });
@@ -365,7 +363,6 @@ async function displayPost() {
           deleteLoader.remove();
           window.location.href = "../../index.html";
         } catch (error) {
-          console.error("Error deleting post:", error);
           const deleteLoader = main.querySelector(".loader-container");
           if (deleteLoader) {
             deleteLoader.remove();
@@ -381,7 +378,6 @@ async function displayPost() {
 
     main.appendChild(container);
   } catch (error) {
-    console.error("Error displaying post:", error);
     const main = document.querySelector("main");
     if (main) {
       const loader = main.querySelector(".loader-container");

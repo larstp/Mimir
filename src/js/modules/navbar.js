@@ -23,7 +23,6 @@ export function createNavbar() {
     const navbar = document.querySelector("nav.mobile-navbar");
 
     if (!navbar) {
-      console.error("Mobile navbar element not found in the DOM");
       return;
     }
 
@@ -109,6 +108,5 @@ export function createNavbar() {
       navbar.appendChild(navItem);
     });
   } catch (error) {
-    console.error("Error creating navbar:", error);
   }
 }

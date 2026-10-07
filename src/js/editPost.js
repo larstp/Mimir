@@ -18,7 +18,6 @@ async function displayEditPostForm() {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     }
 
@@ -184,7 +183,6 @@ async function displayEditPostForm() {
         deleteLoader.remove();
         window.location.href = "../../index.html";
       } catch (error) {
-        console.error("Error deleting post:", error);
         const deleteLoader = form.querySelector(".loader-container");
         if (deleteLoader) {
           deleteLoader.remove();
@@ -238,7 +236,6 @@ async function displayEditPostForm() {
         updateLoader.remove();
         window.location.href = `./post.html?id=${postId}`;
       } catch (error) {
-        console.error("Error updating post:", error);
         const updateLoader = form.querySelector(".loader-container");
         if (updateLoader) {
           updateLoader.remove();
@@ -252,7 +249,6 @@ async function displayEditPostForm() {
     container.appendChild(form);
     main.appendChild(container);
   } catch (error) {
-    console.error("Error displaying edit post form:", error);
     const main = document.querySelector("main");
     if (main) {
       showError(main, "Failed to load edit form. Please try again.");

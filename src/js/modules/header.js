@@ -24,7 +24,6 @@ export function createHeader() {
     const header = document.querySelector("header");
 
     if (!header) {
-      console.error("Cannot find <header> element");
       return;
     }
 
@@ -109,6 +108,5 @@ export function createHeader() {
 
     header.appendChild(nav);
   } catch (error) {
-    console.error("Error creating header:", error);
   }
 }

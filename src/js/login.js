@@ -13,7 +13,6 @@ function createLoginForm() {
   const main = document.querySelector("main");
 
   if (!main) {
-    console.error("Main element not found");
     return;
   }
 

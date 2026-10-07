@@ -26,7 +26,6 @@ function displayCreatePostForm() {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     }
 
@@ -206,7 +205,6 @@ function displayCreatePostForm() {
 
         window.location.href = "../../index.html";
       } catch (error) {
-        console.error("Error creating post:", error);
         const loaders = form.querySelectorAll(".loader-container");
         loaders.forEach((loader) => loader.remove());
         submitButton.disabled = false;
@@ -217,7 +215,6 @@ function displayCreatePostForm() {
     container.appendChild(form);
     main.appendChild(container);
   } catch (error) {
-    console.error("Error displaying create post form:", error);
     const main = document.querySelector("main");
     if (main) {
       showError(main, "Failed to load form. Please try again.");

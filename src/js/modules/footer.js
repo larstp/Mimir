@@ -21,7 +21,6 @@ export function createFooter() {
     const footer = document.querySelector("footer");
 
     if (!footer) {
-      console.error("Footer element not found in the DOM");
       return;
     }
 
@@ -60,6 +59,5 @@ export function createFooter() {
     footerContent.appendChild(copyright);
     footer.appendChild(footerContent);
   } catch (error) {
-    console.error("Error creating footer:", error);
   }
 }

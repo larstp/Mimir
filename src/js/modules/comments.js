@@ -97,7 +97,6 @@ export function initializeComments(onCommentSuccess) {
       closeComment();
       buttonText.textContent = "Post";
     } catch (error) {
-      console.error("Error posting comment:", error);
       alert("Failed to post comment. Please try again.");
       commentButton.disabled = false;
       buttonText.textContent = "Post";

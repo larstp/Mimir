@@ -15,7 +15,6 @@ async function displayUserProfile() {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     }
 
@@ -229,7 +228,6 @@ async function displayUserProfile() {
       main.appendChild(logoutSection);
     }
   } catch (error) {
-    console.error("Error displaying user profile:", error);
     const main = document.querySelector("main");
     if (main) {
       showError(main, "Failed to load profile. Please try again.");

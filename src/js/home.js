@@ -29,7 +29,6 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     }
 
@@ -144,7 +143,6 @@ async function displayPostFeed(page = 1, searchQuery = null) {
           followingList = profile.following?.map((user) => user.name) || [];
         }
       } catch (error) {
-        console.error("Error fetching following list:", error);
       }
     }
 
@@ -224,7 +222,6 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       feedContainer.appendChild(paginationContainer);
     }
   } catch (error) {
-    console.error("Error displaying post feed:", error);
 
     const main = document.querySelector("main");
     if (main) {

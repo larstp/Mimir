@@ -146,7 +146,6 @@ export function createPost(post, followingList = []) {
             } else if (error.message.includes("not following")) {
               updateAllFollowButtons(false);
             } else {
-              console.error("Error toggling follow:", error);
             }
           }
         });
@@ -271,7 +270,6 @@ export function createPost(post, followingList = []) {
             countSpan.remove();
           }
         } catch (error) {
-          console.error("Error reacting to post:", error);
           alert("Failed to like post. Please try again.");
         }
       });
@@ -362,7 +360,6 @@ export function createPost(post, followingList = []) {
 
     return article;
   } catch (error) {
-    console.error("Error creating post:", error);
     const errorDiv = document.createElement("div");
     errorDiv.className = "text-center py-12 px-4 text-[var(--error)]";
     errorDiv.textContent = "Unable to load post";
