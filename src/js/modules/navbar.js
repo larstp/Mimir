@@ -31,9 +31,6 @@ export function createNavbar() {
       return;
     }
 
-    // Hopefully figure out if we're on a root page or nested page (for correct paths)
-    // CoPilot suggested this was the easiest way, but I can't find much online about it (not sure what to
-    // search for)
     const isRootPage = !window.location.pathname.includes("/src/pages/");
     const prefix = isRootPage ? "." : "../..";
 

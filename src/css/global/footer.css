@@ -2,7 +2,6 @@ footer {
   background-color: var(--background);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 
-  /* --------------------------------------Extra height on mobile to accommodate floating navbar */
   padding: 2rem 1rem 6rem 1rem;
 
   display: flex;
@@ -47,7 +46,6 @@ footer {
   border-radius: 2px;
 }
 
-/* -------------------------------------------Desktop - normal padding without extra space for navbar */
 @media (min-width: 769px) {
   footer {
     padding: 2rem 1rem;

@@ -107,9 +107,9 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     let response;
     if (searchQuery) {
       response = await searchPosts(searchQuery, {
-        _author: true, // -------------------------------------------Include author info
-        _reactions: true, // -----------------------------------------Include reactions
-        _comments: true, // -----------------------------------------Include comments
+        _author: true,
+        _reactions: true,
+        _comments: true,
       });
       if (response.data) {
         response = {
@@ -128,7 +128,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
         _author: true, // Include author info
         _reactions: true, // Include reactions
         _comments: true, // Include comments
-        limit: 100, // Get up to 100 posts (API max per page I think)
+        limit: 100, // Get up to 100 posts
         sort: "created", // Sort by creation date
         sortOrder: "desc", // Newest first
       });

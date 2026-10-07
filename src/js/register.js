@@ -1,5 +1,3 @@
-// This Tailwind is mostly copy/pasted from login. mostly
-
 import { register, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
@@ -169,7 +167,7 @@ function createRegisterForm() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const existingError = form.querySelector("[data-error='register']"); // this took some time whoh
+    const existingError = form.querySelector("[data-error='register']");
     if (existingError) {
       existingError.remove();
     }
@@ -263,7 +261,7 @@ function showError(form, message) {
 
   const fieldsContainer = form.querySelector(
     "[class*='flex'][class*='flex-col']",
-  ); // man, these were a pain to figure out
+  );
   fieldsContainer.insertAdjacentElement("afterend", errorDiv);
 }
 

@@ -88,7 +88,7 @@ export function createHeader() {
         link.addEventListener("click", (event) => {
           event.preventDefault();
           openSearch();
-        }); // This is copy/paste from navbar.js
+        });
       }
 
       const icon = document.createElement("img");

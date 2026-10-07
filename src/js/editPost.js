@@ -7,8 +7,6 @@ import {
 } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
-// Hey ho this page was basically the create post page with some modifications
-
 /**
  * Displays the edit post form
  * @returns {Promise<void>}
@@ -279,7 +277,7 @@ function showFormError(form, message) {
   error.className =
     "bg-[rgba(220,38,38,0.1)] text-[var(--error)] p-4 rounded-lg border border-[var(--error)] mb-4";
   error.setAttribute("role", "alert");
-  error.setAttribute("data-error", "edit-post"); // THIS mfer
+  error.setAttribute("data-error", "edit-post");
   error.textContent = message;
   form.insertBefore(error, form.firstChild);
 }

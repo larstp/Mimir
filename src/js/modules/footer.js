@@ -17,7 +17,6 @@
  */
 export function createFooter() {
   try {
-    // Find the footer element in the HTML if it's there.. which it DAMN WELL BETTER BE
     const footer = document.querySelector("footer");
 
     if (!footer) {

@@ -64,12 +64,21 @@ export function initializeComments(onCommentSuccess) {
 
   let currentPostId = null;
 
+  /**
+   * Opens the comment overlay for a post.
+   * @param {number} postId - The post ID to comment on
+   * @returns {void}
+   */
   function openComment(postId) {
     currentPostId = postId;
     commentOverlay.style.display = "flex";
     commentTextarea.focus();
   }
 
+  /**
+   * Closes the comment overlay and resets its form state.
+   * @returns {void}
+   */
   function closeComment() {
     commentOverlay.style.display = "none";
     commentTextarea.value = "";
@@ -77,6 +86,10 @@ export function initializeComments(onCommentSuccess) {
     commentButton.disabled = false;
   }
 
+  /**
+   * Sends the current comment to the API and updates the form state.
+   * @returns {Promise<void>}
+   */
   async function postComment() {
     const commentText = commentTextarea.value.trim();
 

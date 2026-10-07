@@ -38,7 +38,6 @@
   white-space: nowrap;
 }
 
-/* ----------------------------------------------------------------Search Indicator */
 .search-indicator {
   background: var(--surface-elevated);
   font-family: var(--FontFamily);

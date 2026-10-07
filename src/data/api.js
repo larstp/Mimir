@@ -1,4 +1,3 @@
-// API Configuration
 const API_BASE = "https://v2.api.noroff.dev";
 const API_KEY = "5675182f-6235-417b-9d7e-a958ee20bd00";
 
@@ -63,19 +62,19 @@ async function apiRequest(endpoint, options = {}) {
   if (!response.ok) {
     if (response.status === 429) {
       throw new Error(
-        "You are performing this action too frequently. Please wait a moment and try again."
+        "You are performing this action too frequently. Please wait a moment and try again.",
       );
     }
 
     if (response.status === 409) {
       throw new Error(
-        "This username or email already exists. Please try a different one."
+        "This username or email already exists. Please try a different one.",
       );
     }
 
     if (response.status === 401) {
       throw new Error(
-        "Invalid credentials. Please check your email and password."
+        "Invalid credentials. Please check your email and password.",
       );
     }
 
@@ -89,7 +88,7 @@ async function apiRequest(endpoint, options = {}) {
 
     if (response.status >= 500) {
       throw new Error(
-        "Server error. Please try again later or contact support if the problem persists."
+        "Server error. Please try again later or contact support if the problem persists.",
       );
     }
 
@@ -97,15 +96,12 @@ async function apiRequest(endpoint, options = {}) {
     throw new Error(error.errors?.[0]?.message || "API request failed");
   }
 
-  // Return empty object for 204 No Content (CoPilot suggested this, not sure if it's needed)
   if (response.status === 204) {
     return {};
   }
 
   return response.json();
 }
-
-// ---------------------------------------------------------------------AUTH ENDPOINTS
 
 /**
  * Registers a new user
@@ -158,8 +154,6 @@ export function isLoggedIn() {
   return !!getAuthToken();
 }
 
-// ------------------------------------------------------------------------POST ENDPOINTS
-
 /**
  * Gets all posts from the feed
  * @param {object} options - Query options
@@ -176,7 +170,7 @@ export async function getAllPosts(options = {}) {
   const params = new URLSearchParams({
     page: options.page || 1,
     limit: options.limit || 12,
-    _author: options._author !== false, // -----------------------------------------Default to true
+    _author: options._author !== false,
     _comments: options._comments || false,
     _reactions: options._reactions || false,
   });
@@ -295,8 +289,6 @@ export async function searchPosts(query, options = {}) {
   const response = await apiRequest(`/social/posts/search?${params}`);
   return response;
 }
-
-// -------------------------------------------------------------------------PROFILE ENDPOINTS
 
 /**
  * Gets a profile by username

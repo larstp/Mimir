@@ -83,7 +83,7 @@ async function displayUserProfile() {
       const editButton = document.createElement("a");
       editButton.href = "./editUser.html";
       editButton.className =
-        "absolute top-4 right-4 flex items-center justify-center py-2 px-4 bg-black/50 backdrop-blur-[10px] border border-white/10 rounded-[5px] cursor-pointer transition-all duration-200 ease-in-out z-10 text-[var(--text)] font-[var(--FontFamily)] no-underline text-sm font-medium hover:bg-black/70 hover:scale-105"; // AAAAAaah
+        "absolute top-4 right-4 flex items-center justify-center py-2 px-4 bg-black/50 backdrop-blur-[10px] border border-white/10 rounded-[5px] cursor-pointer transition-all duration-200 ease-in-out z-10 text-[var(--text)] font-[var(--FontFamily)] no-underline text-sm font-medium hover:bg-black/70 hover:scale-105";
       editButton.setAttribute("aria-label", "Edit profile");
       editButton.textContent = "Edit Profile";
 

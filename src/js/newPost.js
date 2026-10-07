@@ -1,8 +1,6 @@
 import { createPost, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
-// I had huge problems with this so I had CoPilot help me with implementing a function to check if an image URL is valid.
-
 /**
  * Checks if an image URL is valid by trying to load it
  * @param {string} url - The image URL to validate
@@ -138,8 +136,6 @@ function displayCreatePostForm() {
       "flex-1 p-4 bg-[var(--primary)] text-[var(--text)] border-none rounded-[10px] text-base font-semibold cursor-pointer transition-all duration-300 inline-block text-center hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
     submitButton.textContent = "Create Post";
     buttonsContainer.appendChild(submitButton);
-    // this was absolutely tedious to write correctly. I hope there's a shorter way of doing it
-
     form.appendChild(buttonsContainer);
 
     form.addEventListener("submit", async (event) => {
@@ -173,7 +169,6 @@ function displayCreatePostForm() {
         const isValidImage = await isValidImageUrl(imageUrl);
 
         if (!isValidImage) {
-          // THIS was the thing I struggled SO much with
           loader.remove();
           submitButton.disabled = false;
           showFormError(

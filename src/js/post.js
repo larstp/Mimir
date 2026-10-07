@@ -21,7 +21,7 @@ async function displayPost() {
 
     if (!main) {
       return;
-    } // This worked for me, not sure if its right
+    }
 
     if (!isLoggedIn()) {
       window.location.href = "../../index.html";
@@ -105,7 +105,7 @@ async function displayPost() {
       month: "short",
       day: "numeric",
       year: "numeric",
-    }); // ----- Why was this so hard to understand for meeee?
+    });
     header.appendChild(date);
 
     article.appendChild(header);
@@ -266,7 +266,6 @@ async function displayPost() {
         commentHeader.className = "flex items-center gap-2 mb-2";
 
         if (comment.author?.avatar?.url) {
-          // If this doesn't work I'll just leave it. I'm DONE googling this.
           const avatarLink = document.createElement("a");
           avatarLink.href = `../../src/pages/user.html?name=${comment.author.name}`;
           avatarLink.setAttribute(
@@ -328,7 +327,6 @@ async function displayPost() {
 
     container.appendChild(article);
 
-    // ----------Show edit/delete buttons only for own posts (This I had to get a LOT of help with)
     if (currentUser && post.author?.name === currentUser) {
       const actionsContainer = document.createElement("div");
       actionsContainer.className = "flex gap-4 mt-6";

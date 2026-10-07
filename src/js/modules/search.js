@@ -42,16 +42,28 @@ export function initializeSearch(onSearch) {
 
   document.body.appendChild(searchOverlay);
 
+  /**
+   * Opens the search overlay and focuses the search input.
+   * @returns {void}
+   */
   function openSearch() {
     searchOverlay.style.display = "flex";
     searchInput.focus();
   }
 
+  /**
+   * Closes the search overlay and clears the current query.
+   * @returns {void}
+   */
   function closeSearch() {
     searchOverlay.style.display = "none";
     searchInput.value = "";
   }
 
+  /**
+   * Submits the current search query through the configured callback.
+   * @returns {void}
+   */
   function performSearch() {
     const query = searchInput.value.trim();
 
@@ -79,8 +91,7 @@ export function initializeSearch(onSearch) {
     if (event.key === "Escape" && searchOverlay.style.display === "flex") {
       closeSearch();
     }
-  }); // To whomever reads this; Found somewhere on StackOverflow that said this was good to have for usability so I thought I'd try it. Then I found this article from CSS-Tricks-com talking about it. Is this a normal thing to incorporate?
-  // https://css-tricks.com/snippets/javascript/javascript-keycodes/
+  });
 
   searchInstance = {
     open: openSearch,

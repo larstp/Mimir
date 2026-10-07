@@ -110,7 +110,6 @@ a .post-comment-avatar:hover {
   }
 }
 
-/* -------------------------------------------Create Post */
 .create-post-header {
   font-size: 2rem;
   font-weight: 600;
@@ -152,7 +151,6 @@ a .post-comment-avatar:hover {
   margin-bottom: 1rem;
 }
 
-/* ---------------------------------------------------------Edit Post */
 .edit-post-image-preview {
   margin: 1rem 0 2rem 0;
 }
