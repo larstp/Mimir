@@ -62,7 +62,7 @@ Mannaz is the conventional name of the /m/ rune ᛗ of the Elder Futhark. It is 
 ### Project Links:
 
 - GitHub Repo: [https://github.com/larstp/Mimir](https://github.com/larstp/Mimir)
-- Live Site (GitHub Pages): [https://larstp.github.io/Mimir/](https://larstp.github.io/Mimir/)
+- Live Site (Vercel): [https://mimir.larstp.com](https://mimir.larstp.com)
 
 ---
 
