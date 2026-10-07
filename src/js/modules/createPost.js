@@ -36,7 +36,6 @@ import { openComment } from "./comments.js";
  */
 export function createPost(post, followingList = []) {
   try {
-    // ----------------------------------Figure out if we're on a root page or nested page (for correct paths)
     const isRootPage = !window.location.pathname.includes("/src/pages/");
     const prefix = isRootPage ? "." : "../..";
     const currentUser = getUserName();
@@ -71,7 +70,7 @@ export function createPost(post, followingList = []) {
       }
 
       const authorName = document.createElement("a");
-      authorName.href = `${prefix}/src/pages/user.html?name=${post.author.name}`; // 50% of the time this works 30% of the time
+      authorName.href = `${prefix}/src/pages/user.html?name=${post.author.name}`;
       authorName.className =
         "text-[var(--text)] font-semibold no-underline hover:text-[var(--primary)] transition-colors duration-300";
       authorName.textContent = post.author.name;
@@ -112,6 +111,11 @@ export function createPost(post, followingList = []) {
           const isCurrentlyFollowing =
             btn.getAttribute("data-following") === "true";
 
+          /**
+           * Updates every follow button for the same user on the page.
+           * @param {boolean} following - Whether the current user follows the user
+           * @returns {void}
+           */
           const updateAllFollowButtons = (following) => {
             const allButtons = document.querySelectorAll(
               `.post-card-follow-btn[data-username="${username}"]`,
@@ -146,7 +150,6 @@ export function createPost(post, followingList = []) {
             } else if (error.message.includes("not following")) {
               updateAllFollowButtons(false);
             } else {
-              console.error("Error toggling follow:", error);
             }
           }
         });
@@ -182,8 +185,8 @@ export function createPost(post, followingList = []) {
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.className = "w-full h-full object-cover";
-      img.loading = "lazy"; // ------Lazy load images for performance (test if there's actually a boost)
+      img.className = "w-full h-full object-cover opacity-100";
+      img.loading = "lazy";
 
       mediaContainer.appendChild(img);
       postLink.appendChild(mediaContainer);
@@ -207,8 +210,6 @@ export function createPost(post, followingList = []) {
       const hasLiked = thumbsReaction?.reactors?.includes(currentUser) || false;
       const likeCount = thumbsReaction?.count || 0;
 
-      // Again, lots of help with CoPilot in understanding this whole function. Not sure I completely do tbh., but now the like function seems to work (also baie dankie to mr Krüger).
-
       const likeBtn = document.createElement("button");
       likeBtn.className =
         "flex items-center gap-2 p-2 bg-transparent border-none cursor-pointer transition-all duration-300 hover:bg-white/5 rounded-md";
@@ -227,7 +228,8 @@ export function createPost(post, followingList = []) {
       likeIcon.className = "w-6 h-6";
 
       const likeCountSpan = document.createElement("span");
-      likeCountSpan.className = "text-[var(--text)] font-semibold";
+      likeCountSpan.className =
+        "post-card-like-count text-[var(--text)] font-semibold";
       likeCountSpan.textContent = likeCount;
       likeBtn.appendChild(likeCountSpan);
 
@@ -271,7 +273,6 @@ export function createPost(post, followingList = []) {
             countSpan.remove();
           }
         } catch (error) {
-          console.error("Error reacting to post:", error);
           alert("Failed to like post. Please try again.");
         }
       });
@@ -309,10 +310,9 @@ export function createPost(post, followingList = []) {
     if (post.body) {
       const excerpt = document.createElement("p");
       excerpt.className = "text-[var(--text)] leading-relaxed m-0 mt-3";
-      // ------------------------------------------Limit excerpt to 150 characters so I can make the CSS not look ugly
       const truncatedBody =
         post.body.length > 150
-          ? post.body.substring(0, 150) + "..."
+          ? `${post.body.substring(0, 150)}...`
           : post.body;
       excerpt.textContent = truncatedBody;
       content.appendChild(excerpt);
@@ -352,7 +352,7 @@ export function createPost(post, followingList = []) {
       commentText.className = "text-[var(--text)] text-sm leading-relaxed m-0";
       const truncatedComment =
         latestComment.body.length > 100
-          ? latestComment.body.substring(0, 100) + "..."
+          ? `${latestComment.body.substring(0, 100)}...`
           : latestComment.body;
       commentText.textContent = truncatedComment;
       commentPreview.appendChild(commentText);
@@ -362,7 +362,6 @@ export function createPost(post, followingList = []) {
 
     return article;
   } catch (error) {
-    console.error("Error creating post:", error);
     const errorDiv = document.createElement("div");
     errorDiv.className = "text-center py-12 px-4 text-[var(--error)]";
     errorDiv.textContent = "Unable to load post";

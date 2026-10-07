@@ -7,8 +7,6 @@ import {
 } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
 
-// Hey ho this page was basically the create post page with some modifications
-
 /**
  * Displays the edit post form
  * @returns {Promise<void>}
@@ -18,7 +16,6 @@ async function displayEditPostForm() {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     }
 
@@ -184,7 +181,6 @@ async function displayEditPostForm() {
         deleteLoader.remove();
         window.location.href = "../../index.html";
       } catch (error) {
-        console.error("Error deleting post:", error);
         const deleteLoader = form.querySelector(".loader-container");
         if (deleteLoader) {
           deleteLoader.remove();
@@ -238,7 +234,6 @@ async function displayEditPostForm() {
         updateLoader.remove();
         window.location.href = `./post.html?id=${postId}`;
       } catch (error) {
-        console.error("Error updating post:", error);
         const updateLoader = form.querySelector(".loader-container");
         if (updateLoader) {
           updateLoader.remove();
@@ -252,7 +247,6 @@ async function displayEditPostForm() {
     container.appendChild(form);
     main.appendChild(container);
   } catch (error) {
-    console.error("Error displaying edit post form:", error);
     const main = document.querySelector("main");
     if (main) {
       showError(main, "Failed to load edit form. Please try again.");
@@ -283,7 +277,7 @@ function showFormError(form, message) {
   error.className =
     "bg-[rgba(220,38,38,0.1)] text-[var(--error)] p-4 rounded-lg border border-[var(--error)] mb-4";
   error.setAttribute("role", "alert");
-  error.setAttribute("data-error", "edit-post"); // THIS mfer
+  error.setAttribute("data-error", "edit-post");
   error.textContent = message;
   form.insertBefore(error, form.firstChild);
 }

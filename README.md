@@ -16,24 +16,28 @@
 - [Project Links](#project-links)
 - [Brand Story](#brand-story)
 
-[2. Setup & Installation](#2-setup--installation)
+[2. Assignment Specifics](#2-assignment-specifics)
 
-[3. User](#3-user)
+- [JS2](#js2)
+- [CSS Frameworks](#css-frameworks)
+- [POR2](#por2)
+
+[3. Setup & Installation](#3-setup--installation)
+
+[4. User](#4-user)
 
 - [LogIn User](#login-user)
 - [Create User](#creating-your-own-user)
 
-[4. Technologies Used](#4-technologies-used)
+[5. Technologies Used](#5-technologies-used)
 
-[5. Folder Structure](#5-folder-structure)
+[6. Folder Structure](#6-folder-structure)
 
-[6. Features](#6-features)
+[7. Features](#7-features)
 
-[7. Accessibility and SEO](#7-accessibility--seo)
+[8. Accessibility and SEO](#8-accessibility--seo)
 
-[8. Known Issues & Limitations](#8-known-issues--limitations)
-
-[9. CSS Frameworks Assignment](#9-css-frameworks-assignment)
+[9. Known Issues & Limitations](#9-known-issues--limitations)
 
 [10. Credits](#10-credits)
 
@@ -62,7 +66,48 @@ Mannaz is the conventional name of the /m/ rune ᛗ of the Elder Futhark. It is 
 
 ---
 
-## 2. Setup & Installation
+## 2. Assignment Specifics
+
+### JS2
+
+Mimir was originally created as the main project for the JavaScript 2 course assignment at NOROFF. The assignment focused on building a social media platform using JavaScript, HTML, CSS, DOM manipulation, asynchronous code, and the Noroff Social API.
+
+The JS2 implementation includes:
+
+- User registration, login, and logout
+- A feed of posts loaded from the Noroff Social API
+- Creating, editing, and deleting posts
+- User profiles and profile editing
+- Following and unfollowing users
+- Searching posts
+- Likes, comments, and individual post pages
+- Responsive navigation and form validation
+
+### CSS Frameworks
+
+For the CSS Frameworks course assignment, we could either create a new page or enhance the page from the JS2 assignment by introducing a CSS framework. I chose to continue developing Mimir and migrated the project from custom CSS to **Tailwind CSS v4**.
+
+The migration introduced Tailwind utility classes throughout the HTML and JavaScript-generated UI, while retaining shared CSS variables and the existing visual identity. The project uses npm-managed Tailwind packages rather than a CDN.
+
+### POR2
+
+The POR2 assignment focused on enhancing Mimir and making it properly presentable as part of my portfolio at [larstp.com](https://www.larstp.com/). This included addressing feedback from the previous assignments, improving the presentation, and fixing broken or incomplete functionality.
+
+#### POR2 fixes & enhancements:
+
+- Removed all `console.error` instances
+- Fixed the comment pop-up background, which was undefined and caused see-through elements
+- Added `imageFallback.js` for images that fail to load
+- Defined `cardBackground`, which was missing and caused transparent card surfaces and images
+- Removed Favorites because the API does not provide a Favorites/bookmarks feature
+- Fixed `.post-card-like-count` so likes update correctly without displaying duplicate counts
+- Added reusable show/hide password toggles to login and registration forms
+- Matched register form field sizing to the login form
+- Removed unused legacy CSS files and stale stylesheet references
+
+---
+
+## 3. Setup & Installation
 
 ### Prerequisites
 
@@ -87,7 +132,7 @@ Mannaz is the conventional name of the /m/ rune ᛗ of the Elder Futhark. It is 
 
 ---
 
-## 3. User
+## 4. User
 
 ### LogIn User:
 
@@ -125,7 +170,7 @@ Or you can create your own.
 
 ---
 
-## 4. Technologies Used
+## 5. Technologies Used
 
 - **HTML5** - Semantic markup with comprehensive form validation
 - **Tailwind CSS v4** - Utility-first CSS framework (migrated from custom CSS)
@@ -137,7 +182,7 @@ Or you can create your own.
 
 ---
 
-## 5. Folder Structure
+## 6. Folder Structure
 
 ```
 /
@@ -158,6 +203,7 @@ Or you can create your own.
 │   ├── data/
 │   │   └── api.js      # API integration
 │   └── pages/          # HTML pages
+├── vercel.json         # Vercel static deployment configuration
 ├── docs/               # Documentation
 ├── index.html          # Home page (feed)
 ├── package.json        # npm scripts and dependencies
@@ -166,7 +212,7 @@ Or you can create your own.
 
 ---
 
-## 6. Features
+## 7. Features
 
 ### Core Functionality:
 
@@ -174,10 +220,12 @@ Or you can create your own.
 - **Home Feed** - Paginated posts sorted by newest first
 - **Create Posts** - Upload images with title, body, and alt text
 - **Edit/Delete Posts** - Owner-only controls with confirmation
-- **User Profiles** - View own and others' profiles with avatar, banner, bio (will be updated)
-- **Edit Profile** - Update avatar, banner, and bio (will be added later)
+- **User Profiles** - View own and others' profiles with avatar, banner, and bio
+- **Edit Profile** - Update avatar, banner, and bio
 - **Follow/Unfollow System** - Real-time follower/following counts
 - **Search** - Search posts by title, body, or author name
+- **Comments** - Read and add comments to posts
+- **Reactions** - Like and unlike posts
 - **Individual Post Pages** - Full post view with all comments
 - **Clickable Navigation** - Usernames and avatars link to profiles
 - **Dark Theme** - Modern dark UI with custom color scheme (wanted to try something new)
@@ -188,6 +236,7 @@ Or you can create your own.
 - **Pure Tailwind Utilities** - All 8 pages converted to Tailwind CSS v4
 - **Custom CSS Variables** - Using Tailwind's arbitrary values with CSS variables
 - Search overlay with filter-in-place
+- Image fallback for broken image URLs
 - Loading indicators for async operations
 - Error handling and user feedback
 - Keyboard navigation support
@@ -197,7 +246,7 @@ Or you can create your own.
 
 ---
 
-## 7. Accessibility & SEO
+## 8. Accessibility & SEO
 
 ### Accessibility:
 
@@ -219,45 +268,10 @@ Or you can create your own.
 
 ---
 
-## 8. Known Issues / Limitations
+## 9. Known Issues / Limitations
 
-- **Comments** - Read-only display, comment creation not part of current assignment (will be added later)
 - **Image Uploads** - Requires external URLs (Unsplash, Imgur, etc.)
 - **No Dark/Light Toggle** - Fixed dark theme only. Will try to add this as a self-project later
-
----
-
-## 9. CSS Frameworks Assignment
-
-This project was migrated from custom CSS to **Tailwind CSS v4** as part of the CSS Frameworks course assignment (Option 1).
-
-### Pages Converted to Tailwind:
-
-1. **Home/Feed** (index.html) - Post grid, search, pagination
-2. **Login** (login.html) - Authentication form with validation
-3. **Register** (register.html) - Registration form with email/password validation
-4. **User Profile** (user.html) - Profile banner, avatar, posts grid, follow/unfollow
-5. **Post Details** (post.html) - Single post view with comments section
-6. **Create Post** (newPost.html) - Post creation form with image URL validation
-7. **Edit Profile** (editUser.html) - Profile editing form
-8. **Edit Post** (editPost.html) - Post editing form with delete functionality
-
-### Implementation Details:
-
-- **Tailwind v4.1.18** installed via `@tailwindcss/cli@next`
-- **No CDN links** - All packages managed through npm
-- **Development script**: `npm run dev` (includes `--watch` flag)
-- **Production script**: `npm run build` (includes `--minify` flag)
-- **Responsive breakpoints**: Mobile-first with md: (768px), lg: (1024px), xl: (1280px)
-- **CSS Variables Integration**: Using `var(--primary)`, `var(--text)`, etc. with Tailwind's arbitrary values
-- **Form Validation**: HTML5 validation on all forms (required, minLength, maxLength, type="email", type="url")
-- **All JavaScript modules** converted to use Tailwind utility classes
-
-### Branch & PR:
-
-- Working branch: `css-frameworks`
-- Pull Request submitted to original branch
-- All commits available for review on GitHub
 
 ---
 

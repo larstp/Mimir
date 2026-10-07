@@ -17,11 +17,9 @@
  */
 export function createFooter() {
   try {
-    // Find the footer element in the HTML if it's there.. which it DAMN WELL BETTER BE
     const footer = document.querySelector("footer");
 
     if (!footer) {
-      console.error("Footer element not found in the DOM");
       return;
     }
 
@@ -59,7 +57,5 @@ export function createFooter() {
     footerContent.appendChild(icon);
     footerContent.appendChild(copyright);
     footer.appendChild(footerContent);
-  } catch (error) {
-    console.error("Error creating footer:", error);
-  }
+  } catch (error) {}
 }

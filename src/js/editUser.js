@@ -5,6 +5,7 @@ import {
   isLoggedIn,
 } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
+import { initializeImageFallbacks } from "./modules/imageFallback.js";
 import { createHeader } from "./modules/header.js";
 import { createFooter } from "./modules/footer.js";
 import { createNavbar } from "./modules/navbar.js";
@@ -22,7 +23,6 @@ async function displayEditProfile() {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     }
 
@@ -188,7 +188,6 @@ async function displayEditProfile() {
 
         window.location.href = "./user.html";
       } catch (error) {
-        console.error("Error updating profile:", error);
         const updateLoader = form.querySelector(".loader-container");
         if (updateLoader) {
           updateLoader.remove();
@@ -201,7 +200,6 @@ async function displayEditProfile() {
     container.appendChild(form);
     main.appendChild(container);
   } catch (error) {
-    console.error("Error displaying edit profile:", error);
     const main = document.querySelector("main");
     if (main) {
       showError(main, "Failed to load edit profile. Please try again.");
@@ -238,4 +236,5 @@ function showFormError(form, message) {
   form.insertBefore(error, form.firstChild);
 }
 
+initializeImageFallbacks();
 displayEditProfile();

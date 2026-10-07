@@ -10,14 +10,16 @@
   --textTitle: var(--text);
   --textBody: color-mix(in lab, var(--text) 80%, transparent);
   --textLight: color-mix(in lab, var(--text) 60%, transparent);
-  --font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
-    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  --font-family:
+    Gotham, system-ui, -apple-system, BlinkMacSystemFont, "San Francisco",
+    Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
   --overlay-light: rgba(255, 255, 255, 0.05);
   --overlay-medium: rgba(255, 255, 255, 0.1);
   --overlay-strong: rgba(255, 255, 255, 0.2);
   --gray-light: #888;
   --gray-medium: #e0e0e0;
   --surface-elevated: #222;
+  --cardBackground: #282828;
 }
 
 *,
@@ -55,6 +57,8 @@ body {
 main {
   flex: 1;
   padding-top: 100px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -63,7 +67,6 @@ main {
   }
 }
 
-/* --------------------------------------------------------- Global Form Elements */
 .form-label {
   display: block;
   color: var(--text);
@@ -96,7 +99,6 @@ main {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* --------------------------------------------------------- Global Buttons */
 .btn {
   width: 100%;
   padding: 1rem;
@@ -149,7 +151,6 @@ main {
   background: #dc2626;
 }
 
-/* --------------------------------------------------------- Global Background Icon */
 .icon-bg-container {
   position: fixed;
   top: 70%;

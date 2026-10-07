@@ -29,7 +29,6 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
     }
 
@@ -46,6 +45,13 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       const emptyState = document.createElement("div");
       emptyState.className =
         "flex flex-col items-center gap-8 max-w-[300px] my-0 mx-auto";
+
+      const logo = document.createElement("img");
+      logo.src =
+        "./public/icons/mannaz-sign-round-black-outline-icon-WHITE.svg";
+      logo.alt = "Mimir logo";
+      logo.className = "h-20 w-auto";
+      emptyState.appendChild(logo);
 
       const heading = document.createElement("h1");
       heading.className =
@@ -108,9 +114,9 @@ async function displayPostFeed(page = 1, searchQuery = null) {
     let response;
     if (searchQuery) {
       response = await searchPosts(searchQuery, {
-        _author: true, // -------------------------------------------Include author info
-        _reactions: true, // -----------------------------------------Include reactions
-        _comments: true, // -----------------------------------------Include comments
+        _author: true,
+        _reactions: true,
+        _comments: true,
       });
       if (response.data) {
         response = {
@@ -129,7 +135,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
         _author: true, // Include author info
         _reactions: true, // Include reactions
         _comments: true, // Include comments
-        limit: 100, // Get up to 100 posts (API max per page I think)
+        limit: 100, // Get up to 100 posts
         sort: "created", // Sort by creation date
         sortOrder: "desc", // Newest first
       });
@@ -143,9 +149,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
           const profile = await getProfile(currentUser, { _following: true });
           followingList = profile.following?.map((user) => user.name) || [];
         }
-      } catch (error) {
-        console.error("Error fetching following list:", error);
-      }
+      } catch (error) {}
     }
 
     loader.remove();
@@ -193,7 +197,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       if (hasPrevPage) {
         const prevBtn = document.createElement("button");
         prevBtn.className =
-          "bg-[var(--primary)] text-[var(--background)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
+          "bg-[var(--primary)] text-[var(--text)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
         prevBtn.textContent = "← Previous";
         prevBtn.addEventListener("click", () => {
           currentPage--;
@@ -211,7 +215,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       if (hasNextPage) {
         const nextBtn = document.createElement("button");
         nextBtn.className =
-          "bg-[var(--primary)] text-[var(--background)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
+          "bg-[var(--primary)] text-[var(--text)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
         nextBtn.textContent = "Next →";
         nextBtn.addEventListener("click", () => {
           currentPage++;
@@ -224,8 +228,6 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       feedContainer.appendChild(paginationContainer);
     }
   } catch (error) {
-    console.error("Error displaying post feed:", error);
-
     const main = document.querySelector("main");
     if (main) {
       const errorDiv = document.createElement("div");

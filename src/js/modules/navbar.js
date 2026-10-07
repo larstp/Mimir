@@ -10,7 +10,7 @@ import { openSearch } from "./search.js";
  *
  * @description
  * This function creates a floating mobile navigation bar with:
- * - Five navigation icons (Home, Search, New, Favorites, Profile)
+ * - Four navigation icons (Home, Search, New, Profile)
  * - Active page indicator with smooth transitions
  * - Mobile-only (hidden on desktop)
  *
@@ -23,7 +23,6 @@ export function createNavbar() {
     const navbar = document.querySelector("nav.mobile-navbar");
 
     if (!navbar) {
-      console.error("Mobile navbar element not found in the DOM");
       return;
     }
 
@@ -32,9 +31,6 @@ export function createNavbar() {
       return;
     }
 
-    // Hopefully figure out if we're on a root page or nested page (for correct paths)
-    // CoPilot suggested this was the easiest way, but I can't find much online about it (not sure what to
-    // search for)
     const isRootPage = !window.location.pathname.includes("/src/pages/");
     const prefix = isRootPage ? "." : "../..";
 
@@ -57,12 +53,6 @@ export function createNavbar() {
         ariaLabel: "Create new post",
         page: "newPost.html",
         isCenter: true,
-      },
-      {
-        icon: `${prefix}/public/icons/flowbite_heart-solid.svg`,
-        href: "#",
-        ariaLabel: "View favorites",
-        page: "favorites",
       },
       {
         icon: `${prefix}/public/icons/flowbite_user-circle-solid.svg`,
@@ -108,7 +98,5 @@ export function createNavbar() {
       navItem.appendChild(link);
       navbar.appendChild(navItem);
     });
-  } catch (error) {
-    console.error("Error creating navbar:", error);
-  }
+  } catch (error) {}
 }

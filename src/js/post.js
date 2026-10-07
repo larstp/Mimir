@@ -20,9 +20,8 @@ async function displayPost() {
     const main = document.querySelector("main");
 
     if (!main) {
-      console.error("Main element not found");
       return;
-    } // This worked for me, not sure if its right
+    }
 
     if (!isLoggedIn()) {
       window.location.href = "../../index.html";
@@ -106,7 +105,7 @@ async function displayPost() {
       month: "short",
       day: "numeric",
       year: "numeric",
-    }); // ----- Why was this so hard to understand for meeee?
+    });
     header.appendChild(date);
 
     article.appendChild(header);
@@ -118,7 +117,7 @@ async function displayPost() {
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.className = "w-full h-auto object-cover";
+      img.className = "w-full h-auto object-cover opacity-100";
       mediaContainer.appendChild(img);
 
       article.appendChild(mediaContainer);
@@ -157,7 +156,8 @@ async function displayPost() {
     likeIcon.className = "w-6 h-6";
 
     const likeCountSpan = document.createElement("span");
-    likeCountSpan.className = "text-[var(--text)] font-semibold";
+    likeCountSpan.className =
+      "post-card-like-count text-[var(--text)] font-semibold";
     likeCountSpan.textContent = likeCount;
     likeBtn.appendChild(likeCountSpan);
 
@@ -184,9 +184,7 @@ async function displayPost() {
           btn.setAttribute("aria-label", "Unlike post");
         }
 
-        const countSpan = btn.querySelector(
-          "[class*='text-'][class*='font-semibold']",
-        );
+        const countSpan = btn.querySelector(".post-card-like-count");
         const currentCount = parseInt(countSpan?.textContent || 0);
         const newCount = isLiked ? currentCount - 1 : currentCount + 1;
 
@@ -203,7 +201,6 @@ async function displayPost() {
           countSpan.remove();
         }
       } catch (error) {
-        console.error("Error reacting to post:", error);
         alert("Failed to like post. Please try again.");
       }
     });
@@ -268,7 +265,6 @@ async function displayPost() {
         commentHeader.className = "flex items-center gap-2 mb-2";
 
         if (comment.author?.avatar?.url) {
-          // If this doesn't work I'll just leave it. I'm DONE googling this.
           const avatarLink = document.createElement("a");
           avatarLink.href = `../../src/pages/user.html?name=${comment.author.name}`;
           avatarLink.setAttribute(
@@ -330,7 +326,6 @@ async function displayPost() {
 
     container.appendChild(article);
 
-    // ----------Show edit/delete buttons only for own posts (This I had to get a LOT of help with)
     if (currentUser && post.author?.name === currentUser) {
       const actionsContainer = document.createElement("div");
       actionsContainer.className = "flex gap-4 mt-6";
@@ -365,7 +360,6 @@ async function displayPost() {
           deleteLoader.remove();
           window.location.href = "../../index.html";
         } catch (error) {
-          console.error("Error deleting post:", error);
           const deleteLoader = main.querySelector(".loader-container");
           if (deleteLoader) {
             deleteLoader.remove();
@@ -381,7 +375,6 @@ async function displayPost() {
 
     main.appendChild(container);
   } catch (error) {
-    console.error("Error displaying post:", error);
     const main = document.querySelector("main");
     if (main) {
       const loader = main.querySelector(".loader-container");

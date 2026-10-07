@@ -3,8 +3,10 @@ import { createNavbar } from "../modules/navbar.js";
 import { createFooter } from "../modules/footer.js";
 import { initializeSearch } from "../modules/search.js";
 import { initializeComments } from "../modules/comments.js";
+import { initializeImageFallbacks } from "../modules/imageFallback.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeImageFallbacks();
   createHeader();
   createNavbar();
   createFooter();
@@ -21,13 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const homeUrl = window.location.pathname.includes("/src/pages/")
         ? "../../index.html"
         : "./index.html";
-      window.location.href = `${homeUrl}?search=${encodeURIComponent(query)}`; // Boy did I struggle with getting this to work
+      window.location.href = `${homeUrl}?search=${encodeURIComponent(query)}`;
     }
   });
 
   initializeComments((postId) => {
     window.dispatchEvent(
-      new CustomEvent("commentPosted", { detail: { postId } })
+      new CustomEvent("commentPosted", { detail: { postId } }),
     );
     location.reload();
   });
