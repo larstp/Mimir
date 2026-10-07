@@ -107,6 +107,5 @@ export function createNavbar() {
       navItem.appendChild(link);
       navbar.appendChild(navItem);
     });
-  } catch (error) {
-  }
+  } catch (error) {}
 }

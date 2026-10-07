@@ -58,6 +58,5 @@ export function createFooter() {
     footerContent.appendChild(icon);
     footerContent.appendChild(copyright);
     footer.appendChild(footerContent);
-  } catch (error) {
-  }
+  } catch (error) {}
 }

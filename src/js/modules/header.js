@@ -107,6 +107,5 @@ export function createHeader() {
     });
 
     header.appendChild(nav);
-  } catch (error) {
-  }
+  } catch (error) {}
 }

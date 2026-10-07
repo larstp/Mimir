@@ -142,8 +142,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
           const profile = await getProfile(currentUser, { _following: true });
           followingList = profile.following?.map((user) => user.name) || [];
         }
-      } catch (error) {
-      }
+      } catch (error) {}
     }
 
     loader.remove();
@@ -222,7 +221,6 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       feedContainer.appendChild(paginationContainer);
     }
   } catch (error) {
-
     const main = document.querySelector("main");
     if (main) {
       const errorDiv = document.createElement("div");
