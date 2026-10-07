@@ -19,6 +19,7 @@
   --gray-light: #888;
   --gray-medium: #e0e0e0;
   --surface-elevated: #222;
+  --cardBackground: #282828;
 }
 
 *,
@@ -56,6 +57,8 @@ body {
 main {
   flex: 1;
   padding-top: 100px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {

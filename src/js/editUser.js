@@ -5,6 +5,7 @@ import {
   isLoggedIn,
 } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
+import { initializeImageFallbacks } from "./modules/imageFallback.js";
 import { createHeader } from "./modules/header.js";
 import { createFooter } from "./modules/footer.js";
 import { createNavbar } from "./modules/navbar.js";
@@ -235,4 +236,5 @@ function showFormError(form, message) {
   form.insertBefore(error, form.firstChild);
 }
 
+initializeImageFallbacks();
 displayEditProfile();

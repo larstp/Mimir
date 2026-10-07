@@ -3,8 +3,10 @@ import { createNavbar } from "../modules/navbar.js";
 import { createFooter } from "../modules/footer.js";
 import { initializeSearch } from "../modules/search.js";
 import { initializeComments } from "../modules/comments.js";
+import { initializeImageFallbacks } from "../modules/imageFallback.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeImageFallbacks();
   createHeader();
   createNavbar();
   createFooter();

@@ -46,6 +46,13 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       emptyState.className =
         "flex flex-col items-center gap-8 max-w-[300px] my-0 mx-auto";
 
+      const logo = document.createElement("img");
+      logo.src =
+        "./public/icons/mannaz-sign-round-black-outline-icon-WHITE.svg";
+      logo.alt = "Mimir logo";
+      logo.className = "h-20 w-auto";
+      emptyState.appendChild(logo);
+
       const heading = document.createElement("h1");
       heading.className =
         "text-[2rem] font-semibold text-[var(--text)] m-0 font-[var(--FontFamily)] pt-8 text-center";
@@ -190,7 +197,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       if (hasPrevPage) {
         const prevBtn = document.createElement("button");
         prevBtn.className =
-          "bg-[var(--primary)] text-[var(--background)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
+          "bg-[var(--primary)] text-[var(--text)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
         prevBtn.textContent = "← Previous";
         prevBtn.addEventListener("click", () => {
           currentPage--;
@@ -208,7 +215,7 @@ async function displayPostFeed(page = 1, searchQuery = null) {
       if (hasNextPage) {
         const nextBtn = document.createElement("button");
         nextBtn.className =
-          "bg-[var(--primary)] text-[var(--background)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
+          "bg-[var(--primary)] text-[var(--text)] border-none py-3 px-6 rounded-lg text-base font-semibold cursor-pointer transition-all duration-200 ease-in-out hover:bg-[var(--primaryHover)] hover:-translate-y-0.5 active:translate-y-0";
         nextBtn.textContent = "Next →";
         nextBtn.addEventListener("click", () => {
           currentPage++;

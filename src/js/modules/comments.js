@@ -12,16 +12,19 @@ let commentInstance = null;
  * When a comment is posted, it calls the API and then the onCommentSuccess callback.
  */
 export function initializeComments(onCommentSuccess) {
+  const isRootPage = !window.location.pathname.includes("/src/pages/");
+  const prefix = isRootPage ? "." : "../..";
+
   const commentOverlay = document.createElement("div");
   commentOverlay.className =
-    "fixed inset-0 bg-black/50 flex items-center justify-center z-50";
+    "fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4";
   commentOverlay.setAttribute("role", "dialog");
   commentOverlay.setAttribute("aria-label", "Add comment");
   commentOverlay.style.display = "none";
 
   const commentContainer = document.createElement("div");
   commentContainer.className =
-    "bg-[var(--cardBackground)] rounded-[10px] p-6 max-w-[500px] w-full mx-4";
+    "bg-[var(--background)] border border-white/10 rounded-[10px] p-6 max-w-[500px] w-full";
 
   const commentHeader = document.createElement("h2");
   commentHeader.className =
@@ -51,7 +54,7 @@ export function initializeComments(onCommentSuccess) {
   commentButton.appendChild(buttonText);
 
   const sendIcon = document.createElement("img");
-  sendIcon.src = "../../public/icons/flowbite_arrow-right-alt-outline.svg";
+  sendIcon.src = `${prefix}/public/icons/flowbite_arrow-right-alt-outline.svg`;
   sendIcon.alt = "";
   sendIcon.className = "w-5 h-5";
   commentButton.appendChild(sendIcon);
@@ -119,11 +122,11 @@ export function initializeComments(onCommentSuccess) {
   commentButton.addEventListener("click", postComment);
 
   commentButton.addEventListener("mouseenter", () => {
-    sendIcon.src = "../../public/icons/flowbite_arrow-right-alt-solid.svg";
+    sendIcon.src = `${prefix}/public/icons/flowbite_arrow-right-alt-solid.svg`;
   });
 
   commentButton.addEventListener("mouseleave", () => {
-    sendIcon.src = "../../public/icons/flowbite_arrow-right-alt-outline.svg";
+    sendIcon.src = `${prefix}/public/icons/flowbite_arrow-right-alt-outline.svg`;
   });
 
   commentTextarea.addEventListener("keydown", (event) => {

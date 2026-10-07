@@ -1,5 +1,6 @@
 import { register, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
+import { createPasswordToggle } from "./modules/passwordToggle.js";
 
 /**
  * Creates the registration form
@@ -26,7 +27,7 @@ function createRegisterForm() {
     "relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4 py-8 pt-[100px] md:pb-8";
 
   const form = document.createElement("form");
-  form.className = "w-full max-w-[300px] flex flex-col gap-6";
+  form.className = "w-full max-w-md flex flex-col gap-6";
   form.setAttribute("aria-label", "Registration form");
 
   const header = document.createElement("h1");
@@ -100,7 +101,7 @@ function createRegisterForm() {
   passwordInput.maxLength = 128;
   passwordInput.title = "Password must be at least 8 characters";
   passwordInput.setAttribute("aria-label", "Password");
-  fieldsContainer.appendChild(passwordInput);
+  fieldsContainer.appendChild(createPasswordToggle(passwordInput));
 
   const repeatPasswordLabel = document.createElement("label");
   repeatPasswordLabel.className =
@@ -121,7 +122,7 @@ function createRegisterForm() {
   repeatPasswordInput.maxLength = 128;
   repeatPasswordInput.title = "Password must match the password above";
   repeatPasswordInput.setAttribute("aria-label", "Repeat password");
-  fieldsContainer.appendChild(repeatPasswordInput);
+  fieldsContainer.appendChild(createPasswordToggle(repeatPasswordInput));
 
   const avatarLabel = document.createElement("label");
   avatarLabel.className =

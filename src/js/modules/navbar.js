@@ -10,7 +10,7 @@ import { openSearch } from "./search.js";
  *
  * @description
  * This function creates a floating mobile navigation bar with:
- * - Five navigation icons (Home, Search, New, Favorites, Profile)
+ * - Four navigation icons (Home, Search, New, Profile)
  * - Active page indicator with smooth transitions
  * - Mobile-only (hidden on desktop)
  *
@@ -53,12 +53,6 @@ export function createNavbar() {
         ariaLabel: "Create new post",
         page: "newPost.html",
         isCenter: true,
-      },
-      {
-        icon: `${prefix}/public/icons/flowbite_heart-solid.svg`,
-        href: "#",
-        ariaLabel: "View favorites",
-        page: "favorites",
       },
       {
         icon: `${prefix}/public/icons/flowbite_user-circle-solid.svg`,

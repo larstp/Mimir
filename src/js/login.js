@@ -1,5 +1,6 @@
 import { login, isLoggedIn } from "../data/api.js";
 import { createLoader } from "./modules/loader.js";
+import { createPasswordToggle } from "./modules/passwordToggle.js";
 
 /**
  * Creates the login form
@@ -76,7 +77,7 @@ function createLoginForm() {
   passwordInput.minLength = 8;
   passwordInput.title = "Enter your password";
   passwordInput.setAttribute("aria-label", "Password");
-  fieldsContainer.appendChild(passwordInput);
+  fieldsContainer.appendChild(createPasswordToggle(passwordInput));
 
   form.appendChild(fieldsContainer);
 

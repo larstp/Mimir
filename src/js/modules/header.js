@@ -11,7 +11,7 @@ import { openSearch } from "./search.js";
  * This function creates a simple header with:
  * - A left-aligned logo (desktop) or centered logo (mobile) linking to index.html
  * - Relative path support for both root and nested pages
- * - Desktop-only navigation icons with hover labels (Search, Favorites, Profile, New)
+ * - Desktop-only navigation icons with hover labels (Search, Profile, New)
  * - Mobile-first responsive design (navigation hidden on mobile)
  * - No innerHTML usage - all elements created via DOM methods
  *
@@ -49,12 +49,6 @@ export function createHeader() {
         label: "Search",
         href: "#",
         ariaLabel: "Search",
-      },
-      {
-        icon: `${prefix}/public/icons/flowbite_heart-solid.svg`,
-        label: "Favorites",
-        href: "#",
-        ariaLabel: "View favorites",
       },
       {
         icon: `${prefix}/public/icons/flowbite_user-circle-solid.svg`,

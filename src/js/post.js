@@ -117,7 +117,7 @@ async function displayPost() {
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.className = "w-full h-auto object-cover";
+      img.className = "w-full h-auto object-cover opacity-100";
       mediaContainer.appendChild(img);
 
       article.appendChild(mediaContainer);
@@ -156,7 +156,8 @@ async function displayPost() {
     likeIcon.className = "w-6 h-6";
 
     const likeCountSpan = document.createElement("span");
-    likeCountSpan.className = "text-[var(--text)] font-semibold";
+    likeCountSpan.className =
+      "post-card-like-count text-[var(--text)] font-semibold";
     likeCountSpan.textContent = likeCount;
     likeBtn.appendChild(likeCountSpan);
 
@@ -183,9 +184,7 @@ async function displayPost() {
           btn.setAttribute("aria-label", "Unlike post");
         }
 
-        const countSpan = btn.querySelector(
-          "[class*='text-'][class*='font-semibold']",
-        );
+        const countSpan = btn.querySelector(".post-card-like-count");
         const currentCount = parseInt(countSpan?.textContent || 0);
         const newCount = isLiked ? currentCount - 1 : currentCount + 1;
 

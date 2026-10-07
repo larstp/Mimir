@@ -185,7 +185,7 @@ export function createPost(post, followingList = []) {
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || post.title;
-      img.className = "w-full h-full object-cover";
+      img.className = "w-full h-full object-cover opacity-100";
       img.loading = "lazy";
 
       mediaContainer.appendChild(img);
@@ -228,7 +228,8 @@ export function createPost(post, followingList = []) {
       likeIcon.className = "w-6 h-6";
 
       const likeCountSpan = document.createElement("span");
-      likeCountSpan.className = "text-[var(--text)] font-semibold";
+      likeCountSpan.className =
+        "post-card-like-count text-[var(--text)] font-semibold";
       likeCountSpan.textContent = likeCount;
       likeBtn.appendChild(likeCountSpan);
 
