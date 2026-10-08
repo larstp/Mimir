@@ -301,5 +301,5 @@ All post images are sourced from [Unsplash](https://unsplash.com) - Free to use 
 ## 11. Contact
 
 - **Author**: [larstp](https://github.com/larstp)
-- **Course**: JavaScript 2 & CSS Frameworks - NOROFF School of Technology and Digital Media
+- **Course**: JavaScript 2, CSS Frameworks & Portfolio 2 - NOROFF School of Technology and Digital Media
 - **Year**: 2025/2026 Year 2
