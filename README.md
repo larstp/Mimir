@@ -105,6 +105,8 @@ The POR2 assignment focused on enhancing Mimir and making it properly presentabl
 - Matched register form field sizing to the login form
 - Removed unused legacy CSS files and stale stylesheet references
 
+The POR2 work builds on the original JS2 and CSS Frameworks assignments. The original styling is preserved in the `old-styling` branch so the visual changes can be compared with the refurbished version.
+
 ---
 
 ## 3. Setup & Installation
