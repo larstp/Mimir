@@ -42,7 +42,7 @@ export function createPost(post, followingList = []) {
 
     const article = document.createElement("article");
     article.className =
-      "bg-[var(--cardBackground)] rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] overflow-hidden hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] transition-shadow duration-300";
+      "flex h-full flex-col bg-[var(--cardBackground)] rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] overflow-hidden hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] transition-shadow duration-300";
     article.setAttribute("data-post-id", post.id);
 
     const header = document.createElement("div");
@@ -175,7 +175,7 @@ export function createPost(post, followingList = []) {
 
     const postLink = document.createElement("a");
     postLink.href = `${prefix}/src/pages/post.html?id=${post.id}`;
-    postLink.className = "no-underline block";
+    postLink.className = "no-underline flex flex-1 flex-col";
     postLink.setAttribute("aria-label", `Read post: ${post.title}`);
 
     if (post.media?.url) {
@@ -193,7 +193,7 @@ export function createPost(post, followingList = []) {
     }
 
     const content = document.createElement("div");
-    content.className = "p-4 pt-0";
+    content.className = "flex-1 p-4 pt-0";
 
     const titleContainer = document.createElement("div");
     titleContainer.className =
@@ -326,7 +326,7 @@ export function createPost(post, followingList = []) {
 
       const commentPreview = document.createElement("div");
       commentPreview.className =
-        "bg-white/5 rounded-lg p-3 mt-3 border border-white/5";
+        "mt-auto bg-white/5 rounded-lg p-3 border border-white/5";
 
       const commentHeader = document.createElement("div");
       commentHeader.className = "flex items-center gap-2 mb-2";
