@@ -45,6 +45,32 @@
 
 </details>
 
+<details>
+  <summary>Project Screenshots</summary>
+
+  <table>
+    <tr>
+      <td align="center">
+        <img src="public/img/screenshots/mimir-landing.webp" alt="Mimir landing page" width="360" />
+        <br />
+        <sub>Landing page and home feed</sub>
+      </td>
+      <td align="center">
+        <img src="public/img/screenshots/mimir-post.webp" alt="Mimir individual post page" width="360" />
+        <br />
+        <sub>Individual post page</sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2">
+        <img src="public/img/screenshots/mimir-user.webp" alt="Mimir user profile page" width="360" />
+        <br />
+        <sub>User profile page</sub>
+      </td>
+    </tr>
+  </table>
+</details>
+
 ---
 
 ## 1. Project Overview
